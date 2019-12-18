@@ -22,7 +22,7 @@ const Quotes = () => {
   return (
     <ul>
       {quotes.map(quote => (
-        <li>{quote.citation}</li>
+        <li key={quote.id}>{quote.citation}</li>
       ))}
     </ul>
   );

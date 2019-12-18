@@ -1,5 +1,6 @@
 import React, { useCallback, useContext } from 'react';
 import { withRouter, Redirect } from 'react-router';
+
 import app from './base.js';
 import { AuthContext } from './Auth.js';
 
@@ -7,6 +8,7 @@ export const Login = ({ history }) => {
   const handleLogin = useCallback(
     async event => {
       event.preventDefault();
+
       const { email, password } = event.target.elements;
 
       try {
