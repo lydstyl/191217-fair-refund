@@ -1,32 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Home from './Home';
+import Login from './Login';
+import SignUp from './SignUp';
+import Quotes from './Quotes';
+import { AuthProvider } from './Auth';
+import PrivateRoute from './PrivateRoute';
 
 import './App.css';
 
 export const App = () => {
-  const [quotes, setQuotes] = useState([]);
-
-  useEffect(() => {
-    const getQuotes = async () => {
-      try {
-        const response = await fetch(
-          'https://bridge.buddyweb.fr/api/citations/citations'
-        );
-
-        setQuotes(await response.json());
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    getQuotes();
-  }, []);
-
   return (
-    <ul>
-      {quotes.map(quote => (
-        <li>{quote.citation}</li>
-      ))}
-    </ul>
+    <AuthProvider>
+      <Router>
+        <div>
+          <PrivateRoute exact path='/' component={Home} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/signup' component={SignUp} />
+          <Route exact path='/quotes' component={Quotes} />
+        </div>
+      </Router>
+    </AuthProvider>
   );
 };
 
