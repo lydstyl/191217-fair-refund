@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import { ChargeListContext } from '../ChargeListProvider/ChargeListProvider';
+import ChargeListItem from '../ChargeListItem/ChargeListItem';
 
-const Test = () => {
+const AllChargeList = () => {
   const { chargeList } = useContext(ChargeListContext);
 
   const [stateChargeList, setstateChargeList] = useState([]);
 
   useEffect(() => {
-    console.log(chargeList, 'youpi');
-
     setstateChargeList(chargeList);
   }, [chargeList]);
 
@@ -17,10 +16,14 @@ const Test = () => {
     <div>
       <ul>
         {stateChargeList &&
-          stateChargeList.map(list => <li key={list.id}>{list.email}</li>)}
+          stateChargeList.map(list => (
+            <li key={list.id}>
+              <ChargeListItem user={list} />
+            </li>
+          ))}
       </ul>
     </div>
   );
 };
 
-export default Test;
+export default AllChargeList;

@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
 
-import ChargeListItem from '../ChargeListItem/ChargeListItem';
 import { db } from '../../utils/firebase/base';
 import { ChargeListProvider } from '../ChargeListProvider/ChargeListProvider';
 
-import Test from '../Test/Test';
+import AllChargeList from '../AllChargeList/AllChargeList';
 
 import './ChargeListBox.scss';
 
@@ -37,23 +36,16 @@ export const ChargeListBox = () => {
   };
 
   return (
-    <div>
-      <h1>Listes de dépenses</h1>
+    <ChargeListProvider>
+      <div>
+        <h1>Listes de dépenses</h1>
 
-      <input type='text' />
-      <button onClick={handleAdd}>Add</button>
+        <input type='text' />
+        <button onClick={handleAdd}>Add</button>
 
-      <ChargeListProvider>
-        <Test />
-        <ul>
-          {users.map(user => (
-            <li key={user.id}>
-              <ChargeListItem user={user} />
-            </li>
-          ))}
-        </ul>
-      </ChargeListProvider>
-    </div>
+        <AllChargeList />
+      </div>
+    </ChargeListProvider>
   );
 };
 
