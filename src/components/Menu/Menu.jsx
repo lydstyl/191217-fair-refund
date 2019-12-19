@@ -168,14 +168,8 @@ const Menu = () => {
             <Link onClick={handleCloseMenu} to='/quotes'>
               Test connexion API
             </Link>
-            <Link onClick={handleCloseMenu} to='/test'>
-              Listes de dépenses
-            </Link>
-            <Link onClick={handleCloseMenu} to='/test2'>
-              RedContext
-            </Link>
             <Link onClick={handleCloseMenu} to='/charges-lists'>
-              ChargesLists
+              Listes de dépenses
             </Link>
             <div className='userBox'>
               <User />
