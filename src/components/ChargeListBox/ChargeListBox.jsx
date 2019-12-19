@@ -6,9 +6,9 @@ import { db } from '../../utils/firebase/base';
 import { ChargeListProvider } from '../ChargeListProvider/ChargeListProvider';
 import Test2 from '../Test/Test';
 
-import './ChargeList.scss';
+import './ChargeListBox.scss';
 
-export const Test = () => {
+export const ChargeListBox = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -57,4 +57,4 @@ export const Test = () => {
   );
 };
 
-export default Test;
+export default ChargeListBox;

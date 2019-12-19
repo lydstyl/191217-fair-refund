@@ -5,7 +5,7 @@ import Home from '../Home/Home';
 import Login from '../Login/Login';
 import SignUp from '../SignUp/SignUp';
 import Quotes from '../Quotes/Quotes';
-import ChargeList from '../ChargeList/ChargeList';
+import ChargeListBox from '../ChargeListBox/ChargeListBox';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Menu from '../Menu/Menu';
 
@@ -24,7 +24,7 @@ export const App = () => {
           <Route exact path='/signup' component={SignUp} />
           <PrivateRoute exact path='/' component={Home} />
           <PrivateRoute exact path='/quotes' component={Quotes} />
-          <PrivateRoute exact path='/test' component={ChargeList} />
+          <PrivateRoute exact path='/test' component={ChargeListBox} />
         </div>
 
         <footer>
