@@ -6,7 +6,7 @@ import {
   useCharge,
   ADD_CHARGES_LIST,
   REMOVE_CHARGES_LIST
-} from '../../Reducers/useCharge';
+} from '../../reducers/useCharge';
 
 const ChargesLists = () => {
   const { chargeStore, chargeDispatch } = useCharge();

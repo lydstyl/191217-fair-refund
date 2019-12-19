@@ -10,8 +10,8 @@ import Quotes from '../Quotes/Quotes';
 import ChargesLists from '../ChargesLists/ChargesLists';
 
 import { AuthProvider } from '../Auth/Auth'; // maybe to change
-import { UserCtxProvider } from '../../Reducers/useUser'; // with this one ?
-import { ChargeCtxProvider } from '../../Reducers/useCharge';
+import { UserCtxProvider } from '../../reducers/useUser'; // with this one ?
+import { ChargeCtxProvider } from '../../reducers/useCharge';
 
 import './App.scss';
 
