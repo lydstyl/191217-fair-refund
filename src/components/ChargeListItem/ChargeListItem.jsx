@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, {
+  useState
+  // useContext
+} from 'react';
 
 import { db } from '../../utils/firebase/base';
+// import { ChargeListContext } from '../ChargeListProvider/ChargeListProvider';
 
 export const ChargeListItem = ({ user }) => {
+  //const { chargeList } = useContext(ChargeListContext);
   const [userInState, setUser] = useState(user);
 
   const handleDeleteItem = e => {
@@ -13,7 +18,7 @@ export const ChargeListItem = ({ user }) => {
       .delete()
       .then(function() {
         console.log('Document successfully deleted!');
-        setUser(null);
+        setUser(null); // use here a useReducer with action DELETE_USER or better DELETE_LIST
       })
       .catch(function(error) {
         console.error('Error removing document: ', error);

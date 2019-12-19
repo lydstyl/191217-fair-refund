@@ -33,7 +33,12 @@ const SignUp = ({ history }) => {
         </label>
         <label>
           Password
-          <input name='password' type='password' placeholder='Password' />
+          <input
+            autoComplete='true'
+            name='password'
+            type='password'
+            placeholder='Password'
+          />
         </label>
         <button type='submit'>Sign Up</button>
       </form>
