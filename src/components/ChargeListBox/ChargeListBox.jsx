@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 
 import ChargeListItem from '../ChargeListItem/ChargeListItem';
-
 import { db } from '../../utils/firebase/base';
 import { ChargeListProvider } from '../ChargeListProvider/ChargeListProvider';
-import Test2 from '../Test/Test';
+
+import Test from '../Test/Test';
 
 import './ChargeListBox.scss';
 
@@ -44,7 +44,7 @@ export const ChargeListBox = () => {
       <button onClick={handleAdd}>Add</button>
 
       <ChargeListProvider>
-        <Test2 />
+        <Test />
         <ul>
           {users.map(user => (
             <li key={user.id}>

@@ -1,13 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { ChargeListContext } from '../ChargeListProvider/ChargeListProvider';
 
 const Test = () => {
   const { chargeList } = useContext(ChargeListContext);
 
-  console.log(chargeList, 'youpi');
+  const [stateChargeList, setstateChargeList] = useState([]);
 
-  return <div>test</div>;
+  useEffect(() => {
+    console.log(chargeList, 'youpi');
+
+    setstateChargeList(chargeList);
+  }, [chargeList]);
+
+  return (
+    <div>
+      <ul>
+        {stateChargeList &&
+          stateChargeList.map(list => <li key={list.id}>{list.email}</li>)}
+      </ul>
+    </div>
+  );
 };
 
 export default Test;
