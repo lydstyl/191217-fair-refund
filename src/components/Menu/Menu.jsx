@@ -163,13 +163,13 @@ const Menu = () => {
         {currentUser && (
           <>
             <Link onClick={handleCloseMenu} to='/'>
-              Home
+              Accueil
             </Link>
             <Link onClick={handleCloseMenu} to='/quotes'>
-              quotes
+              Test connexion API
             </Link>
             <Link onClick={handleCloseMenu} to='/test'>
-              test
+              Listes de dépenses
             </Link>
             <div className='userBox'>
               <User />

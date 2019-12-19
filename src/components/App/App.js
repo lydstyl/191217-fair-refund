@@ -5,7 +5,7 @@ import Home from '../Home/Home';
 import Login from '../Login/Login';
 import SignUp from '../SignUp/SignUp';
 import Quotes from '../Quotes/Quotes';
-import Test from '../Test/Test';
+import ChargeList from '../ChargeList/ChargeList';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Menu from '../Menu/Menu';
 
@@ -24,11 +24,13 @@ export const App = () => {
           <Route exact path='/signup' component={SignUp} />
           <PrivateRoute exact path='/' component={Home} />
           <PrivateRoute exact path='/quotes' component={Quotes} />
-          <PrivateRoute exact path='/test' component={Test} />
+          <PrivateRoute exact path='/test' component={ChargeList} />
         </div>
 
         <footer>
-          <div>sticky-footer</div>
+          <div>
+            Un commentaire ? Vous pouvez l'envoyer sur lydstyl@gmail.com
+          </div>
         </footer>
       </Router>
     </AuthProvider>
