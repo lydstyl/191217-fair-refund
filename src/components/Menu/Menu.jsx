@@ -174,6 +174,9 @@ const Menu = () => {
             <Link onClick={handleCloseMenu} to='/test2'>
               RedContext
             </Link>
+            <Link onClick={handleCloseMenu} to='/charges-lists'>
+              ChargesLists
+            </Link>
             <div className='userBox'>
               <User />
               <button onClick={handleSignOut}>Sign out</button>
