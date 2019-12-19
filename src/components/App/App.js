@@ -10,18 +10,24 @@ import Menu from '../Menu/Menu';
 
 import { AuthProvider } from '../Auth/Auth';
 
+import './App.scss';
+
 export const App = () => {
   return (
     <AuthProvider>
       <Router>
         <Menu />
 
-        <div>
+        <div className='container'>
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={SignUp} />
           <PrivateRoute exact path='/' component={Home} />
           <PrivateRoute exact path='/quotes' component={Quotes} />
         </div>
+
+        <footer>
+          <div>sticky-footer</div>
+        </footer>
       </Router>
     </AuthProvider>
   );

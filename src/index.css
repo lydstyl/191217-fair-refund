@@ -8,3 +8,15 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 }
+
+/* sticky-footer */
+.container {
+  min-height: calc(100vh - 150px);
+}
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+  background-color: lightgrey;
+}
