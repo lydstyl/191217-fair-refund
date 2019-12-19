@@ -1,6 +1,14 @@
-https://www.youtube.com/watch?v=unr4s3jd9qA&t=8s
+In this project you can see how to in React.js :
 
-In this project you can see :
+- make an app responsive
+- make a sticky footer
+- use sass and styled components
+- authentificate with Firebase
+- protect a route and redirect to login if necessary
+- fetch data with an api
+- use Firebase firestore database (CRUD in progress)
+- use the context combined with useReducer hooks to provide a flux architecure. A redux like without to have to use Redux.
 
-- how to fetch a GET api
-- how to authentificate with firebase
+Todo:
+
+- upload an image
