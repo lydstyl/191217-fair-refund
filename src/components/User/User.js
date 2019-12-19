@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 
-import { AuthContext } from './Auth.js';
+import { AuthContext } from '../Auth/Auth.js';
 
 export const User = () => {
   const { currentUser } = useContext(AuthContext);
 
-  return <>{currentUser ? currentUser.email : 'guest'}</>;
+  return <div>{currentUser ? currentUser.email : 'guest'}</div>;
 };
 
 export default User;
