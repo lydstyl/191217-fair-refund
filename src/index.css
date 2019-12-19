@@ -11,12 +11,12 @@ body {
 
 /* sticky-footer */
 .container {
-  min-height: calc(100vh - 150px);
+  min-height: calc(100vh - 225px);
 }
 footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 50px;
+  min-height: 100px;
   background-color: lightgrey;
 }

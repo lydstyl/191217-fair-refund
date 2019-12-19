@@ -168,6 +168,9 @@ const Menu = () => {
             <Link onClick={handleCloseMenu} to='/quotes'>
               quotes
             </Link>
+            <Link onClick={handleCloseMenu} to='/test'>
+              test
+            </Link>
             <div className='userBox'>
               <User />
               <button onClick={handleSignOut}>Sign out</button>
