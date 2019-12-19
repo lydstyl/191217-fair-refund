@@ -2,15 +2,20 @@ import React, { useContext, createContext, useReducer } from 'react';
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'GET_CHARGES_LISTS':
-      return initialState;
+    case 'ADD_CHARGES_LIST':
+      return [...state, action.payload];
+    case 'REMOVE_CHARGES_LIST':
+      return state.filter(list => list.id !== action.payload);
 
     default:
       return state;
   }
 };
 
-const initialState = { chargesList: ['one', 'two'] };
+const initialState = [
+  { id: 'idOne', name: 'one' },
+  { id: 'idTwo', name: 'two' }
+];
 const Context = createContext();
 
 export const useCharge = () => useContext(Context);

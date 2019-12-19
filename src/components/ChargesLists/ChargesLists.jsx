@@ -9,9 +9,24 @@ const ChargesLists = () => {
     <div>
       <p>{JSON.stringify(chargeStore)}</p>
 
-      {/* <button onClick={() => chargeDispatch({ type: 'GET_CHARGES_LISTS' })}>
-        GET_CHARGES_LISTS
-      </button> */}
+      <button
+        onClick={() =>
+          chargeDispatch({
+            type: 'ADD_CHARGES_LIST',
+            payload: { id: 'idFour', name: 'four' }
+          })
+        }
+      >
+        ADD_CHARGES_LIST
+      </button>
+
+      <button
+        onClick={() =>
+          chargeDispatch({ type: 'REMOVE_CHARGES_LIST', payload: 'idTwo' })
+        }
+      >
+        REMOVE_CHARGES_LIST
+      </button>
     </div>
   );
 };
