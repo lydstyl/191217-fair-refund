@@ -1,10 +1,33 @@
 import React from 'react';
 
-import { useCharge } from '../../Reducers/useCharge';
 import { db } from '../../utils/firebase/base';
+
+import {
+  useCharge,
+  ADD_CHARGES_LIST,
+  REMOVE_CHARGES_LIST
+} from '../../Reducers/useCharge';
 
 const ChargesLists = () => {
   const { chargeStore, chargeDispatch } = useCharge();
+
+  const handleAddList = () => {
+    const email = document.querySelector('input').value;
+
+    db.collection('users')
+      .add({ email })
+
+      .then(function(docRef) {
+        console.log(docRef.id);
+        chargeDispatch({
+          type: ADD_CHARGES_LIST,
+          payload: { id: docRef.id, email }
+        });
+      })
+      .catch(function(error) {
+        console.error('Error adding document: ', error);
+      });
+  };
 
   const handleRemoveList = id => {
     db.collection('users')
@@ -13,7 +36,7 @@ const ChargesLists = () => {
       .then(function() {
         console.log('Document successfully deleted!');
         chargeDispatch({
-          type: 'REMOVE_CHARGES_LIST',
+          type: REMOVE_CHARGES_LIST,
           payload: id
         });
       })
@@ -25,6 +48,10 @@ const ChargesLists = () => {
   return (
     <div>
       <p>{JSON.stringify(chargeStore)}</p>
+      <div>
+        <input type='text' />
+        <button onClick={handleAddList}>ADD</button>
+      </div>
 
       <ul>
         {chargeStore.map(chargeList => (

@@ -2,11 +2,14 @@ import React, { useContext, createContext, useReducer } from 'react';
 
 import { db } from '../utils/firebase/base';
 
+export const ADD_CHARGES_LIST = 'ADD_CHARGES_LIST';
+export const REMOVE_CHARGES_LIST = 'REMOVE_CHARGES_LIST';
+
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'ADD_CHARGES_LIST':
-      return [...state, action.payload];
-    case 'REMOVE_CHARGES_LIST':
+    case ADD_CHARGES_LIST:
+      return [...state, { id: action.payload.id, email: action.payload.email }];
+    case REMOVE_CHARGES_LIST:
       return state.filter(list => list.id !== action.payload);
 
     default:
@@ -14,7 +17,7 @@ const reducer = (state, action) => {
   }
 };
 
-const initialState = []; // [{id: xxx, email: yyy}, ...]
+const initialState = []; // [{id: xxxfromfirebase, email: yyy}, ...]
 
 db.collection('users')
   .get()
