@@ -171,6 +171,9 @@ const Menu = () => {
             <Link onClick={handleCloseMenu} to='/charges-lists'>
               Listes de dépenses
             </Link>
+            <Link onClick={handleCloseMenu} to='/upload-file'>
+              Upload un fichier
+            </Link>
             <div className='userBox'>
               <User />
               <button onClick={handleSignOut}>Sign out</button>

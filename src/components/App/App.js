@@ -8,6 +8,7 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Home from '../Home/Home';
 import Quotes from '../Quotes/Quotes';
 import ChargesLists from '../ChargesLists/ChargesLists';
+import FileUpload from '../FileUpload/FileUpload';
 
 import { AuthProvider } from '../Auth/Auth'; // maybe to change
 import { UserCtxProvider } from '../../reducers/useUser'; // with this one ?
@@ -33,6 +34,7 @@ export const App = () => {
                 path='/charges-lists'
                 component={ChargesLists}
               />
+              <PrivateRoute exact path='/upload-file' component={FileUpload} />
             </div>
           </ChargeCtxProvider>
         </UserCtxProvider>

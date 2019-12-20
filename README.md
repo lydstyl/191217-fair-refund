@@ -8,7 +8,4 @@ In this project you can see how to in React.js :
 - fetch data with an api
 - use Firebase firestore database (CRUD in progress)
 - use the context combined with useReducer hooks to provide a flux architecure. A redux like without to have to use Redux.
-
-Todo:
-
-- upload an image
+- upload an image with cloudinary https://www.youtube.com/watch?v=hlYczGvLlDY
