@@ -13,18 +13,19 @@ const FileUpload = () => {
 
     setLoading(true);
 
-    const res = await fetch(
-      '	https://api.cloudinary.com/v1_1/do4oofwxr/image/upload',
-      {
+    try {
+      const res = await fetch(process.env.REACT_APP_CLOUDINARY_URL, {
         method: 'POST',
         body: data
-      }
-    );
+      });
 
-    const file = await res.json();
+      const file = await res.json();
 
-    setImage(file.secure_url);
-    setLoading(false);
+      setImage(file.secure_url);
+      setLoading(false);
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return (
