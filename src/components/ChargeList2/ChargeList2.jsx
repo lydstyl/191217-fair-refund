@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { db } from '../../utils/firebase/base';
 
 const ChargeList2 = () => {
   const [chargeList, setChargeList] = useState(null);
 
-  db.doc('/chargesLists/qHEp1EsQ7TXQCKppkKC4')
-    .get()
-    .then(doc => {
-      if (doc.exists) {
-        setChargeList(doc.data());
-      }
-    });
+  useEffect(() => {
+    let listId = window.location.href.split('/');
+    listId = listId[listId.length - 1]; // list id from url
+
+    db.doc(`/chargesLists/${listId}`)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          setChargeList(doc.data());
+        }
+      });
+  }, []);
 
   return (
     <div>
