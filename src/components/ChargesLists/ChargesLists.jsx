@@ -67,9 +67,11 @@ const ChargesLists = () => {
         {chargeStore.map(chargeList => (
           <li key={chargeList.id}>
             <p>{chargeList.email}</p>
-            <Link to={`/charge-list/${chargeList.id}`}>
+
+            <Link to={`/charge-list/${chargeList.id}`} chargelist={chargeList}>
               {`/charge-list/${chargeList.id}`}
             </Link>
+
             <button onClick={() => handleRemoveList(chargeList.id)}>DEL</button>
           </li>
         ))}
