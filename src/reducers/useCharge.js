@@ -8,7 +8,14 @@ export const REMOVE_CHARGES_LIST = 'REMOVE_CHARGES_LIST';
 const reducer = (state, action) => {
   switch (action.type) {
     case ADD_CHARGES_LIST:
-      return [...state, { id: action.payload.id, email: action.payload.email }];
+      return [
+        ...state,
+        {
+          id: action.payload.id,
+          email: action.payload.email,
+          password: action.payload.password
+        }
+      ];
     case REMOVE_CHARGES_LIST:
       return state.filter(list => list.id !== action.payload);
 

@@ -13,21 +13,22 @@ import './ChargesLists.scss';
 const ChargesLists = () => {
   const { chargeStore, chargeDispatch } = useCharge();
 
-  const handleAddList = () => {
+  const handleAddList = event => {
+    event.preventDefault();
+
     const email = document.querySelector('input').value;
-    //const password = document.querySelector('[name=password]').value;
+    const password = document.querySelector('[name=password]').value;
 
     db.collection('users')
       .add({ email })
-
       .then(function(docRef) {
         console.log(docRef.id);
         chargeDispatch({
           type: ADD_CHARGES_LIST,
           payload: {
             id: docRef.id,
-            email
-            //password
+            email,
+            password
           }
         });
       })
@@ -55,10 +56,10 @@ const ChargesLists = () => {
   return (
     <div>
       <p>{JSON.stringify(chargeStore)}</p>
-      <form>
+      <form onSubmit={handleAddList}>
         <input type='text' />
-        {/* <input name='password' type='password' /> */}
-        <button onClick={handleAddList}>ADD</button>
+        <input name='password' type='password' />
+        <button>ADD</button>
       </form>
 
       <ul className='charges-lists'>
@@ -72,25 +73,6 @@ const ChargesLists = () => {
           </li>
         ))}
       </ul>
-
-      {/* <button
-        onClick={() =>
-          chargeDispatch({
-            type: 'ADD_CHARGES_LIST',
-            payload: { id: 'idFour', name: 'four' }
-          })
-        }
-      >
-        ADD_CHARGES_LIST
-      </button>
-
-      <button
-        onClick={() =>
-          chargeDispatch({ type: 'REMOVE_CHARGES_LIST', payload: 'idTwo' })
-        }
-      >
-        REMOVE_CHARGES_LIST
-      </button> */}
     </div>
   );
 };
