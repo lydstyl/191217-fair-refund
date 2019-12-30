@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { db } from '../../utils/firebase/base';
 
@@ -66,9 +67,9 @@ const ChargesLists = () => {
         {chargeStore.map(chargeList => (
           <li key={chargeList.id}>
             <p>{chargeList.email}</p>
-            <a href={`http://localhost:3000/${chargeList.id}`}>
-              {`http://localhost:3000/${chargeList.id}`}
-            </a>
+            <Link to={`/charge-list/${chargeList.id}`}>
+              {`/charge-list/${chargeList.id}`}
+            </Link>
             <button onClick={() => handleRemoveList(chargeList.id)}>DEL</button>
           </li>
         ))}
