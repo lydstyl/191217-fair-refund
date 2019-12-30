@@ -1,13 +1,13 @@
 import React from 'react';
 
-import {
-  useCharge
-  // ADD_CHARGES_LIST,
-  // REMOVE_CHARGES_LIST
-} from '../../reducers/useCharge';
+// import {
+//   useCharge
+//   // ADD_CHARGES_LIST,
+//   // REMOVE_CHARGES_LIST
+// } from '../../reducers/useCharge';
 
 const ChargeList = props => {
-  const { chargeStore, chargeDispatch } = useCharge();
+  // const { chargeStore, chargeDispatch } = useCharge();
 
   const listId = props.location.pathname.split('/')[2];
 

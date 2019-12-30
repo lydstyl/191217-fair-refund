@@ -75,6 +75,13 @@ const ChargesLists = () => {
             <button onClick={() => handleRemoveList(chargeList.id)}>DEL</button>
           </li>
         ))}
+
+        <li>
+          <a href='http://localhost:3000/ChargeList2/qHEp1EsQ7TXQCKppkKC4'>
+            Exemple external shared url:
+            http://localhost:3000/ChargeList2/qHEp1EsQ7TXQCKppkKC4
+          </a>
+        </li>
       </ul>
     </div>
   );
