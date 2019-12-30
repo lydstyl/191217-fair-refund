@@ -10,6 +10,7 @@ import Quotes from '../Quotes/Quotes';
 import ChargesLists from '../ChargesLists/ChargesLists';
 import FileUpload from '../FileUpload/FileUpload';
 import ChargeList from '../ChargeList/ChargeList';
+import ChargeList2 from '../ChargeList2/ChargeList2';
 
 import { AuthProvider } from '../Auth/Auth'; // maybe to change
 import { UserCtxProvider } from '../../reducers/useUser'; // with this one ?
@@ -28,6 +29,7 @@ export const App = () => {
             <div className='container'>
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={SignUp} />
+              <Route path='/ChargeList2' component={ChargeList2} />
               <PrivateRoute exact path='/' component={Home} />
               <PrivateRoute exact path='/quotes' component={Quotes} />
               <PrivateRoute
