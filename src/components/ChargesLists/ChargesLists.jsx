@@ -8,11 +8,14 @@ import {
   REMOVE_CHARGES_LIST
 } from '../../reducers/useCharge';
 
+import './ChargesLists.scss';
+
 const ChargesLists = () => {
   const { chargeStore, chargeDispatch } = useCharge();
 
   const handleAddList = () => {
     const email = document.querySelector('input').value;
+    //const password = document.querySelector('[name=password]').value;
 
     db.collection('users')
       .add({ email })
@@ -21,7 +24,11 @@ const ChargesLists = () => {
         console.log(docRef.id);
         chargeDispatch({
           type: ADD_CHARGES_LIST,
-          payload: { id: docRef.id, email }
+          payload: {
+            id: docRef.id,
+            email
+            //password
+          }
         });
       })
       .catch(function(error) {
@@ -48,21 +55,25 @@ const ChargesLists = () => {
   return (
     <div>
       <p>{JSON.stringify(chargeStore)}</p>
-      <div>
+      <form>
         <input type='text' />
+        {/* <input name='password' type='password' /> */}
         <button onClick={handleAddList}>ADD</button>
-      </div>
+      </form>
 
-      <ul>
+      <ul className='charges-lists'>
         {chargeStore.map(chargeList => (
           <li key={chargeList.id}>
             <p>{chargeList.email}</p>
+            <a href={`http://localhost:3000/${chargeList.id}`}>
+              {`http://localhost:3000/${chargeList.id}`}
+            </a>
             <button onClick={() => handleRemoveList(chargeList.id)}>DEL</button>
           </li>
         ))}
       </ul>
 
-      <button
+      {/* <button
         onClick={() =>
           chargeDispatch({
             type: 'ADD_CHARGES_LIST',
@@ -79,7 +90,7 @@ const ChargesLists = () => {
         }
       >
         REMOVE_CHARGES_LIST
-      </button>
+      </button> */}
     </div>
   );
 };

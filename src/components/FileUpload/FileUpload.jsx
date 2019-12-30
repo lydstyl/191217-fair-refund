@@ -40,7 +40,7 @@ const FileUpload = () => {
       {loading ? (
         <h3>Loading...</h3>
       ) : (
-        <img src={image} style={{ width: '300px' }} />
+        <img src={image} alt='charge' style={{ width: '300px' }} />
       )}
     </div>
   );
