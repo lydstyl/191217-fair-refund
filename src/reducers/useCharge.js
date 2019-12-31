@@ -6,23 +6,31 @@ export const REMOVE_CHARGES_LIST = 'REMOVE_CHARGES_LIST';
 const reducer = (state, action) => {
   switch (action.type) {
     case ADD_CHARGES_LIST:
-      return [
+      return {
         ...state,
-        {
-          id: action.payload.id,
+        [action.payload.id]: {
           email: action.payload.email,
           name: action.payload.name
         }
-      ];
+      };
+
     case REMOVE_CHARGES_LIST:
-      return state.filter(list => list.id !== action.payload);
+      const newState = {};
+
+      Object.keys(state)
+        .filter(id => id !== action.payload)
+        .forEach(id => {
+          newState[id] = state[id];
+        });
+
+      return newState;
 
     default:
       return state;
   }
 };
 
-const initialState = [];
+const initialState = {};
 
 const Context = createContext();
 

@@ -78,6 +78,12 @@ const ChargesLists = () => {
       });
   };
 
+  const lis = [];
+
+  Object.keys(chargeStore).forEach(id => {
+    lis.push({ id, chargeList: chargeStore[id] });
+  });
+
   return (
     <div>
       <p>{JSON.stringify(chargeStore)}</p>
@@ -87,16 +93,16 @@ const ChargesLists = () => {
       </form>
 
       <ul className='charges-lists'>
-        {chargeStore.map(chargeList => (
-          <li key={chargeList.id}>
-            <p>email: {chargeList.email}</p>
-            <p>name: {chargeList.name}</p>
+        {lis.map(item => (
+          <li key={item.id}>
+            <p>email: {item.chargeList.email}</p>
+            <p>name: {item.chargeList.name}</p>
 
-            <Link to={`/charge-list/${chargeList.id}`} chargelist={chargeList}>
-              {`/charge-list/${chargeList.id}`}
+            <Link to={`/charge-list/${item.id}`} chargelist={item}>
+              {`/charge-list/${item.id}`}
             </Link>
 
-            <button onClick={() => handleRemoveList(chargeList.id)}>DEL</button>
+            <button onClick={() => handleRemoveList(item.id)}>DEL</button>
           </li>
         ))}
       </ul>

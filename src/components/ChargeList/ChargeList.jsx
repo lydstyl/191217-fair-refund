@@ -1,28 +1,47 @@
 import React, { useState, useEffect } from 'react';
 
-import { db } from '../../utils/firebase/base';
+import { useCharge } from '../../reducers/useCharge';
+
+// import { db } from '../../utils/firebase/base';
 
 const ChargeList = () => {
-  const [chargeList, setChargeList] = useState(null);
+  const [listId, setListId] = useState(null);
+
+  const { chargeStore, chargeDispatch } = useCharge();
 
   useEffect(() => {
     let listId = window.location.href.split('/');
     listId = listId[listId.length - 1]; // list id from url
 
-    db.doc(`/chargesLists/${listId}`)
-      .get()
-      .then(doc => {
-        if (doc.exists) {
-          setChargeList(doc.data());
-        }
-      });
+    setListId(listId);
+
+    // const getDocsFromCollection = async chargeListId => {
+    //   const snapshot = await db
+    //     .collection(`/chargesLists/${chargeListId}/charges`)
+    //     .get();
+
+    //   const docs = snapshot.docs.map(doc => doc.data());
+
+    //   console.log(docs);
+
+    //   chargeDispatch({
+    //     type: SET_CURRENT_CHARGES_LIST,
+    //     payload: {
+    //       id: chargeListId,
+    //       charges: docs
+    //     }
+    //   });
+    // };
+
+    // getDocsFromCollection(listId);
   }, []);
+
+  const chargeList = chargeStore[listId];
 
   return (
     <div>
-      <div>{JSON.stringify(chargeList)}</div>
-
       <h1>Charge List: {chargeList && chargeList.name}</h1>
+      <div>{JSON.stringify(chargeList)}</div>
     </div>
   );
 };
