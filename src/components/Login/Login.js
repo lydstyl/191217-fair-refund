@@ -1,8 +1,7 @@
-import React, { useCallback, useContext } from 'react';
-import { withRouter, Redirect } from 'react-router';
+import React, { useCallback } from 'react';
+import { withRouter } from 'react-router';
 
 import app from '../../utils/firebase/base';
-import { AuthContext } from '../Auth/Auth';
 
 export const Login = ({ history }) => {
   const handleLogin = useCallback(
@@ -23,12 +22,6 @@ export const Login = ({ history }) => {
     },
     [history]
   );
-
-  const { currentUser } = useContext(AuthContext);
-
-  if (currentUser) {
-    return <Redirect to='/' />;
-  }
 
   return (
     <div>
