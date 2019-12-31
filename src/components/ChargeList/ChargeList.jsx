@@ -1,21 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-// import {
-//   useCharge
-//   // ADD_CHARGES_LIST,
-//   // REMOVE_CHARGES_LIST
-// } from '../../reducers/useCharge';
+import { db } from '../../utils/firebase/base';
 
-const ChargeList = props => {
-  // const { chargeStore, chargeDispatch } = useCharge();
+const ChargeList = () => {
+  const [chargeList, setChargeList] = useState(null);
 
-  const listId = props.location.pathname.split('/')[2];
+  useEffect(() => {
+    let listId = window.location.href.split('/');
+    listId = listId[listId.length - 1]; // list id from url
+
+    db.doc(`/chargesLists/${listId}`)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          setChargeList(doc.data());
+        }
+      });
+  }, []);
 
   return (
     <div>
-      <h1>ChargeList </h1>
+      <div>{JSON.stringify(chargeList)}</div>
 
-      <div>id: {listId}</div>
+      <h1>ChargeList2 {chargeList && chargeList.name}</h1>
     </div>
   );
 };
