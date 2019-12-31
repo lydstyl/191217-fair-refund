@@ -18,16 +18,16 @@ import './App.scss';
 
 export const App = () => {
   return (
-    <UserCtxProvider>
-      <ChargeCtxProvider>
-        <Router>
-          <Menu />
+    <Router>
+      <UserCtxProvider>
+        <Menu />
 
-          <div className='container'>
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/signup' component={SignUp} />
-            <PrivateRoute exact path='/' component={Home} />
-            <PrivateRoute exact path='/quotes' component={Quotes} />
+        <div className='container'>
+          <PrivateRoute exact path='/' component={Home} />
+          <PrivateRoute exact path='/quotes' component={Quotes} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/signup' component={SignUp} />
+          <ChargeCtxProvider>
             <PrivateRoute
               exact
               path='/charges-lists'
@@ -35,16 +35,13 @@ export const App = () => {
             />
             <PrivateRoute exact path='/upload-file' component={FileUpload} />
             <Route path='/charge-list' component={ChargeList} />
-          </div>
-
-          <footer>
-            <div>
-              Un commentaire ? Vous pouvez l'envoyer sur lydstyl@gmail.com
-            </div>
-          </footer>
-        </Router>
-      </ChargeCtxProvider>
-    </UserCtxProvider>
+          </ChargeCtxProvider>
+        </div>
+      </UserCtxProvider>
+      <footer>
+        <div>Un commentaire ? Vous pouvez l'envoyer sur lydstyl@gmail.com</div>
+      </footer>
+    </Router>
   );
 };
 
