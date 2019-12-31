@@ -28,7 +28,6 @@ export const App = () => {
             <div className='container'>
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={SignUp} />
-              <Route path='/ChargeList2' component={ChargeList} />
               <PrivateRoute exact path='/' component={Home} />
               <PrivateRoute exact path='/quotes' component={Quotes} />
               <PrivateRoute
@@ -37,6 +36,7 @@ export const App = () => {
                 component={ChargesLists}
               />
               <PrivateRoute exact path='/upload-file' component={FileUpload} />
+              <Route path='/charge-list' component={ChargeList} />
             </div>
           </ChargeCtxProvider>
         </UserCtxProvider>

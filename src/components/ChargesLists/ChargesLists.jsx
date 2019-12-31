@@ -90,8 +90,8 @@ const ChargesLists = () => {
             <p>email: {chargeList.email}</p>
             <p>name: {chargeList.name}</p>
 
-            <Link to={`/ChargeList2/${chargeList.id}`} chargelist={chargeList}>
-              {`/ChargeList2/${chargeList.id}`}
+            <Link to={`/charge-list/${chargeList.id}`} chargelist={chargeList}>
+              {`/charge-list/${chargeList.id}`}
             </Link>
 
             <button onClick={() => handleRemoveList(chargeList.id)}>DEL</button>

@@ -22,7 +22,7 @@ const ChargeList = () => {
     <div>
       <div>{JSON.stringify(chargeList)}</div>
 
-      <h1>ChargeList2 {chargeList && chargeList.name}</h1>
+      <h1>Charge List: {chargeList && chargeList.name}</h1>
     </div>
   );
 };
