@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AuthContext } from '../Auth/Auth';
+import { useUser } from '../../reducers/useUser';
+
 import { db } from '../../utils/firebase/base';
 
 import {
@@ -13,14 +14,16 @@ import {
 import './ChargesLists.scss';
 
 const ChargesLists = () => {
-  const { currentUser } = useContext(AuthContext);
   const { chargeStore, chargeDispatch } = useCharge();
+
+  const { userStore } = useUser();
+  const email = userStore.currentUser;
 
   useEffect(() => {
     if (!chargeStore.length) {
       // initialState for useCharge reducer
       db.collection('chargesLists')
-        .where('email', '==', currentUser.email)
+        .where('email', '==', email)
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
@@ -41,7 +44,7 @@ const ChargesLists = () => {
     event.preventDefault();
 
     const name = document.querySelector('[name=name]').value;
-    const email = currentUser.email;
+    const email = email;
 
     db.collection('chargesLists')
       .add({ email, name })
