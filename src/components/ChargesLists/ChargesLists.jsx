@@ -7,6 +7,7 @@ import { db } from '../../utils/firebase/base';
 
 import {
   useCharge,
+  SET_INITIAL_CHARGES_LIST,
   ADD_CHARGES_LIST,
   REMOVE_CHARGES_LIST
 } from '../../reducers/useCharge';
@@ -21,20 +22,24 @@ const ChargesLists = () => {
 
   useEffect(() => {
     if (!chargeStore.length) {
-      // initialState for useCharge reducer
+      const initialList = {}; // initialState for useCharge reducer
+
       db.collection('chargesLists')
         .where('email', '==', email)
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
-            chargeDispatch({
-              type: ADD_CHARGES_LIST,
-              payload: {
-                id: doc.id,
-                email: doc.data().email,
-                name: doc.data().name
-              }
-            });
+            const email = doc.data().email;
+
+            initialList[doc.id] = {
+              email,
+              name: doc.data().name
+            };
+          });
+
+          chargeDispatch({
+            type: SET_INITIAL_CHARGES_LIST,
+            payload: initialList
           });
         });
     }

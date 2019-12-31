@@ -1,10 +1,14 @@
 import React, { useContext, createContext, useReducer } from 'react';
 
+export const SET_INITIAL_CHARGES_LIST = 'SET_INITIAL_CHARGES_LIST';
 export const ADD_CHARGES_LIST = 'ADD_CHARGES_LIST';
 export const REMOVE_CHARGES_LIST = 'REMOVE_CHARGES_LIST';
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case SET_INITIAL_CHARGES_LIST:
+      return action.payload;
+
     case ADD_CHARGES_LIST:
       return {
         ...state,
