@@ -1,7 +1,5 @@
 import React, { useContext, createContext, useReducer } from 'react';
 
-import { db } from '../utils/firebase/base';
-
 export const ADD_CHARGES_LIST = 'ADD_CHARGES_LIST';
 export const REMOVE_CHARGES_LIST = 'REMOVE_CHARGES_LIST';
 
@@ -25,18 +23,6 @@ const reducer = (state, action) => {
 };
 
 const initialState = [];
-
-db.collection('chargesLists') // only the user's list
-  .get()
-  .then(querySnapshot => {
-    querySnapshot.forEach(doc => {
-      initialState.push({
-        id: doc.id,
-        email: doc.data().email,
-        name: doc.data().name
-      });
-    });
-  });
 
 const Context = createContext();
 

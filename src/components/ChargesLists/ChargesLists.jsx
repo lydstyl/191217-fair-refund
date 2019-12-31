@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AuthContext } from '../Auth/Auth';
@@ -16,6 +16,27 @@ const ChargesLists = () => {
   const { currentUser } = useContext(AuthContext);
   const { chargeStore, chargeDispatch } = useCharge();
 
+  useEffect(() => {
+    if (!chargeStore.length) {
+      // initialState for useCharge reducer
+      db.collection('chargesLists')
+        .where('email', '==', currentUser.email)
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            chargeDispatch({
+              type: ADD_CHARGES_LIST,
+              payload: {
+                id: doc.id,
+                email: doc.data().email,
+                name: doc.data().name
+              }
+            });
+          });
+        });
+    }
+  }, []);
+
   const handleAddList = event => {
     event.preventDefault();
 
@@ -25,7 +46,6 @@ const ChargesLists = () => {
     db.collection('chargesLists')
       .add({ email, name })
       .then(function(docRef) {
-        //console.log(docRef.id);
         chargeDispatch({
           type: ADD_CHARGES_LIST,
           payload: {
