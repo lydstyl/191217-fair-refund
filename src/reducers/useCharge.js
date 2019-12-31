@@ -13,7 +13,7 @@ const reducer = (state, action) => {
         {
           id: action.payload.id,
           email: action.payload.email,
-          password: action.payload.password
+          name: action.payload.name
         }
       ];
     case REMOVE_CHARGES_LIST:
@@ -24,13 +24,17 @@ const reducer = (state, action) => {
   }
 };
 
-const initialState = []; // [{id: xxxfromfirebase, email: yyy}, ...]
+const initialState = [];
 
-db.collection('users')
+db.collection('chargesLists') // only the user's list
   .get()
   .then(querySnapshot => {
     querySnapshot.forEach(doc => {
-      initialState.push({ id: doc.id, email: doc.data().email });
+      initialState.push({
+        id: doc.id,
+        email: doc.data().email,
+        name: doc.data().name
+      });
     });
   });
 

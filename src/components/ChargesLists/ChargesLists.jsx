@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
+import { AuthContext } from '../Auth/Auth';
 import { db } from '../../utils/firebase/base';
 
 import {
@@ -12,24 +13,25 @@ import {
 import './ChargesLists.scss';
 
 const ChargesLists = () => {
+  const { currentUser } = useContext(AuthContext);
   const { chargeStore, chargeDispatch } = useCharge();
 
   const handleAddList = event => {
     event.preventDefault();
 
-    const email = document.querySelector('input').value;
-    const password = document.querySelector('[name=password]').value;
+    const name = document.querySelector('[name=name]').value;
+    const email = currentUser.email;
 
-    db.collection('users')
-      .add({ email })
+    db.collection('chargesLists')
+      .add({ email, name })
       .then(function(docRef) {
-        console.log(docRef.id);
+        //console.log(docRef.id);
         chargeDispatch({
           type: ADD_CHARGES_LIST,
           payload: {
             id: docRef.id,
             email,
-            password
+            name
           }
         });
       })
@@ -39,7 +41,7 @@ const ChargesLists = () => {
   };
 
   const handleRemoveList = id => {
-    db.collection('users')
+    db.collection('chargesLists')
       .doc(id)
       .delete()
       .then(function() {
@@ -58,30 +60,23 @@ const ChargesLists = () => {
     <div>
       <p>{JSON.stringify(chargeStore)}</p>
       <form onSubmit={handleAddList}>
-        <input type='text' />
-        <input name='password' type='password' />
+        <input name='name' type='text' />
         <button>ADD</button>
       </form>
 
       <ul className='charges-lists'>
         {chargeStore.map(chargeList => (
           <li key={chargeList.id}>
-            <p>{chargeList.email}</p>
+            <p>email: {chargeList.email}</p>
+            <p>name: {chargeList.name}</p>
 
-            <Link to={`/charge-list/${chargeList.id}`} chargelist={chargeList}>
-              {`/charge-list/${chargeList.id}`}
+            <Link to={`/ChargeList2/${chargeList.id}`} chargelist={chargeList}>
+              {`/ChargeList2/${chargeList.id}`}
             </Link>
 
             <button onClick={() => handleRemoveList(chargeList.id)}>DEL</button>
           </li>
         ))}
-
-        <li>
-          <a href='http://localhost:3000/ChargeList2/qHEp1EsQ7TXQCKppkKC4'>
-            Exemple external shared url:
-            http://localhost:3000/ChargeList2/qHEp1EsQ7TXQCKppkKC4
-          </a>
-        </li>
       </ul>
     </div>
   );

@@ -168,9 +168,6 @@ const Menu = () => {
             <Link onClick={handleCloseMenu} to='/quotes'>
               Test connexion API
             </Link>
-            <Link onClick={handleCloseMenu} to='/ChargeList2'>
-              ChargeList2
-            </Link>
             <Link onClick={handleCloseMenu} to='/charges-lists'>
               Listes de dépenses
             </Link>
