@@ -44,7 +44,6 @@ const ChargesLists = () => {
     event.preventDefault();
 
     const name = document.querySelector('[name=name]').value;
-    const email = email;
 
     db.collection('chargesLists')
       .add({ email, name })
