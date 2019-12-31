@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-import { AuthContext } from '../Auth/Auth.js';
+import { useUser } from '../../reducers/useUser';
 
 export const User = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { userStore, userDispatch } = useUser();
 
-  return <div>{currentUser ? currentUser.email : 'guest'}</div>;
+  const currentUser = userStore.currentUser;
+
+  return <div>{currentUser ? currentUser : 'guest'}</div>;
 };
 
 export default User;
