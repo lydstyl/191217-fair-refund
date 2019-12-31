@@ -11,43 +11,40 @@ import ChargesLists from '../ChargesLists/ChargesLists';
 import FileUpload from '../FileUpload/FileUpload';
 import ChargeList from '../ChargeList/ChargeList';
 
-import { AuthProvider } from '../Auth/Auth'; // maybe to change
-import { UserCtxProvider } from '../../reducers/useUser'; // with this one ?
+import { UserCtxProvider } from '../../reducers/useUser';
 import { ChargeCtxProvider } from '../../reducers/useCharge';
 
 import './App.scss';
 
 export const App = () => {
   return (
-    <AuthProvider>
-      <UserCtxProvider>
-        <ChargeCtxProvider>
-          <Router>
-            <Menu />
+    <UserCtxProvider>
+      <ChargeCtxProvider>
+        <Router>
+          <Menu />
 
-            <div className='container'>
-              <Route exact path='/login' component={Login} />
-              <Route exact path='/signup' component={SignUp} />
-              <PrivateRoute exact path='/' component={Home} />
-              <PrivateRoute exact path='/quotes' component={Quotes} />
-              <PrivateRoute
-                exact
-                path='/charges-lists'
-                component={ChargesLists}
-              />
-              <PrivateRoute exact path='/upload-file' component={FileUpload} />
-              <Route path='/charge-list' component={ChargeList} />
+          <div className='container'>
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/signup' component={SignUp} />
+            <PrivateRoute exact path='/' component={Home} />
+            <PrivateRoute exact path='/quotes' component={Quotes} />
+            <PrivateRoute
+              exact
+              path='/charges-lists'
+              component={ChargesLists}
+            />
+            <PrivateRoute exact path='/upload-file' component={FileUpload} />
+            <Route path='/charge-list' component={ChargeList} />
+          </div>
+
+          <footer>
+            <div>
+              Un commentaire ? Vous pouvez l'envoyer sur lydstyl@gmail.com
             </div>
-
-            <footer>
-              <div>
-                Un commentaire ? Vous pouvez l'envoyer sur lydstyl@gmail.com
-              </div>
-            </footer>
-          </Router>
-        </ChargeCtxProvider>
-      </UserCtxProvider>
-    </AuthProvider>
+          </footer>
+        </Router>
+      </ChargeCtxProvider>
+    </UserCtxProvider>
   );
 };
 
