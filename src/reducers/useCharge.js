@@ -4,6 +4,11 @@ export const SET_INITIAL_CHARGES_LIST = 'SET_INITIAL_CHARGES_LIST';
 export const ADD_CHARGES_LIST = 'ADD_CHARGES_LIST';
 export const REMOVE_CHARGES_LIST = 'REMOVE_CHARGES_LIST';
 
+export const SET_CURRENT_LIST_ID = 'SET_CURRENT_LIST_ID';
+export const SET_CURRENT_LIST_NAME = 'SET_CURRENT_LIST_NAME';
+export const SET_CURRENT_LIST_EMAIL = 'SET_CURRENT_LIST_EMAIL';
+export const SET_CURRENT_LIST_CHARGES = 'SET_CURRENT_LIST_CHARGES';
+
 const reducer = (state, action) => {
   switch (action.type) {
     case SET_INITIAL_CHARGES_LIST:
@@ -28,6 +33,18 @@ const reducer = (state, action) => {
         });
 
       return newState;
+
+    case SET_CURRENT_LIST_NAME:
+      console.log(SET_CURRENT_LIST_NAME);
+      return { ...state, currentListName: action.payload };
+
+    case SET_CURRENT_LIST_CHARGES:
+      console.log(SET_CURRENT_LIST_CHARGES);
+
+      const currentList = state[action.payload.id];
+      currentList.charges = action.payload.charges;
+
+      return { ...state, [action.payload.id]: currentList };
 
     default:
       return state;
