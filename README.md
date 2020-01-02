@@ -14,7 +14,6 @@ In this project you can see how to in React.js :
 
 # To do
 
-- lister les charges avec bullet
 - ajouter un input qui pour ajouter une charge name
 - le faire fonctionner avec firebase
 - le faire fonctionner avec le store

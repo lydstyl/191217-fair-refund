@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import { db } from '../../utils/firebase/base';
+
 import { useUser } from '../../reducers/useUser';
 import {
   useCharge,
@@ -7,7 +9,7 @@ import {
   SET_CURRENT_LIST_CHARGES
 } from '../../reducers/useCharge';
 
-import { db } from '../../utils/firebase/base';
+import Charge from '../Charge/Charge';
 
 const ChargeList = () => {
   const [listId, setListId] = useState(null);
@@ -54,7 +56,11 @@ const ChargeList = () => {
         .collection(`/chargesLists/${listId}/charges`)
         .get();
 
-      const chargesOfTheCurrentList = snapshot.docs.map(doc => doc.data());
+      const chargesOfTheCurrentList = snapshot.docs.map(doc => ({
+        id: doc.id,
+        data: doc.data()
+      }));
+      console.log('chargesOfTheCurrentList', chargesOfTheCurrentList);
 
       // set charges to chargeStore
       if (chargesOfTheCurrentList.length) {
@@ -78,6 +84,12 @@ const ChargeList = () => {
           <h2>listEmail: {currentList.email}</h2>
 
           <div>listCharges: {JSON.stringify(currentList.charges)}</div>
+          <ul>
+            {currentList.charges &&
+              currentList.charges.map(charge => (
+                <Charge key={charge.id} charge={charge} />
+              ))}
+          </ul>
         </>
       )}
     </div>
