@@ -96,10 +96,11 @@ const ChargeList = () => {
 
   return (
     <div>
+      <h1>ChargeList</h1>
       {email && currentList && (
         <>
           <div>listCharges: {JSON.stringify(currentList.charges)}</div>
-          <h1>listName: {currentList.name}</h1>
+          <h2>listName: {currentList.name}</h2>
           <h2>listId: {listId}</h2>
           <h2>listEmail: {currentList.email}</h2>
 

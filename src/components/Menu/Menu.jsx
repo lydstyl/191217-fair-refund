@@ -79,6 +79,9 @@ const Menu = () => {
             <Link onClick={handleCloseMenu} to='/charges-lists'>
               Listes de dépenses
             </Link>
+            <Link onClick={handleCloseMenu} to='/external-charges-list'>
+              Liste de dépense externe
+            </Link>
             <Link onClick={handleCloseMenu} to='/upload-file'>
               Upload un fichier
             </Link>

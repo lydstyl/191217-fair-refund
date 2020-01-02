@@ -8,8 +8,9 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Home from '../Home/Home';
 import Quotes from '../Quotes/Quotes';
 import ChargesLists from '../ChargesLists/ChargesLists';
-import FileUpload from '../FileUpload/FileUpload';
+import ExternalChargesList from '../ExternalChargesList/ExternalChargesList';
 import ChargeList from '../ChargeList/ChargeList';
+import FileUpload from '../FileUpload/FileUpload';
 
 import { UserCtxProvider } from '../../reducers/useUser';
 import { ChargeCtxProvider } from '../../reducers/useCharge';
@@ -35,6 +36,11 @@ export const App = () => {
             />
             <PrivateRoute exact path='/upload-file' component={FileUpload} />
             <Route path='/charge-list' component={ChargeList} />
+            <Route
+              exact
+              path='/external-charges-list'
+              component={ExternalChargesList}
+            />
           </ChargeCtxProvider>
         </div>
       </UserCtxProvider>
