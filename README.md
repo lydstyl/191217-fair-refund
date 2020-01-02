@@ -14,7 +14,9 @@ In this project you can see how to in React.js :
 
 # To do
 
+- bug après sur l'accès d'une liste partagée de type http://localhost:3000/charge-list/8RD5wMk4gZK0sfcGqA6t
 - add charge name in firebase and store ok
 - même chose avec un bouton édit
 - ajouter les champs chargeDate, chargeTotal
 - ajouter les champs chargePercent, image
+- bug après signout depuis Charge

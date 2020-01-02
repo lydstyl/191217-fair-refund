@@ -1,5 +1,7 @@
 import React, { useContext, createContext, useReducer } from 'react';
 
+import { db } from '../utils/firebase/base';
+
 export const SET_INITIAL_CHARGES_LIST = 'SET_INITIAL_CHARGES_LIST';
 export const ADD_CHARGES_LIST = 'ADD_CHARGES_LIST';
 export const REMOVE_CHARGES_LIST = 'REMOVE_CHARGES_LIST';
@@ -43,10 +45,71 @@ const reducer = (state, action) => {
     case SET_CURRENT_LIST_CHARGES:
       console.log(SET_CURRENT_LIST_CHARGES);
 
-      const currentList = state[action.payload.id];
-      currentList.charges = action.payload.charges;
+      let currentList = state[action.payload.id];
 
-      return { ...state, [action.payload.id]: currentList };
+      if (currentList) {
+        currentList.charges = action.payload.charges;
+        console.log('newState without addExternalSharedList', {
+          ...state,
+          [action.payload.id]: currentList
+        });
+        return { ...state, [action.payload.id]: currentList };
+      } else {
+        // there is no currentList if we try to access it from an external shared list because we only have the lists created by the current user. We have to add it.
+
+        const addExternalSharedListFromFirestore = () => {
+          return new Promise((resolve, reject) => {
+            // a Promise because we have to wait for firestore response
+            try {
+              const newState = { ...state };
+
+              const docRef = db
+                .collection('chargesLists')
+                .doc(action.payload.id);
+
+              docRef
+                .get()
+                .then(doc => {
+                  if (doc.exists) {
+                    const { email, name } = doc.data();
+
+                    const docRef = db.collection(
+                      `/chargesLists/${action.payload.id}/charges`
+                    );
+
+                    docRef.get().then(doc => {
+                      const charges = [];
+
+                      doc.docs.forEach(element => {
+                        charges.push({ id: element.id, data: element.data() });
+                      });
+
+                      newState[action.payload.id] = { email, name, charges };
+
+                      resolve(newState);
+                    });
+                  } else {
+                    console.log('No such document!');
+                  }
+                })
+                .catch(function(error) {
+                  console.log('Error getting document:', error);
+                });
+            } catch (error) {
+              reject(error);
+            }
+          });
+        };
+
+        const addExternalSharedList = async () => {
+          const newState = await addExternalSharedListFromFirestore();
+          console.log('newState after addExternalSharedList', newState);
+
+          return newState;
+        };
+
+        return addExternalSharedList();
+      }
 
     case ADD_CHARGE:
       console.log(ADD_CHARGE);
