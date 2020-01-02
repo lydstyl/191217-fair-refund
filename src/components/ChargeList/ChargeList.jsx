@@ -6,7 +6,8 @@ import { useUser } from '../../reducers/useUser';
 import {
   useCharge,
   SET_INITIAL_CHARGES_LIST,
-  SET_CURRENT_LIST_CHARGES
+  SET_CURRENT_LIST_CHARGES,
+  ADD_CHARGE
 } from '../../reducers/useCharge';
 
 import Charge from '../Charge/Charge';
@@ -60,7 +61,6 @@ const ChargeList = () => {
         id: doc.id,
         data: doc.data()
       }));
-      console.log('chargesOfTheCurrentList', chargesOfTheCurrentList);
 
       // set charges to chargeStore
       if (chargesOfTheCurrentList.length) {
@@ -75,19 +75,23 @@ const ChargeList = () => {
     // eslint-disable-next-line
   }, [email]);
 
-  // add charge
-  const addChargeInFirestore = async name => {
-    const snapshotRef = await db
-      .collection(`/chargesLists/${listId}/charges`)
-      .add({ name: name });
+  // ADD CHARGE
+  const handleAddCharge = async e => {
+    const name = document.querySelector('[name=chargeName]').value;
 
-    console.log(snapshotRef.id);
-  };
-
-  const handleAddCharge = e => {
-    const name = document.querySelector('[name=name]').value;
-    console.log(name);
-    addChargeInFirestore(name);
+    try {
+      await db
+        .collection(`/chargesLists/${listId}/charges`)
+        .add({ name: name })
+        .then(docRef => {
+          chargeDispatch({
+            type: ADD_CHARGE,
+            payload: { listId, chargeId: docRef.id, name }
+          });
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -100,13 +104,17 @@ const ChargeList = () => {
           <h2>listEmail: {currentList.email}</h2>
 
           <div>
-            <input name='chargeName' name='name' type='text' />
+            <input name='chargeName' type='text' />
             <input onClick={handleAddCharge} type='button' value='ADD' />
           </div>
           <ul>
             {currentList.charges &&
               currentList.charges.map(charge => (
-                <Charge key={charge.id} charge={charge} />
+                <Charge
+                  key={charge.id}
+                  chargesListId={listId}
+                  charge={charge}
+                />
               ))}
           </ul>
         </>

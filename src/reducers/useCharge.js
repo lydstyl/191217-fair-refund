@@ -8,6 +8,7 @@ export const SET_CURRENT_LIST_ID = 'SET_CURRENT_LIST_ID';
 export const SET_CURRENT_LIST_NAME = 'SET_CURRENT_LIST_NAME';
 export const SET_CURRENT_LIST_EMAIL = 'SET_CURRENT_LIST_EMAIL';
 export const SET_CURRENT_LIST_CHARGES = 'SET_CURRENT_LIST_CHARGES';
+export const ADD_CHARGE = 'ADD_CHARGE';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -45,6 +46,20 @@ const reducer = (state, action) => {
       currentList.charges = action.payload.charges;
 
       return { ...state, [action.payload.id]: currentList };
+
+    case ADD_CHARGE:
+      console.log(ADD_CHARGE);
+
+      console.log('action.payload', action.payload);
+      state[action.payload.listId].charges.push({
+        id: action.payload.chargeId, // Undefined why ?
+        data: { name: action.payload.name }
+      });
+      console.log(JSON.stringify({ ...state }, null, 4));
+
+      return {
+        ...state
+      };
 
     default:
       return state;
