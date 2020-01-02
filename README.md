@@ -1,3 +1,5 @@
+# Features
+
 In this project you can see how to in React.js :
 
 - make an app responsive
@@ -6,9 +8,17 @@ In this project you can see how to in React.js :
 - authentificate with Firebase
 - protect a route and redirect to login if necessary
 - fetch data with an api
-- use Firebase firestore database (CRUD in progress)
+- use Firebase firestore database
 - use the context combined with useReducer hooks to provide a flux architecure. A redux like without to have to use Redux.
-- upload an image with cloudinary https://www.youtube.com/watch?v=hlYczGvLlDY
+- upload an image with cloudinary, I used this : https://www.youtube.com/watch?v=hlYczGvLlDY
 
-* When Sign out remove user in auth context
-* When Login make sure user is in auth context
+# To do
+
+- lister les charges avec bullet
+- ajouter un input qui pour ajouter une charge name
+- le faire fonctionner avec firebase
+- le faire fonctionner avec le store
+- même chose avec un bouton supprimer
+- même chose avec un bouton édit
+- ajouter les champs chargeDate, chargeTotal
+- ajouter les champs chargePercent, image
