@@ -75,15 +75,34 @@ const ChargeList = () => {
     // eslint-disable-next-line
   }, [email]);
 
+  // add charge
+  const addChargeInFirestore = async name => {
+    const snapshotRef = await db
+      .collection(`/chargesLists/${listId}/charges`)
+      .add({ name: name });
+
+    console.log(snapshotRef.id);
+  };
+
+  const handleAddCharge = e => {
+    const name = document.querySelector('[name=name]').value;
+    console.log(name);
+    addChargeInFirestore(name);
+  };
+
   return (
     <div>
       {email && currentList && (
         <>
+          <div>listCharges: {JSON.stringify(currentList.charges)}</div>
           <h1>listName: {currentList.name}</h1>
           <h2>listId: {listId}</h2>
           <h2>listEmail: {currentList.email}</h2>
 
-          <div>listCharges: {JSON.stringify(currentList.charges)}</div>
+          <div>
+            <input name='chargeName' name='name' type='text' />
+            <input onClick={handleAddCharge} type='button' value='ADD' />
+          </div>
           <ul>
             {currentList.charges &&
               currentList.charges.map(charge => (

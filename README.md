@@ -15,8 +15,7 @@ In this project you can see how to in React.js :
 # To do
 
 - ajouter un input qui pour ajouter une charge name
-- le faire fonctionner avec firebase
-- le faire fonctionner avec le store
+  - le faire fonctionner avec le store
 - même chose avec un bouton supprimer
 - même chose avec un bouton édit
 - ajouter les champs chargeDate, chargeTotal
