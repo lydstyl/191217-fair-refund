@@ -41,6 +41,7 @@ const ChargesLists = () => {
           });
         });
     }
+    // eslint-disable-next-line
   }, []);
 
   const handleAddList = event => {

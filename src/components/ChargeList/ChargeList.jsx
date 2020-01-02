@@ -4,7 +4,6 @@ import { useUser } from '../../reducers/useUser';
 import {
   useCharge,
   SET_INITIAL_CHARGES_LIST,
-  SET_CURRENT_LIST_NAME,
   SET_CURRENT_LIST_CHARGES
 } from '../../reducers/useCharge';
 
@@ -67,6 +66,7 @@ const ChargeList = () => {
     };
 
     getDocsFromCollection();
+    // eslint-disable-next-line
   }, [email]);
 
   return (
