@@ -2,8 +2,12 @@ import React from 'react';
 
 import { db } from '../../utils/firebase/base';
 
+import { useCharge, DELETE_CHARGE } from '../../reducers/useCharge';
+
 const Charge = ({ charge, chargesListId }) => {
   const { data } = charge;
+
+  const { chargeDispatch } = useCharge();
 
   const deleteCharge = async chargeId => {
     db.collection(`/chargesLists/${chargesListId}/charges`)
@@ -11,6 +15,11 @@ const Charge = ({ charge, chargesListId }) => {
       .delete()
       .then(() => {
         console.log('Document successfully deleted!');
+
+        chargeDispatch({
+          type: DELETE_CHARGE,
+          payload: { chargesListId, chargeId }
+        });
       })
       .catch(error => {
         console.error('Error removing document: ', error);
