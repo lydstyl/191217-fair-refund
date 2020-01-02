@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 import { useUser } from '../../reducers/useUser';
-
 import { db } from '../../utils/firebase/base';
 
 import {
@@ -103,9 +101,7 @@ const ChargesLists = () => {
             <p>email: {item.chargeList.email}</p>
             <p>name: {item.chargeList.name}</p>
 
-            <Link to={`/charge-list/${item.id}`} chargelist={item}>
-              {`/charge-list/${item.id}`}
-            </Link>
+            <a href={`/charge-list/${item.id}`}>{`/charge-list/${item.id}`}</a>
 
             <button onClick={() => handleRemoveList(item.id)}>DEL</button>
           </li>
