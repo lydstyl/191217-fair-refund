@@ -105,7 +105,27 @@ const ChargeList = () => {
           <h2>listEmail: {currentList.email}</h2>
 
           <div>
+            <label>chargeName</label>
             <input name='chargeName' type='text' />
+          </div>
+          <div>
+            <label>chargeDate</label>
+            <input name='chargeDate' type='text' />
+          </div>
+          <div>
+            <label>chargeTotal</label>
+            <input name='chargeTotal' type='text' />
+          </div>
+          <div>
+            <label>chargePercent</label>
+            <input name='chargePercent' type='text' />
+          </div>
+          <div>
+            <label>image</label>
+            <input name='image' type='text' />
+          </div>
+
+          <div>
             <input onClick={handleAddCharge} type='button' value='ADD' />
           </div>
           <ul>
