@@ -2,9 +2,14 @@ import React, { useState, useEffect } from 'react';
 
 import { db } from '../../utils/firebase/base';
 
+import { useUser } from '../../reducers/useUser';
+
 import Charge from '../Charge/Charge';
 
 const ChargeList2 = props => {
+  const { userStore } = useUser();
+  const currentUser = userStore.currentUser;
+
   const [chargeList, setChargeList] = useState({
     id: props.location.pathname.split('/')[2]
   });
@@ -45,9 +50,6 @@ const ChargeList2 = props => {
     const nameInput = document.querySelector('[name=name]');
     const name = nameInput.value;
 
-    console.log(name);
-
-    // ADD
     const collectionRef = db.collection(
       `/chargesLists/${chargeList.id}/charges`
     );
@@ -61,8 +63,6 @@ const ChargeList2 = props => {
 
   // DELETE
   const deleteCharge = chargeId => {
-    console.log('deleteCharge', chargeId);
-
     db.collection(`/chargesLists/${chargeList.id}/charges`)
       .doc(chargeId)
       .delete()
@@ -102,8 +102,10 @@ const ChargeList2 = props => {
           charges.map(charge => (
             <Charge
               key={charge.id}
-              deleteCharge={deleteCharge}
               charge={charge}
+              deleteCharge={
+                currentUser === chargeList.email ? deleteCharge : null
+              }
             />
           ))}
       </ul>

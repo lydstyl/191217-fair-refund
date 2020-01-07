@@ -14,7 +14,9 @@ const Charge = ({ deleteCharge, charge }) => {
         <div>{charge.id}</div>
         <div className='chargeName'>{data.name}</div>
 
-        <input onClick={handleDelete} type='button' value='DEL' />
+        {deleteCharge && (
+          <input onClick={handleDelete} type='button' value='DEL' />
+        )}
       </li>
     </>
   );
