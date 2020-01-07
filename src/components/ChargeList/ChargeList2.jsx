@@ -14,6 +14,12 @@ const ChargeList2 = props => {
     id: props.location.pathname.split('/')[2]
   });
   const [charges, setCharges] = useState([]);
+  const [form, setForm] = useState('');
+  const [selectedCharge, setSelectedCharge] = useState(null);
+
+  const handleNameChange = e => {
+    setForm({ ...form, name: e.target.value });
+  };
 
   const getChargeListData = id => {
     const chargesListsRef = db.collection('chargesLists');
@@ -43,22 +49,57 @@ const ChargeList2 = props => {
     });
   };
 
-  // ADD
-  const addCharge = e => {
+  // ADD OR EDIT
+  const addOrEditCharge = e => {
     e.preventDefault();
 
+    const mode = e.target.querySelector('input[type=submit]').value;
     const nameInput = document.querySelector('[name=name]');
     const name = nameInput.value;
 
-    const collectionRef = db.collection(
-      `/chargesLists/${chargeList.id}/charges`
-    );
+    if (mode === 'ADD') {
+      const collectionRef = db.collection(
+        `/chargesLists/${chargeList.id}/charges`
+      );
 
-    collectionRef.add({ name }).then(doc => {
-      setCharges([...charges, { id: doc.id, data: { name } }]);
-    });
+      collectionRef.add({ name }).then(doc => {
+        setCharges([...charges, { id: doc.id, data: { name } }]);
+      });
+    } else {
+      editCharge(selectedCharge.id, name);
+    }
+  };
 
-    nameInput.value = '';
+  // EDIT
+  const selectCharge = chargeId => {
+    const selection = charges.filter(charge => charge.id === chargeId)[0];
+    setSelectedCharge(selection);
+    setForm({ ...form, name: selection.data.name });
+  };
+
+  const editCharge = (chargeId, name) => {
+    db.collection(`/chargesLists/${chargeList.id}/charges`)
+      .doc(chargeId)
+      .set({ name: name })
+      .then(() => {
+        console.log('Document successfully edited!');
+
+        setCharges(
+          charges.map(charge => {
+            if (charge.id === chargeId) {
+              return { ...charge, data: { ...charge.data, name } };
+            }
+            return charge;
+          })
+        );
+
+        setSelectedCharge(null);
+
+        setForm({ ...form, name: '' });
+      })
+      .catch(error => {
+        console.error('Error editing document: ', error);
+      });
   };
 
   // DELETE
@@ -89,11 +130,21 @@ const ChargeList2 = props => {
       <p>{JSON.stringify(chargeList)}</p>
       <p>{JSON.stringify(charges)}</p>
 
-      <form onSubmit={addCharge}>
+      <form onSubmit={addOrEditCharge}>
         <div>
           <label>name</label>
-          <input name='name' type='text' />
-          <input type='submit' value='ADD' />
+          <input
+            onChange={handleNameChange}
+            name='name'
+            type='text'
+            value={form ? form.name : ''}
+          />
+
+          <p>{JSON.stringify(selectedCharge)}</p>
+          <input
+            type='submit'
+            value={selectedCharge ? 'EDIT ' + selectedCharge.data.name : 'ADD'}
+          />
         </div>
       </form>
 
@@ -106,6 +157,7 @@ const ChargeList2 = props => {
               deleteCharge={
                 currentUser === chargeList.email ? deleteCharge : null
               }
+              selectCharge={selectCharge}
             />
           ))}
       </ul>
