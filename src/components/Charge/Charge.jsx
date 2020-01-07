@@ -1,30 +1,7 @@
 import React from 'react';
 
-import { db } from '../../utils/firebase/base';
-
-import { useCharge, DELETE_CHARGE } from '../../reducers/useCharge';
-
-const Charge = ({ charge, chargesListId }) => {
+const Charge = ({ deleteCharge, charge }) => {
   const { data } = charge;
-
-  const { chargeDispatch } = useCharge();
-
-  const deleteCharge = async chargeId => {
-    db.collection(`/chargesLists/${chargesListId}/charges`)
-      .doc(chargeId)
-      .delete()
-      .then(() => {
-        console.log('Document successfully deleted!');
-
-        chargeDispatch({
-          type: DELETE_CHARGE,
-          payload: { chargesListId, chargeId }
-        });
-      })
-      .catch(error => {
-        console.error('Error removing document: ', error);
-      });
-  };
 
   const handleDelete = e => {
     const chargeId = e.target.parentNode.id;

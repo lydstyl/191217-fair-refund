@@ -10,6 +10,7 @@ import Quotes from '../Quotes/Quotes';
 import ChargesLists from '../ChargesLists/ChargesLists';
 import ExternalChargesList from '../ExternalChargesList/ExternalChargesList';
 import ChargeList from '../ChargeList/ChargeList';
+import ChargeList2 from '../ChargeList/ChargeList2';
 import FileUpload from '../FileUpload/FileUpload';
 
 import { UserCtxProvider } from '../../reducers/useUser';
@@ -35,6 +36,7 @@ export const App = () => {
               component={ChargesLists}
             />
             <PrivateRoute exact path='/upload-file' component={FileUpload} />
+            <Route path='/charge-list2' component={ChargeList2} />
             <Route path='/charge-list' component={ChargeList} />
             <Route
               exact

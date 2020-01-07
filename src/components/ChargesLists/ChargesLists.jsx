@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useUser } from '../../reducers/useUser';
 import { db } from '../../utils/firebase/base';
@@ -101,6 +102,8 @@ const ChargesLists = () => {
           <li key={item.id}>
             <p>email: {item.chargeList.email}</p>
             <p>name: {item.chargeList.name}</p>
+
+            <Link to={`/charge-list2/${item.id}`}>nouveau lien ${item.id}</Link>
 
             <a href={`/charge-list/${item.id}`}>{`/charge-list/${item.id}`}</a>
 
