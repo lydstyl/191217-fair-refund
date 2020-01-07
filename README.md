@@ -14,7 +14,6 @@ In this project you can see how to in React.js :
 
 # To do
 
-- empty input after ADD
 - cancel editing
 - ajouter les champs chargeDate, chargeTotal
 - ajouter les champs chargePercent, image

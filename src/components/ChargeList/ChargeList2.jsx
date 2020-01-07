@@ -65,6 +65,8 @@ const ChargeList2 = props => {
       collectionRef.add({ name }).then(doc => {
         setCharges([...charges, { id: doc.id, data: { name } }]);
       });
+
+      setForm('');
     } else {
       editCharge(selectedCharge.id, name);
     }
