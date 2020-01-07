@@ -55,22 +55,29 @@ const ChargeList2 = props => {
   const addOrEditCharge = e => {
     e.preventDefault();
 
+    const fields = document.querySelectorAll('.field input');
+
+    const data = {};
+    fields.forEach(field => {
+      data[field.name] = field.value;
+    });
+
+    console.log(data); // todo: add image file here
+
     const mode = e.target.querySelector('input[type=submit]').value;
-    const nameInput = document.querySelector('[name=name]');
-    const name = nameInput.value;
 
     if (mode === 'ADD') {
       const collectionRef = db.collection(
         `/chargesLists/${chargeList.id}/charges`
       );
 
-      collectionRef.add({ name }).then(doc => {
-        setCharges([...charges, { id: doc.id, data: { name } }]);
+      collectionRef.add(data).then(doc => {
+        setCharges([...charges, { id: doc.id, data: data }]);
       });
 
       setForm('');
     } else {
-      editCharge(selectedCharge.id, name);
+      editCharge(selectedCharge.id, data.name);
     }
   };
 
