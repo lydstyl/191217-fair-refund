@@ -15,7 +15,7 @@ const Charge = ({ deleteCharge, selectCharge, charge }) => {
 
   return (
     <>
-      <li id={charge.id}>
+      <li id={charge.id} className='charge'>
         <div>{charge.id}</div>
         <div className='chargeName'>{data.name}</div>
 

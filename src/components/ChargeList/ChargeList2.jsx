@@ -6,6 +6,8 @@ import { useUser } from '../../reducers/useUser';
 
 import Charge from '../Charge/Charge';
 
+import './ChargeList.scss';
+
 const ChargeList2 = props => {
   const { userStore } = useUser();
   const currentUser = userStore.currentUser;
@@ -139,28 +141,68 @@ const ChargeList2 = props => {
       <p>{JSON.stringify(chargeList)}</p>
       <p>{JSON.stringify(charges)}</p>
 
-      <form onSubmit={addOrEditCharge}>
-        <div>
-          <label>name</label>
-          <input
-            onChange={handleNameChange}
-            name='name'
-            type='text'
-            value={form ? form.name : ''}
-          />
+      <form onSubmit={addOrEditCharge} className='add-or-remove-form'>
+        <p>form: {JSON.stringify(form)}</p>
+        <p>selectedCharge: {JSON.stringify(selectedCharge)}</p>
 
-          <p>{JSON.stringify(selectedCharge)}</p>
-          <input
-            type='submit'
-            value={selectedCharge ? 'EDIT ' + selectedCharge.data.name : 'ADD'}
-          />
-          {selectedCharge && (
-            <input onClick={handleCancel} type='button' value='CANCEL' />
-          )}
+        <div className='fields'>
+          <div className='field'>
+            <label>chargeDate</label>
+            <input
+              // onChange={handleNameChange}
+              name='chargeDate'
+              type='date'
+              // value={form ? form.name : ''}
+            />
+          </div>
+          <div className='field'>
+            <label>name</label>
+            <input
+              onChange={handleNameChange}
+              name='name'
+              type='text'
+              value={form ? form.name : ''}
+            />
+          </div>
+          <div className='field'>
+            <label>chargeTotal</label>
+            <input
+              // onChange={handleNameChange}
+              name='chargeTotal'
+              type='number'
+              // value={form ? form.name : ''}
+            />
+          </div>
+          <div className='field'>
+            <label>chargeImage</label>
+            <input
+              // onChange={handleNameChange}
+              name='chargePercent'
+              type='file'
+              // value={form ? form.name : ''}
+            />
+          </div>
+          <div className='field'>
+            <label>chargePercent</label>
+            <input
+              // onChange={handleNameChange}
+              name='chargePercent'
+              type='number'
+              // value={form ? form.name : ''}
+            />
+          </div>
         </div>
+
+        <input
+          type='submit'
+          value={selectedCharge ? 'EDIT ' + selectedCharge.data.name : 'ADD'}
+        />
+        {selectedCharge && (
+          <input onClick={handleCancel} type='button' value='CANCEL' />
+        )}
       </form>
 
-      <ul>
+      <ul className='charges'>
         {charges.length &&
           charges.map(charge => (
             <Charge
