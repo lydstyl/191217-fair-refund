@@ -104,6 +104,13 @@ const ChargeList2 = props => {
       });
   };
 
+  // CANCEL EDIT
+  const handleCancel = () => {
+    setSelectedCharge(null);
+
+    setForm('');
+  };
+
   // DELETE
   const deleteCharge = chargeId => {
     db.collection(`/chargesLists/${chargeList.id}/charges`)
@@ -147,6 +154,9 @@ const ChargeList2 = props => {
             type='submit'
             value={selectedCharge ? 'EDIT ' + selectedCharge.data.name : 'ADD'}
           />
+          {selectedCharge && (
+            <input onClick={handleCancel} type='button' value='CANCEL' />
+          )}
         </div>
       </form>
 
