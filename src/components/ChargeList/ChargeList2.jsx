@@ -26,6 +26,7 @@ const ChargeList2 = props => {
   });
   const [selectedCharge, setSelectedCharge] = useState(null);
   const [cloudinaryFile, setCloudinaryFile] = useState(null);
+  const [totals, setTotals] = useState(null);
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -53,6 +54,24 @@ const ChargeList2 = props => {
 
       snap.docs.forEach(doc => {
         tmp.push({ id: doc.id, data: doc.data() });
+      });
+
+      const totalChargesReducer = (accumulator, currentValue) => {
+        return (
+          parseFloat(accumulator) + parseFloat(currentValue.data.chargeTotal)
+        );
+      };
+
+      const totalRefundsReducer = (accumulator, currentValue) => {
+        const { chargeTotal, chargePercent } = currentValue.data;
+        const refund = chargeTotal * chargePercent;
+
+        return accumulator + refund;
+      };
+
+      setTotals({
+        totalCharges: tmp.reduce(totalChargesReducer, 0),
+        totalRefunds: tmp.reduce(totalRefundsReducer, 0)
       });
 
       setCharges(tmp);
@@ -227,13 +246,27 @@ const ChargeList2 = props => {
 
   return (
     <div>
-      <p>form: {JSON.stringify(charges)}</p>
+      <p>chargeList: {JSON.stringify(chargeList)}</p>
+      <br />
+      <p>totals: {JSON.stringify(totals)}</p>
+      <br />
+      <p>charges: {JSON.stringify(charges)}</p>
       <br />
       <p>form: {JSON.stringify(form)}</p>
       <br />
       <p>selectedCharge: {JSON.stringify(selectedCharge)}</p>
 
-      <h1>ChargeList2 {chargeList.name}</h1>
+      <h1>
+        Liste de dépenses: {chargeList.name}{' '}
+        {chargeList.email !== currentUser && 'de ' + chargeList.email}
+      </h1>
+
+      {totals && (
+        <>
+          <p>Total des charges: {totals.totalCharges}</p>
+          <p>Remboursement demandé: {totals.totalRefunds}</p>
+        </>
+      )}
 
       {chargeList.email === currentUser && jsxForm}
 

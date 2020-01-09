@@ -11,6 +11,7 @@
 
 # To do
 
-- total of the charge list and total refund ask
+- edit image
+- setTotals when add, edit or delete
 - setLoading true and false
 - del image when del charge
