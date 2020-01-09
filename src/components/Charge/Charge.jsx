@@ -16,8 +16,16 @@ const Charge = ({ deleteCharge, selectCharge, charge }) => {
   return (
     <>
       <li id={charge.id} className='charge'>
-        <div>{charge.id}</div>
-        <div className='chargeName'>{data.name}</div>
+        <div>
+          {charge.id} {JSON.stringify(data)}
+        </div>
+        <div className='cell'>{data.chargeDate}</div>
+        <div className='cell'>{data.chargeName}</div>
+        <div className='cell'>{data.chargeFile}</div>
+        <div className='cell'>
+          {data.chargeTotal} x {data.chargePercent} ={' '}
+          {data.chargeTotal * data.chargePercent}
+        </div>
 
         {deleteCharge && (
           <input onClick={handleDelete} type='button' value='DEL' />

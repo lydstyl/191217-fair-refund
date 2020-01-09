@@ -13,15 +13,19 @@
 
 .charges {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
+  justify-items: center;
 
   list-style-type: none;
 
-  border: 1px solid;
+  // border: 1px solid;
   .charge {
+    width: 160px;
     padding: 10px;
 
-    border: 1px solid red;
+    word-wrap: break-word;
+
+    border: 1px solid;
   }
 }

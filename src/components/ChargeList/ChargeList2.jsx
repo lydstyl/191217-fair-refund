@@ -16,11 +16,17 @@ const ChargeList2 = props => {
     id: props.location.pathname.split('/')[2]
   });
   const [charges, setCharges] = useState([]);
-  const [form, setForm] = useState('');
+  const [form, setForm] = useState({
+    chargeDate: '',
+    chargeName: '',
+    chargeFile: '',
+    chargeTotal: '',
+    chargePercent: ''
+  });
   const [selectedCharge, setSelectedCharge] = useState(null);
 
-  const handleNameChange = e => {
-    setForm({ ...form, name: e.target.value });
+  const handleChange = e => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const getChargeListData = id => {
@@ -62,21 +68,23 @@ const ChargeList2 = props => {
       data[field.name] = field.value;
     });
 
-    console.log(data); // todo: add image file here
+    console.log('add or edit data', data); // todo: add image file here
 
     const mode = e.target.querySelector('input[type=submit]').value;
 
     if (mode === 'ADD') {
+      // ADD
       const collectionRef = db.collection(
         `/chargesLists/${chargeList.id}/charges`
       );
 
       collectionRef.add(data).then(doc => {
-        setCharges([...charges, { id: doc.id, data: data }]);
+        setCharges([...charges, { id: doc.id, data }]);
       });
 
-      setForm('');
+      clearForm();
     } else {
+      // EDIT
       editCharge(selectedCharge.id, data);
     }
   };
@@ -84,8 +92,12 @@ const ChargeList2 = props => {
   // EDIT
   const selectCharge = chargeId => {
     const selection = charges.filter(charge => charge.id === chargeId)[0];
+
     setSelectedCharge(selection);
-    setForm({ ...form, name: selection.data.name });
+
+    console.log(selection.data);
+
+    setForm(selection.data);
   };
 
   const editCharge = (chargeId, data) => {
@@ -104,9 +116,7 @@ const ChargeList2 = props => {
           })
         );
 
-        setSelectedCharge(null);
-
-        setForm({ ...form, name: '' });
+        clearForm();
       })
       .catch(error => {
         console.error('Error editing document: ', error);
@@ -114,9 +124,16 @@ const ChargeList2 = props => {
   };
 
   const clearForm = () => {
-    setSelectedCharge(null);
+    const fields = document.querySelectorAll('.field input');
 
-    setForm('');
+    const data = {};
+
+    fields.forEach(field => {
+      data[field.name] = '';
+    });
+
+    setForm(data);
+    setSelectedCharge(null);
   };
 
   // CANCEL EDIT
@@ -150,9 +167,11 @@ const ChargeList2 = props => {
 
   return (
     <div>
-      <h1>ChargeList2 {chargeList.name}</h1>
+      <h1>ChargeList2 {chargeList.chargeName}</h1>
       <p>{JSON.stringify(chargeList)}</p>
       <p>{JSON.stringify(charges)}</p>
+
+      <button onClick={clearForm}>clear</button>
 
       <form onSubmit={addOrEditCharge} className='add-or-remove-form'>
         <p>form: {JSON.stringify(form)}</p>
@@ -162,46 +181,46 @@ const ChargeList2 = props => {
           <div className='field'>
             <label>chargeDate</label>
             <input
-              // onChange={handleNameChange}
+              onChange={handleChange}
               name='chargeDate'
               type='date'
-              // value={form ? form.name : ''}
+              value={form ? form.chargeDate : ''}
             />
           </div>
           <div className='field'>
             <label>name</label>
             <input
-              onChange={handleNameChange}
-              name='name'
+              onChange={handleChange}
+              name='chargeName'
               type='text'
-              value={form ? form.name : ''}
+              value={form ? form.chargeName : ''}
+            />
+          </div>
+          <div className='field'>
+            <label>chargeFile</label>
+            <input
+              onChange={handleChange}
+              name='chargeFile'
+              type='file'
+              value={form ? form.chargeFile : ''}
             />
           </div>
           <div className='field'>
             <label>chargeTotal</label>
             <input
-              // onChange={handleNameChange}
+              onChange={handleChange}
               name='chargeTotal'
               type='number'
-              // value={form ? form.name : ''}
-            />
-          </div>
-          <div className='field'>
-            <label>chargeImage</label>
-            <input
-              // onChange={handleNameChange}
-              name='chargePercent'
-              type='file'
-              // value={form ? form.name : ''}
+              value={form ? form.chargeTotal : ''}
             />
           </div>
           <div className='field'>
             <label>chargePercent</label>
             <input
-              // onChange={handleNameChange}
+              onChange={handleChange}
               name='chargePercent'
               type='number'
-              // value={form ? form.name : ''}
+              value={form ? form.chargePercent : ''}
             />
           </div>
         </div>
