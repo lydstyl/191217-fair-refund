@@ -92,12 +92,12 @@ const ChargeList2 = props => {
   // EDIT
   const selectCharge = chargeId => {
     const selection = charges.filter(charge => charge.id === chargeId)[0];
+    const tmp = { ...selection.data };
+    tmp.chargeFile = ''; // this input element accepts a filename, which may only be programmatically set to the empty string.
 
     setSelectedCharge(selection);
 
-    console.log(selection.data);
-
-    setForm(selection.data);
+    setForm(tmp);
   };
 
   const editCharge = (chargeId, data) => {
@@ -165,74 +165,78 @@ const ChargeList2 = props => {
     // eslint-disable-next-line
   }, []);
 
+  const jsxForm = (
+    <form onSubmit={addOrEditCharge} className='add-or-remove-form'>
+      {/* <p>form: {JSON.stringify(form)}</p>
+      <p>selectedCharge: {JSON.stringify(selectedCharge)}</p> */}
+
+      <div className='fields'>
+        <div className='field'>
+          <label>chargeDate</label>
+          <input
+            onChange={handleChange}
+            name='chargeDate'
+            type='date'
+            value={form ? form.chargeDate : ''}
+          />
+        </div>
+        <div className='field'>
+          <label>name</label>
+          <input
+            onChange={handleChange}
+            name='chargeName'
+            type='text'
+            value={form ? form.chargeName : ''}
+          />
+        </div>
+        <div className='field'>
+          <label>chargeFile</label>
+          <input
+            onChange={handleChange}
+            name='chargeFile'
+            type='file'
+            value={form ? form.chargeFile : ''}
+          />
+        </div>
+        <div className='field'>
+          <label>chargeTotal</label>
+          <input
+            onChange={handleChange}
+            name='chargeTotal'
+            type='number'
+            value={form ? form.chargeTotal : ''}
+          />
+        </div>
+        <div className='field'>
+          <label>chargePercent</label>
+          <input
+            onChange={handleChange}
+            name='chargePercent'
+            type='number'
+            value={form ? form.chargePercent : ''}
+          />
+        </div>
+      </div>
+
+      <input
+        type='submit'
+        value={
+          selectedCharge ? 'EDIT ' + selectedCharge.data.chargeName : 'ADD'
+        }
+      />
+      {selectedCharge && (
+        <input onClick={handleCancel} type='button' value='CANCEL' />
+      )}
+    </form>
+  );
+
   return (
     <div>
-      <h1>ChargeList2 {chargeList.chargeName}</h1>
-      <p>{JSON.stringify(chargeList)}</p>
-      <p>{JSON.stringify(charges)}</p>
+      <h1>ChargeList2 {chargeList.name}</h1>
+      {/* <p>{JSON.stringify(chargeList)}</p>
+      <p>{JSON.stringify(charges)}</p> */}
 
-      <button onClick={clearForm}>clear</button>
-
-      <form onSubmit={addOrEditCharge} className='add-or-remove-form'>
-        <p>form: {JSON.stringify(form)}</p>
-        <p>selectedCharge: {JSON.stringify(selectedCharge)}</p>
-
-        <div className='fields'>
-          <div className='field'>
-            <label>chargeDate</label>
-            <input
-              onChange={handleChange}
-              name='chargeDate'
-              type='date'
-              value={form ? form.chargeDate : ''}
-            />
-          </div>
-          <div className='field'>
-            <label>name</label>
-            <input
-              onChange={handleChange}
-              name='chargeName'
-              type='text'
-              value={form ? form.chargeName : ''}
-            />
-          </div>
-          <div className='field'>
-            <label>chargeFile</label>
-            <input
-              onChange={handleChange}
-              name='chargeFile'
-              type='file'
-              value={form ? form.chargeFile : ''}
-            />
-          </div>
-          <div className='field'>
-            <label>chargeTotal</label>
-            <input
-              onChange={handleChange}
-              name='chargeTotal'
-              type='number'
-              value={form ? form.chargeTotal : ''}
-            />
-          </div>
-          <div className='field'>
-            <label>chargePercent</label>
-            <input
-              onChange={handleChange}
-              name='chargePercent'
-              type='number'
-              value={form ? form.chargePercent : ''}
-            />
-          </div>
-        </div>
-
-        <input
-          type='submit'
-          value={selectedCharge ? 'EDIT ' + selectedCharge.data.name : 'ADD'}
-        />
-        {selectedCharge && (
-          <input onClick={handleCancel} type='button' value='CANCEL' />
-        )}
-      </form>
+      {chargeList.email === currentUser && jsxForm}
 
       <ul className='charges'>
         {charges.length &&

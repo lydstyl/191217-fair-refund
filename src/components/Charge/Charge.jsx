@@ -16,9 +16,9 @@ const Charge = ({ deleteCharge, selectCharge, charge }) => {
   return (
     <>
       <li id={charge.id} className='charge'>
-        <div>
+        {/* <div>
           {charge.id} {JSON.stringify(data)}
-        </div>
+        </div> */}
         <div className='cell'>{data.chargeDate}</div>
         <div className='cell'>{data.chargeName}</div>
         <div className='cell'>{data.chargeFile}</div>
