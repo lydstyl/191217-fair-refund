@@ -4,6 +4,7 @@ import { db } from '../../utils/firebase/base';
 
 import { useUser } from '../../reducers/useUser';
 
+import FileUpload2 from '../FileUpload/FileUpload2';
 import Charge from '../Charge/Charge';
 
 import './ChargeList.scss';
@@ -69,6 +70,8 @@ const ChargeList2 = props => {
     });
 
     console.log('add or edit data', data); // todo: add image file here
+
+    data.chargeFile = document.querySelector('[alt="Charge proof"]').src;
 
     const mode = e.target.querySelector('input[type=submit]').value;
 
@@ -189,7 +192,8 @@ const ChargeList2 = props => {
             value={form ? form.chargeName : ''}
           />
         </div>
-        <div className='field'>
+        <FileUpload2 />
+        {/* <div className='field'>
           <label>chargeFile</label>
           <input
             onChange={handleChange}
@@ -197,7 +201,7 @@ const ChargeList2 = props => {
             type='file'
             value={form ? form.chargeFile : ''}
           />
-        </div>
+        </div> */}
         <div className='field'>
           <label>chargeTotal</label>
           <input

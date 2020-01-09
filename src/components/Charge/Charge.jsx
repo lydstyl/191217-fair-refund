@@ -19,13 +19,22 @@ const Charge = ({ deleteCharge, selectCharge, charge }) => {
         {/* <div>
           {charge.id} {JSON.stringify(data)}
         </div> */}
-        <div className='cell'>{data.chargeDate}</div>
-        <div className='cell'>{data.chargeName}</div>
-        <div className='cell'>{data.chargeFile}</div>
+        <div className='cell'>
+          <h2>{data.chargeName}</h2>
+        </div>
+        {data.chargeFile !== '' && (
+          <div className='cell'>
+            {/* {data.chargeFile}xxxxxxxxxx */}
+            <img src={data.chargeFile} alt='charge proof' />
+          </div>
+        )}
+
         <div className='cell'>
           {data.chargeTotal} x {data.chargePercent} ={' '}
           {data.chargeTotal * data.chargePercent}
         </div>
+
+        <div className='cell'>{data.chargeDate}</div>
 
         {deleteCharge && (
           <input onClick={handleDelete} type='button' value='DEL' />

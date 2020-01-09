@@ -12,3 +12,4 @@
 # To do
 
 - make file field work
+- setLoading true and false

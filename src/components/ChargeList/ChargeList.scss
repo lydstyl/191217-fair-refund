@@ -3,6 +3,7 @@
 
   .fields {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
 
     .field {
@@ -27,5 +28,9 @@
     word-wrap: break-word;
 
     border: 1px solid;
+
+    img {
+      max-width: 100%;
+    }
   }
 }
