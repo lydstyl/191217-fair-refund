@@ -25,6 +25,7 @@ const ChargeList2 = props => {
     chargePercent: ''
   });
   const [selectedCharge, setSelectedCharge] = useState(null);
+  const [cloudinaryFile, setCloudinaryFile] = useState(null);
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -69,9 +70,7 @@ const ChargeList2 = props => {
       data[field.name] = field.value;
     });
 
-    console.log('add or edit data', data); // todo: add image file here
-
-    data.chargeFile = document.querySelector('[alt="Charge proof"]').src;
+    data.chargeImages = { ...cloudinaryFile };
 
     const mode = e.target.querySelector('input[type=submit]').value;
 
@@ -95,6 +94,7 @@ const ChargeList2 = props => {
   // EDIT
   const selectCharge = chargeId => {
     const selection = charges.filter(charge => charge.id === chargeId)[0];
+
     const tmp = { ...selection.data };
     tmp.chargeFile = ''; // this input element accepts a filename, which may only be programmatically set to the empty string.
 
@@ -104,6 +104,8 @@ const ChargeList2 = props => {
   };
 
   const editCharge = (chargeId, data) => {
+    data.chargeImages = { ...selectedCharge.data.chargeImages };
+
     db.collection(`/chargesLists/${chargeList.id}/charges`)
       .doc(chargeId)
       .set(data)
@@ -137,6 +139,7 @@ const ChargeList2 = props => {
 
     setForm(data);
     setSelectedCharge(null);
+    setCloudinaryFile(null);
   };
 
   // CANCEL EDIT
@@ -170,9 +173,6 @@ const ChargeList2 = props => {
 
   const jsxForm = (
     <form onSubmit={addOrEditCharge} className='add-or-remove-form'>
-      {/* <p>form: {JSON.stringify(form)}</p>
-      <p>selectedCharge: {JSON.stringify(selectedCharge)}</p> */}
-
       <div className='fields'>
         <div className='field'>
           <label>chargeDate</label>
@@ -192,16 +192,7 @@ const ChargeList2 = props => {
             value={form ? form.chargeName : ''}
           />
         </div>
-        <FileUpload2 />
-        {/* <div className='field'>
-          <label>chargeFile</label>
-          <input
-            onChange={handleChange}
-            name='chargeFile'
-            type='file'
-            value={form ? form.chargeFile : ''}
-          />
-        </div> */}
+        <FileUpload2 setCloudinaryFile={setCloudinaryFile} />
         <div className='field'>
           <label>chargeTotal</label>
           <input
@@ -236,9 +227,13 @@ const ChargeList2 = props => {
 
   return (
     <div>
+      <p>form: {JSON.stringify(charges)}</p>
+      <br />
+      <p>form: {JSON.stringify(form)}</p>
+      <br />
+      <p>selectedCharge: {JSON.stringify(selectedCharge)}</p>
+
       <h1>ChargeList2 {chargeList.name}</h1>
-      {/* <p>{JSON.stringify(chargeList)}</p>
-      <p>{JSON.stringify(charges)}</p> */}
 
       {chargeList.email === currentUser && jsxForm}
 
@@ -248,6 +243,7 @@ const ChargeList2 = props => {
             <Charge
               key={charge.id}
               charge={charge}
+              cloudinaryFile={cloudinaryFile}
               deleteCharge={
                 currentUser === chargeList.email ? deleteCharge : null
               }

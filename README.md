@@ -11,5 +11,6 @@
 
 # To do
 
-- make file field work
+- total of the charge list and total refund ask
 - setLoading true and false
+- del image when del charge
