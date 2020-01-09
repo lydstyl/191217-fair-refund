@@ -114,6 +114,8 @@ const ChargeList2 = props => {
   const selectCharge = chargeId => {
     const selection = charges.filter(charge => charge.id === chargeId)[0];
 
+    setCloudinaryFile({ ...selection.data.chargeImages });
+
     const tmp = { ...selection.data };
     tmp.chargeFile = ''; // this input element accepts a filename, which may only be programmatically set to the empty string.
 
@@ -123,8 +125,6 @@ const ChargeList2 = props => {
   };
 
   const editCharge = (chargeId, data) => {
-    data.chargeImages = { ...selectedCharge.data.chargeImages };
-
     db.collection(`/chargesLists/${chargeList.id}/charges`)
       .doc(chargeId)
       .set(data)
@@ -246,6 +246,8 @@ const ChargeList2 = props => {
 
   return (
     <div>
+      {/* <p>cloudinaryFile: {JSON.stringify(cloudinaryFile)}</p>
+      <br />
       <p>chargeList: {JSON.stringify(chargeList)}</p>
       <br />
       <p>totals: {JSON.stringify(totals)}</p>
@@ -254,7 +256,7 @@ const ChargeList2 = props => {
       <br />
       <p>form: {JSON.stringify(form)}</p>
       <br />
-      <p>selectedCharge: {JSON.stringify(selectedCharge)}</p>
+      <p>selectedCharge: {JSON.stringify(selectedCharge)}</p> */}
 
       <h1>
         Liste de dépenses: {chargeList.name}{' '}

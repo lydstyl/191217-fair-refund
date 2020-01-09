@@ -11,7 +11,6 @@
 
 # To do
 
-- edit image
 - setTotals when add, edit or delete
 - setLoading true and false
 - del image when del charge
