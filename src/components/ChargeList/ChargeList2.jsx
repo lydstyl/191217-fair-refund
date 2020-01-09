@@ -77,7 +77,7 @@ const ChargeList2 = props => {
 
       setForm('');
     } else {
-      editCharge(selectedCharge.id, data.name);
+      editCharge(selectedCharge.id, data);
     }
   };
 
@@ -88,17 +88,17 @@ const ChargeList2 = props => {
     setForm({ ...form, name: selection.data.name });
   };
 
-  const editCharge = (chargeId, name) => {
+  const editCharge = (chargeId, data) => {
     db.collection(`/chargesLists/${chargeList.id}/charges`)
       .doc(chargeId)
-      .set({ name: name })
+      .set(data)
       .then(() => {
         console.log('Document successfully edited!');
 
         setCharges(
           charges.map(charge => {
             if (charge.id === chargeId) {
-              return { ...charge, data: { ...charge.data, name } };
+              return { ...charge, data };
             }
             return charge;
           })
@@ -111,6 +111,12 @@ const ChargeList2 = props => {
       .catch(error => {
         console.error('Error editing document: ', error);
       });
+  };
+
+  const clearForm = () => {
+    setSelectedCharge(null);
+
+    setForm('');
   };
 
   // CANCEL EDIT
