@@ -28,8 +28,23 @@ const ChargeList2 = props => {
   const [cloudinaryFile, setCloudinaryFile] = useState(null);
   const [totals, setTotals] = useState(null);
 
-  const handleChange = e => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  //// UTILS
+  const numOr0 = shouldBeNum => {
+    // return a number or zero
+
+    if (shouldBeNum * 0 === 0) {
+      // is number or string number
+      return parseFloat(shouldBeNum);
+    }
+
+    return 0;
+  };
+
+  const addToTotals = (addToTotalCharges, addToTotalRefunds) => {
+    setTotals({
+      totalCharges: numOr0(totals.totalCharges) + numOr0(addToTotalCharges),
+      totalRefunds: numOr0(totals.totalRefunds) + numOr0(addToTotalRefunds)
+    });
   };
 
   const getChargeListData = id => {
@@ -57,14 +72,12 @@ const ChargeList2 = props => {
       });
 
       const totalChargesReducer = (accumulator, currentValue) => {
-        return (
-          parseFloat(accumulator) + parseFloat(currentValue.data.chargeTotal)
-        );
+        return numOr0(accumulator) + numOr0(currentValue.data.chargeTotal);
       };
 
       const totalRefundsReducer = (accumulator, currentValue) => {
         const { chargeTotal, chargePercent } = currentValue.data;
-        const refund = chargeTotal * chargePercent;
+        const refund = numOr0(chargeTotal) * numOr0(chargePercent);
 
         return accumulator + refund;
       };
@@ -76,6 +89,11 @@ const ChargeList2 = props => {
 
       setCharges(tmp);
     });
+  };
+
+  //// HANDLES
+  const handleChange = e => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   // ADD OR EDIT
@@ -101,6 +119,9 @@ const ChargeList2 = props => {
 
       collectionRef.add(data).then(doc => {
         setCharges([...charges, { id: doc.id, data }]);
+
+        const { chargeTotal, chargePercent } = data;
+        addToTotals(chargeTotal, numOr0(chargePercent) * numOr0(chargeTotal));
       });
 
       clearForm();
@@ -130,6 +151,19 @@ const ChargeList2 = props => {
       .set(data)
       .then(() => {
         console.log('Document successfully edited!');
+
+        // calculate new totals
+        // old percent and total
+        const oldCharge = charges.filter(charge => charge.id === chargeId)[0]
+          .data;
+        // new are in data
+        const diff = {
+          chargeTotal: numOr0(data.chargeTotal) - numOr0(oldCharge.chargeTotal),
+          chargePercent:
+            numOr0(data.chargeTotal) * numOr0(data.chargePercent) -
+            numOr0(oldCharge.chargeTotal) * numOr0(oldCharge.chargePercent)
+        };
+        addToTotals(diff.chargeTotal, diff.chargePercent);
 
         setCharges(
           charges.map(charge => {
@@ -177,6 +211,19 @@ const ChargeList2 = props => {
         console.log('Document successfully deleted!');
 
         setCharges(charges.filter(charge => charge.id !== chargeId));
+
+        const chargeToBeDeleted = charges.filter(
+          charge => charge.id === chargeId
+        );
+
+        const {
+          data: { chargeTotal, chargePercent }
+        } = chargeToBeDeleted[0];
+
+        addToTotals(
+          -numOr0(chargeTotal),
+          -numOr0(chargePercent) * numOr0(chargeTotal)
+        );
       })
       .catch(error => {
         console.error('Error removing document: ', error);
