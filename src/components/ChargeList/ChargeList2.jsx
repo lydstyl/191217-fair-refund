@@ -306,16 +306,21 @@ const ChargeList2 = props => {
   return (
     <div>
       {/* <p>cloudinaryFile: {JSON.stringify(cloudinaryFile)}</p>
-      <br />
-      <p>chargeList: {JSON.stringify(chargeList)}</p>
-      <br />
-      <p>totals: {JSON.stringify(totals)}</p>
-      <br />
-      <p>charges: {JSON.stringify(charges)}</p>
-      <br />
-      <p>form: {JSON.stringify(form)}</p>
-      <br />
-      <p>selectedCharge: {JSON.stringify(selectedCharge)}</p> */}
+      <br /> */}
+
+      {/* <p>chargeList: {JSON.stringify(chargeList)}</p>
+      <br /> */}
+
+      {/* <p>totals: {JSON.stringify(totals)}</p>
+      <br /> */}
+
+      {/* <p>charges: {JSON.stringify(charges)}</p>
+       <br /> */}
+
+      {/* <p>form: {JSON.stringify(form)}</p> 
+      <br /> */}
+
+      {/* <p>selectedCharge: {JSON.stringify(selectedCharge)}</p>  */}
 
       <h1>
         Liste de dépenses: {chargeList.name}{' '}
@@ -331,9 +336,13 @@ const ChargeList2 = props => {
 
       {chargeList.email === currentUser && jsxForm}
 
-      <ul className='charges'>
-        {charges.length &&
-          charges.map(charge => (
+      {charges.length === 0 && (
+        <div>Aucune dépense n'est enregistrée dans cette liste.</div>
+      )}
+
+      {charges.length !== 0 && (
+        <ul className='charges'>
+          {charges.map(charge => (
             <Charge
               key={charge.id}
               charge={charge}
@@ -344,7 +353,8 @@ const ChargeList2 = props => {
               selectCharge={selectCharge}
             />
           ))}
-      </ul>
+        </ul>
+      )}
     </div>
   );
 };

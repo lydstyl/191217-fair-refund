@@ -11,7 +11,6 @@
 
 # To do
 
-- remove 0 when no charge in list and say no charge in this list
 - remove old link and component ChargeList1
 - no alt image when no image
 - settings with 50% percent & currency

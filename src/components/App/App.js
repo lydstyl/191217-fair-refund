@@ -47,7 +47,10 @@ export const App = () => {
         </div>
       </UserCtxProvider>
       <footer>
-        <div>Un commentaire ? Vous pouvez l'envoyer sur lydstyl@gmail.com</div>
+        <div>
+          Un commentaire ? Vous pouvez l'envoyer sur la vidéo de cette
+          application ou en privé sur lydstyl@gmail.com
+        </div>
       </footer>
     </Router>
   );
