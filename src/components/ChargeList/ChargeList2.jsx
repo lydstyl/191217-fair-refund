@@ -104,7 +104,14 @@ const ChargeList2 = props => {
 
     const data = {};
     fields.forEach(field => {
-      data[field.name] = field.value;
+      if (
+        !field.value &&
+        (field.name === 'chargeTotal' || field.name === 'chargePercent')
+      ) {
+        data[field.name] = 0;
+      } else {
+        data[field.name] = field.value;
+      }
     });
 
     data.chargeImages = { ...cloudinaryFile };
