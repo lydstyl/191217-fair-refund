@@ -103,9 +103,7 @@ const ChargesLists = () => {
             <p>email: {item.chargeList.email}</p>
             <p>name: {item.chargeList.name}</p>
 
-            <Link to={`/charge-list2/${item.id}`}>nouveau lien ${item.id}</Link>
-
-            <a href={`/charge-list/${item.id}`}>{`/charge-list/${item.id}`}</a>
+            <Link to={`/charge-list/${item.id}`}>/charge-list/{item.id}</Link>
 
             <button onClick={() => handleRemoveList(item.id)}>DEL</button>
           </li>

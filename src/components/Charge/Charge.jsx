@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 const Charge = ({ deleteCharge, selectCharge, charge }) => {
   const { data } = charge;
 
@@ -14,17 +16,20 @@ const Charge = ({ deleteCharge, selectCharge, charge }) => {
   };
 
   return (
-    <>
-      <li id={charge.id} className='charge'>
-        {/* <p>{JSON.stringify(data.chargeImages)}</p> */}
+    <li id={charge.id} className='charge'>
+      <p>{JSON.stringify(charge)}</p>
 
+      <div className='cell'>
+        <h2>{data.chargeName}</h2>
+      </div>
+
+      {data.chargeImages.original && (
         <div className='cell'>
-          <h2>{data.chargeName}</h2>
-        </div>
+          <img src={data.chargeImages.thumb} alt='charge proof' />
 
-        {data.chargeImages.original && (
-          <div className='cell'>
-            <img src={data.chargeImages.thumb} alt='charge proof' />
+          <Link to={`/charge/${charge.id}`}>/charge/{charge.id}</Link>
+
+          <div>
             <a target='_blank' href={data.chargeImages.medium}>
               medium image
             </a>
@@ -32,22 +37,22 @@ const Charge = ({ deleteCharge, selectCharge, charge }) => {
               original image
             </a>
           </div>
-        )}
-
-        <div className='cell'>
-          {data.chargeTotal} x {data.chargePercent} = {data.chargeRefund}
         </div>
+      )}
 
-        <div className='cell'>{data.chargeDate}</div>
+      <div className='cell'>
+        {data.chargeTotal} x {data.chargePercent} = {data.chargeRefund}
+      </div>
 
-        {deleteCharge && (
-          <input onClick={handleDelete} type='button' value='DEL' />
-        )}
-        {deleteCharge && (
-          <input onClick={handleSelect} type='button' value='SELECT' />
-        )}
-      </li>
-    </>
+      <div className='cell'>{data.chargeDate}</div>
+
+      {deleteCharge && (
+        <input onClick={handleDelete} type='button' value='DEL' />
+      )}
+      {deleteCharge && (
+        <input onClick={handleSelect} type='button' value='SELECT' />
+      )}
+    </li>
   );
 };
 

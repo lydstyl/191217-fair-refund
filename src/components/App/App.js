@@ -6,8 +6,8 @@ import Login from '../Login/Login';
 import SignUp from '../SignUp/SignUp';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import ChargesLists from '../ChargesLists/ChargesLists';
-import ChargeList2 from '../ChargeList/ChargeList2';
-import FileUpload from '../FileUpload/FileUpload';
+import ChargeList from '../ChargeList/ChargeList';
+import MediumImage from '../MediumImage/MediumImage';
 
 import { UserCtxProvider } from '../../reducers/useUser';
 import { ChargeCtxProvider } from '../../reducers/useCharge';
@@ -25,8 +25,8 @@ export const App = () => {
           <Route exact path='/signup' component={SignUp} />
           <ChargeCtxProvider>
             <PrivateRoute exact path='/' component={ChargesLists} />
-            <PrivateRoute exact path='/upload-file' component={FileUpload} />
-            <Route path='/charge-list2' component={ChargeList2} />
+            <Route path='/charge-list' component={ChargeList} />
+            <Route path='/charge' component={MediumImage} />
           </ChargeCtxProvider>
         </div>
       </UserCtxProvider>
