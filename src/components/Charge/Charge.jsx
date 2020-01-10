@@ -16,10 +16,13 @@ const Charge = ({ deleteCharge, selectCharge, charge }) => {
   return (
     <>
       <li id={charge.id} className='charge'>
+        {/* <p>{JSON.stringify(data.chargeImages)}</p> */}
+
         <div className='cell'>
           <h2>{data.chargeName}</h2>
         </div>
-        {data.chargeImages && (
+
+        {data.chargeImages.original && (
           <div className='cell'>
             <img src={data.chargeImages.thumb} alt='charge proof' />
             <a target='_blank' href={data.chargeImages.medium}>

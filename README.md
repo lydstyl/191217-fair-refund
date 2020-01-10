@@ -12,10 +12,10 @@
 # To do
 
 - remove old link and component ChargeList1
-- no alt image when no image
-- settings with 50% percent & currency
 - Link to medium then to original with back button
 - setLoading true and false
 - ChargesLists should be Home
+- settings with 50% percent & currency (useContext & useReducer)
 - CSS
+- useContext & useReducer instead of useState
 - del image when del charge
