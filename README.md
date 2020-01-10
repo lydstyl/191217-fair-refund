@@ -11,7 +11,6 @@
 
 # To do
 
-- setLoading true and false + spinner
 - when loading image hide EDIT or ADD button
 - font Awsome trash for del + for add, pencil for edit, < for back and other buton login sign in sign out
 - CSS

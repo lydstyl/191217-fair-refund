@@ -11,10 +11,14 @@ import {
   REMOVE_CHARGES_LIST
 } from '../../reducers/useCharge';
 
+import { useLoading, SET_LOADING } from '../../reducers/useLoading';
+import Spinner from '../../images/spinner.gif';
+
 import './ChargesLists.scss';
 
 const ChargesLists = () => {
   const { chargeStore, chargeDispatch } = useCharge();
+  const { loadingStore, loadingDispatch } = useLoading();
 
   const { userStore } = useUser();
   const email = userStore.currentUser;
@@ -23,11 +27,20 @@ const ChargesLists = () => {
     if (!chargeStore.length) {
       const initialList = {}; // initialState for useCharge reducer
 
+      loadingDispatch({
+        type: SET_LOADING,
+        payload: true
+      });
       db.collection('chargesLists')
         .where('email', '==', email)
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
+            loadingDispatch({
+              type: SET_LOADING,
+              payload: false
+            });
+
             const email = doc.data().email;
 
             initialList[doc.id] = {
@@ -91,24 +104,33 @@ const ChargesLists = () => {
 
   return (
     <div>
-      <p>{JSON.stringify(chargeStore)}</p>
-      <form onSubmit={handleAddList}>
-        <input name='name' type='text' />
-        <button>ADD</button>
-      </form>
+      {/* <p>{JSON.stringify(chargeStore)}</p> */}
 
-      <ul className='charges-lists'>
-        {lis.map(item => (
-          <li key={item.id}>
-            <p>email: {item.chargeList.email}</p>
-            <p>name: {item.chargeList.name}</p>
+      {loadingStore.loading ? (
+        <img src={Spinner} alt='spinner' />
+      ) : (
+        <>
+          <form onSubmit={handleAddList}>
+            <input name='name' type='text' />
+            <button>ADD</button>
+          </form>
 
-            <Link to={`/charge-list/${item.id}`}>/charge-list/{item.id}</Link>
+          <ul className='charges-lists'>
+            {lis.map(item => (
+              <li key={item.id}>
+                <p>email: {item.chargeList.email}</p>
+                <p>name: {item.chargeList.name}</p>
 
-            <button onClick={() => handleRemoveList(item.id)}>DEL</button>
-          </li>
-        ))}
-      </ul>
+                <Link to={`/charge-list/${item.id}`}>
+                  /charge-list/{item.id}
+                </Link>
+
+                <button onClick={() => handleRemoveList(item.id)}>DEL</button>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 };

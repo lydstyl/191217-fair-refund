@@ -7,11 +7,15 @@ import { useUser } from '../../reducers/useUser';
 import FileUpload from '../FileUpload/FileUpload';
 import Charge from '../Charge/Charge';
 
+import { useLoading, SET_LOADING } from '../../reducers/useLoading';
+import Spinner from '../../images/spinner.gif';
+
 import './ChargeList.scss';
 
 const ChargeList2 = props => {
   const { userStore } = useUser();
   const currentUser = userStore.currentUser;
+  const { loadingStore, loadingDispatch } = useLoading();
 
   const [chargeList, setChargeList] = useState({
     id: props.location.pathname.split('/')[2]
@@ -50,6 +54,10 @@ const ChargeList2 = props => {
   const twoDecimals = num => Math.round(num * 100) / 100;
 
   const getChargeListData = id => {
+    loadingDispatch({
+      type: SET_LOADING,
+      payload: true
+    });
     const chargesListsRef = db.collection('chargesLists');
 
     chargesListsRef
@@ -57,7 +65,13 @@ const ChargeList2 = props => {
       .get()
       .then(docSnap => {
         const chargeListOtherData = docSnap.data();
+
         setChargeList({ ...chargeList, ...chargeListOtherData });
+
+        loadingDispatch({
+          type: SET_LOADING,
+          payload: false
+        });
       });
   };
 
@@ -128,6 +142,10 @@ const ChargeList2 = props => {
 
     if (mode === 'ADD') {
       // ADD
+      loadingDispatch({
+        type: SET_LOADING,
+        payload: true
+      });
       const collectionRef = db.collection(
         `/chargesLists/${chargeList.id}/charges`
       );
@@ -137,6 +155,10 @@ const ChargeList2 = props => {
 
         const { chargeTotal, chargePercent } = data;
         addToTotals(chargeTotal, numOr0(chargePercent) * numOr0(chargeTotal));
+        loadingDispatch({
+          type: SET_LOADING,
+          payload: false
+        });
       });
 
       clearForm();
@@ -161,6 +183,10 @@ const ChargeList2 = props => {
   };
 
   const editCharge = (chargeId, data) => {
+    loadingDispatch({
+      type: SET_LOADING,
+      payload: true
+    });
     db.collection(`/chargesLists/${chargeList.id}/charges`)
       .doc(chargeId)
       .set(data)
@@ -190,6 +216,10 @@ const ChargeList2 = props => {
         );
 
         clearForm();
+        loadingDispatch({
+          type: SET_LOADING,
+          payload: false
+        });
       })
       .catch(error => {
         console.error('Error editing document: ', error);
@@ -221,6 +251,10 @@ const ChargeList2 = props => {
 
   // DELETE
   const deleteCharge = chargeId => {
+    loadingDispatch({
+      type: SET_LOADING,
+      payload: true
+    });
     db.collection(`/chargesLists/${chargeList.id}/charges`)
       .doc(chargeId)
       .delete()
@@ -241,6 +275,10 @@ const ChargeList2 = props => {
           -numOr0(chargeTotal),
           -numOr0(chargePercent) * numOr0(chargeTotal)
         );
+        loadingDispatch({
+          type: SET_LOADING,
+          payload: false
+        });
       })
       .catch(error => {
         console.error('Error removing document: ', error);
@@ -331,38 +369,44 @@ const ChargeList2 = props => {
 
       {/* <p>selectedCharge: {JSON.stringify(selectedCharge)}</p>  */}
 
-      <h1>
-        Liste de dépenses: {chargeList.name}{' '}
-        {chargeList.email !== currentUser && 'de ' + chargeList.email}
-      </h1>
-
-      {totals && (
+      {loadingStore.loading ? (
+        <img src={Spinner} alt='spinner' />
+      ) : (
         <>
-          <p>Total des charges: {totals.totalCharges}</p>
-          <p>Remboursement demandé: {totals.totalRefunds}</p>
+          <h1>
+            Liste de dépenses: {chargeList.name}{' '}
+            {chargeList.email !== currentUser && 'de ' + chargeList.email}
+          </h1>
+
+          {totals && (
+            <>
+              <p>Total des charges: {totals.totalCharges}</p>
+              <p>Remboursement demandé: {totals.totalRefunds}</p>
+            </>
+          )}
+
+          {chargeList.email === currentUser && jsxForm}
+
+          {charges.length === 0 && (
+            <div>Aucune dépense n'est enregistrée dans cette liste.</div>
+          )}
+
+          {charges.length !== 0 && (
+            <ul className='charges'>
+              {charges.map(charge => (
+                <Charge
+                  key={charge.id}
+                  charge={charge}
+                  cloudinaryFile={cloudinaryFile}
+                  deleteCharge={
+                    currentUser === chargeList.email ? deleteCharge : null
+                  }
+                  selectCharge={selectCharge}
+                />
+              ))}
+            </ul>
+          )}
         </>
-      )}
-
-      {chargeList.email === currentUser && jsxForm}
-
-      {charges.length === 0 && (
-        <div>Aucune dépense n'est enregistrée dans cette liste.</div>
-      )}
-
-      {charges.length !== 0 && (
-        <ul className='charges'>
-          {charges.map(charge => (
-            <Charge
-              key={charge.id}
-              charge={charge}
-              cloudinaryFile={cloudinaryFile}
-              deleteCharge={
-                currentUser === chargeList.email ? deleteCharge : null
-              }
-              selectCharge={selectCharge}
-            />
-          ))}
-        </ul>
       )}
     </div>
   );
