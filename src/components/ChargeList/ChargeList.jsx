@@ -324,6 +324,7 @@ const ChargeList2 = props => {
             onChange={handleChange}
             name='chargeTotal'
             type='number'
+            step='0.01'
             value={form ? form.chargeTotal : ''}
           />
         </div>
@@ -333,6 +334,10 @@ const ChargeList2 = props => {
             onChange={handleChange}
             name='chargePercent'
             type='number'
+            // placeholder='0.5'
+            step='0.01'
+            min='0'
+            max='1'
             value={form ? form.chargePercent : ''}
           />
         </div>

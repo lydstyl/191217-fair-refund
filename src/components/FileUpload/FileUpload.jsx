@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import Spinner from '../../images/spinner.gif';
+
 const FileUpload = ({ cloudinaryFile, setCloudinaryFile }) => {
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -45,7 +47,7 @@ const FileUpload = ({ cloudinaryFile, setCloudinaryFile }) => {
       />
 
       {loading ? (
-        <p>Loading...</p>
+        <img src={Spinner} alt='spinner' />
       ) : cloudinaryFile && image !== '' ? (
         <img src={image} alt='Charge proof' style={{ width: '300px' }} />
       ) : (

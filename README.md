@@ -11,12 +11,17 @@
 
 # To do
 
-- when loading image hide EDIT or ADD button
+- CSS --> beta test 1 week
+
 - font Awsome trash for del + for add, pencil for edit, < for back and other buton login sign in sign out
-- CSS
+
+- reset password
 
 - fix image after upload add and select other charge
+
 - edit name charges list
+- when loading image hide EDIT or ADD button
+
 - settings with 50% percent & currency (useContext & useReducer)
 - useContext & useReducer instead of useState
 - del image when del charge
