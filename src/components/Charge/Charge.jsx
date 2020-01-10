@@ -32,8 +32,7 @@ const Charge = ({ deleteCharge, selectCharge, charge }) => {
         )}
 
         <div className='cell'>
-          {data.chargeTotal} x {data.chargePercent} ={' '}
-          {data.chargeTotal * data.chargePercent}
+          {data.chargeTotal} x {data.chargePercent} = {data.chargeRefund}
         </div>
 
         <div className='cell'>{data.chargeDate}</div>

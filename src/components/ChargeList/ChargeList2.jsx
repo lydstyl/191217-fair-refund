@@ -47,6 +47,8 @@ const ChargeList2 = props => {
     });
   };
 
+  const twoDecimals = num => Math.round(num * 100) / 100;
+
   const getChargeListData = id => {
     const chargesListsRef = db.collection('chargesLists');
 
@@ -104,15 +106,18 @@ const ChargeList2 = props => {
 
     const data = {};
     fields.forEach(field => {
-      if (
-        !field.value &&
-        (field.name === 'chargeTotal' || field.name === 'chargePercent')
-      ) {
-        data[field.name] = 0;
+      if (field.name === 'chargeTotal' || field.name === 'chargePercent') {
+        if (!field.value) {
+          data[field.name] = 0;
+        } else {
+          data[field.name] = twoDecimals(field.value);
+        }
       } else {
         data[field.name] = field.value;
       }
     });
+
+    data.chargeRefund = twoDecimals(data.chargeTotal * data.chargePercent);
 
     data.chargeImages = { ...cloudinaryFile };
 
