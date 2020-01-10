@@ -4,7 +4,7 @@ import { db } from '../../utils/firebase/base';
 
 import { useUser } from '../../reducers/useUser';
 
-import FileUpload2 from '../FileUpload/FileUpload2';
+import FileUpload from '../FileUpload/FileUpload';
 import Charge from '../Charge/Charge';
 
 import './ChargeList.scss';
@@ -62,9 +62,9 @@ const ChargeList2 = props => {
   };
 
   const getChargesData = () => {
-    const collectionRef = db.collection(
-      `/chargesLists/${chargeList.id}/charges`
-    );
+    const collectionRef = db
+      .collection(`/chargesLists/${chargeList.id}/charges`)
+      .orderBy('chargeDate');
 
     collectionRef.get().then(snap => {
       const tmp = [];
@@ -205,6 +205,8 @@ const ChargeList2 = props => {
       data[field.name] = '';
     });
 
+    // document.querySelector('[type=file]').value = ''
+
     setForm(data);
     setSelectedCharge(null);
     setCloudinaryFile(null);
@@ -273,7 +275,11 @@ const ChargeList2 = props => {
             value={form ? form.chargeName : ''}
           />
         </div>
-        <FileUpload2 setCloudinaryFile={setCloudinaryFile} />
+        <FileUpload
+          cloudinaryFile={cloudinaryFile}
+          setCloudinaryFile={setCloudinaryFile}
+        />
+
         <div className='field'>
           <label>chargeTotal</label>
           <input

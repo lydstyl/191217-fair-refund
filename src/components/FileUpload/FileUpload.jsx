@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const FileUpload = () => {
+const FileUpload = ({ cloudinaryFile, setCloudinaryFile }) => {
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -21,7 +21,14 @@ const FileUpload = () => {
 
       const file = await res.json();
 
-      setImage(file.secure_url);
+      const thumb = file.eager[1].secure_url;
+      setCloudinaryFile({
+        thumb,
+        medium: file.eager[0].secure_url,
+        original: file.secure_url
+      });
+
+      setImage(thumb);
       setLoading(false);
     } catch (error) {
       alert(error);
@@ -29,18 +36,20 @@ const FileUpload = () => {
   };
 
   return (
-    <div className='App'>
-      <h1>Upload Image</h1>
+    <div className='field'>
       <input
         type='file'
         name='file'
         placeholder='Upload an image'
         onChange={uploadImage}
       />
+
       {loading ? (
-        <h3>Loading...</h3>
+        <p>Loading...</p>
+      ) : cloudinaryFile && image !== '' ? (
+        <img src={image} alt='Charge proof' style={{ width: '300px' }} />
       ) : (
-        <img src={image} alt='charge' style={{ width: '300px' }} />
+        ''
       )}
     </div>
   );
