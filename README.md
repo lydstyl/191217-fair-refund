@@ -11,9 +11,10 @@
 
 # To do
 
-- remove old link and component ChargeList1
 - Link to medium then to original with back button
-- setLoading true and false
+- edit name charges list
+- setLoading true and false + spinner
+- when loading image hide EDIT or ADD button
 - ChargesLists should be Home
 - settings with 50% percent & currency (useContext & useReducer)
 - CSS

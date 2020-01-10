@@ -5,11 +5,7 @@ import Menu from '../Menu/Menu';
 import Login from '../Login/Login';
 import SignUp from '../SignUp/SignUp';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
-import Home from '../Home/Home';
-import Quotes from '../Quotes/Quotes';
 import ChargesLists from '../ChargesLists/ChargesLists';
-import ExternalChargesList from '../ExternalChargesList/ExternalChargesList';
-import ChargeList from '../ChargeList/ChargeList';
 import ChargeList2 from '../ChargeList/ChargeList2';
 import FileUpload from '../FileUpload/FileUpload';
 
@@ -25,24 +21,12 @@ export const App = () => {
         <Menu />
 
         <div className='container'>
-          <PrivateRoute exact path='/' component={Home} />
-          <PrivateRoute exact path='/quotes' component={Quotes} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={SignUp} />
           <ChargeCtxProvider>
-            <PrivateRoute
-              exact
-              path='/charges-lists'
-              component={ChargesLists}
-            />
+            <PrivateRoute exact path='/' component={ChargesLists} />
             <PrivateRoute exact path='/upload-file' component={FileUpload} />
             <Route path='/charge-list2' component={ChargeList2} />
-            <Route path='/charge-list' component={ChargeList} />
-            <Route
-              exact
-              path='/external-charges-list'
-              component={ExternalChargesList}
-            />
           </ChargeCtxProvider>
         </div>
       </UserCtxProvider>

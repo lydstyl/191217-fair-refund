@@ -71,19 +71,7 @@ const Menu = () => {
         {currentUser && (
           <>
             <Link onClick={handleCloseMenu} to='/'>
-              Accueil
-            </Link>
-            <Link onClick={handleCloseMenu} to='/quotes'>
-              Test connexion API
-            </Link>
-            <Link onClick={handleCloseMenu} to='/charges-lists'>
               Listes de dépenses
-            </Link>
-            <Link onClick={handleCloseMenu} to='/external-charges-list'>
-              Liste de dépense externe
-            </Link>
-            <Link onClick={handleCloseMenu} to='/upload-file'>
-              Upload un fichier
             </Link>
             <div className='userBox'>
               <User />
