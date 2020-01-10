@@ -11,11 +11,11 @@
 
 # To do
 
-- Link to medium then to original with back button
+- sort charges by date
 - edit name charges list
 - setLoading true and false + spinner
 - when loading image hide EDIT or ADD button
-- ChargesLists should be Home
+- font Awsome trash for del + for add, pencil for edit, < for back and other buton login sign in sign out
 - settings with 50% percent & currency (useContext & useReducer)
 - CSS
 - useContext & useReducer instead of useState

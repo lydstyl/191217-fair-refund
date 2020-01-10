@@ -105,6 +105,9 @@ const ChargeList2 = props => {
     const fields = document.querySelectorAll('.field input');
 
     const data = {};
+
+    data.chargeListId = chargeList.id;
+
     fields.forEach(field => {
       if (field.name === 'chargeTotal' || field.name === 'chargePercent') {
         if (!field.value) {

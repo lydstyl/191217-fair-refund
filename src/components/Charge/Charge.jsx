@@ -5,53 +5,54 @@ import { Link } from 'react-router-dom';
 const Charge = ({ deleteCharge, selectCharge, charge }) => {
   const { data } = charge;
 
-  const handleDelete = e => {
-    const chargeId = e.target.parentNode.id;
-    deleteCharge(chargeId);
+  const handleDelete = () => {
+    deleteCharge(charge.id);
   };
 
-  const handleSelect = e => {
-    const chargeId = e.target.parentNode.id;
-    selectCharge(chargeId);
+  const handleSelect = () => {
+    selectCharge(charge.id);
   };
 
   return (
     <li id={charge.id} className='charge'>
-      <p>{JSON.stringify(charge)}</p>
+      {
+        <>
+          <Link
+            to={{
+              pathname: `/charge/${charge.id}`,
+              charge
+            }}
+          >
+            {/* <p>{JSON.stringify(charge)}</p> */}
 
-      <div className='cell'>
-        <h2>{data.chargeName}</h2>
-      </div>
+            {data.chargeName && (
+              <div className='cell'>
+                <h2>{data.chargeName}</h2>
+              </div>
+            )}
 
-      {data.chargeImages.original && (
-        <div className='cell'>
-          <img src={data.chargeImages.thumb} alt='charge proof' />
+            {data.chargeImages.thumb && (
+              <div className='cell'>
+                <img src={data.chargeImages.thumb} alt='charge proof' />
+              </div>
+            )}
 
-          <Link to={`/charge/${charge.id}`}>/charge/{charge.id}</Link>
+            <div className='cell'>
+              {data.chargeTotal} x {data.chargePercent} = {data.chargeRefund}
+            </div>
 
+            {/* <div className='cell'>{data.chargeDate}</div> */}
+          </Link>
           <div>
-            <a target='_blank' href={data.chargeImages.medium}>
-              medium image
-            </a>
-            <a target='_blank' href={data.chargeImages.original}>
-              original image
-            </a>
+            {deleteCharge && (
+              <input onClick={handleDelete} type='button' value='DEL' />
+            )}
+            {deleteCharge && (
+              <input onClick={handleSelect} type='button' value='SELECT' />
+            )}
           </div>
-        </div>
-      )}
-
-      <div className='cell'>
-        {data.chargeTotal} x {data.chargePercent} = {data.chargeRefund}
-      </div>
-
-      <div className='cell'>{data.chargeDate}</div>
-
-      {deleteCharge && (
-        <input onClick={handleDelete} type='button' value='DEL' />
-      )}
-      {deleteCharge && (
-        <input onClick={handleSelect} type='button' value='SELECT' />
-      )}
+        </>
+      }
     </li>
   );
 };
