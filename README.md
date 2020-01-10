@@ -11,12 +11,13 @@
 
 # To do
 
-- sort charges by date
-- edit name charges list
 - setLoading true and false + spinner
 - when loading image hide EDIT or ADD button
 - font Awsome trash for del + for add, pencil for edit, < for back and other buton login sign in sign out
-- settings with 50% percent & currency (useContext & useReducer)
 - CSS
+
+- fix image after upload add and select other charge
+- edit name charges list
+- settings with 50% percent & currency (useContext & useReducer)
 - useContext & useReducer instead of useState
 - del image when del charge

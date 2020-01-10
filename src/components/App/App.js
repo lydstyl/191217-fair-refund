@@ -11,6 +11,7 @@ import MediumImage from '../MediumImage/MediumImage';
 
 import { UserCtxProvider } from '../../reducers/useUser';
 import { ChargeCtxProvider } from '../../reducers/useCharge';
+import { LoadingCtxProvider } from '../../reducers/useLoading';
 
 import './App.scss';
 
@@ -23,11 +24,13 @@ export const App = () => {
         <div className='container'>
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={SignUp} />
-          <ChargeCtxProvider>
-            <PrivateRoute exact path='/' component={ChargesLists} />
-            <Route path='/charge-list' component={ChargeList} />
-            <Route path='/charge' component={MediumImage} />
-          </ChargeCtxProvider>
+          <LoadingCtxProvider>
+            <ChargeCtxProvider>
+              <PrivateRoute exact path='/' component={ChargesLists} />
+              <Route path='/charge-list' component={ChargeList} />
+              <Route path='/charge' component={MediumImage} />
+            </ChargeCtxProvider>
+          </LoadingCtxProvider>
         </div>
       </UserCtxProvider>
       <footer>
