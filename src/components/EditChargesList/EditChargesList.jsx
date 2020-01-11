@@ -2,19 +2,11 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
-// import chargeActions from '../../context/useCharge2/chargeActions';
 
 import { db } from '../../utils/firebase/base';
 
 const EditChargesList = ({ location: { chargesList } }) => {
-  const {
-    chargeStore
-    // chargeDispatch
-  } = useChargeCtx();
-
-  // chargesList = chargeStore.chargesLists.filter(
-  //   storeList => storeList.id === chargesList.id
-  // )[0];
+  const { chargeStore } = useChargeCtx();
 
   const handleDelete = () => {
     db.collection('chargesLists')
@@ -33,25 +25,19 @@ const EditChargesList = ({ location: { chargesList } }) => {
   const handleUpdate = event => {
     event.preventDefault();
 
-    // const data = {};
-
     document
       .querySelectorAll('.edit-charges-list form .field input')
       .forEach(input => {
-        // data[input.name] = input.value;
         chargesList[input.name] = input.value;
       });
-
-    console.log(chargesList);
 
     db.collection('chargesLists')
       .doc(chargesList.id)
       .set(chargesList)
       .then(() => {
         console.log('Document successfully edited!');
+        window.location.href = '/';
       });
-
-    window.location.href = '/';
   };
 
   if (!chargesList) {

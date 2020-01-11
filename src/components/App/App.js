@@ -11,8 +11,8 @@ import Menu from '../Menu/Menu';
 import Login from '../Login/Login';
 import SignUp from '../SignUp/SignUp';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
-// import ChargesLists from '../ChargesLists/ChargesLists';
 import ChargesLists2 from '../ChargesLists/ChargesLists2';
+import EditChargesList from '../EditChargesList/EditChargesList';
 import ChargeList from '../ChargeList/ChargeList';
 import MediumImage from '../MediumImage/MediumImage';
 
@@ -34,6 +34,10 @@ export const App = () => {
               <ChargeCtxProvider>
                 <Route exact path='/test' component={Test} />
                 <PrivateRoute exact path='/' component={ChargesLists2} />
+                <PrivateRoute
+                  path='/edit-charge-list'
+                  component={EditChargesList}
+                />
                 <Route path='/charge-list' component={ChargeList} />
                 <Route path='/charge' component={MediumImage} />
               </ChargeCtxProvider>
