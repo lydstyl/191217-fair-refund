@@ -2,12 +2,15 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
-import chargeActions from '../../context/useCharge2/chargeActions';
+// import chargeActions from '../../context/useCharge2/chargeActions';
 
 import { db } from '../../utils/firebase/base';
 
 const EditChargesList = ({ location: { chargesList } }) => {
-  const { chargeStore, chargeDispatch } = useChargeCtx();
+  const {
+    chargeStore
+    // chargeDispatch
+  } = useChargeCtx();
 
   // chargesList = chargeStore.chargesLists.filter(
   //   storeList => storeList.id === chargesList.id
@@ -29,6 +32,26 @@ const EditChargesList = ({ location: { chargesList } }) => {
 
   const handleUpdate = event => {
     event.preventDefault();
+
+    // const data = {};
+
+    document
+      .querySelectorAll('.edit-charges-list form .field input')
+      .forEach(input => {
+        // data[input.name] = input.value;
+        chargesList[input.name] = input.value;
+      });
+
+    console.log(chargesList);
+
+    db.collection('chargesLists')
+      .doc(chargesList.id)
+      .set(chargesList)
+      .then(() => {
+        console.log('Document successfully edited!');
+      });
+
+    window.location.href = '/';
   };
 
   if (!chargesList) {
@@ -36,7 +59,7 @@ const EditChargesList = ({ location: { chargesList } }) => {
   }
 
   return (
-    <div>
+    <div className='edit-charges-list'>
       <h1>Editer la liste de dépenses</h1>
       <pre>{JSON.stringify(chargeStore, null, 4)}</pre>
 
@@ -47,14 +70,14 @@ const EditChargesList = ({ location: { chargesList } }) => {
       <form onSubmit={handleUpdate}>
         <div className='field'>
           <label>Nome de la liste</label>
-          <input type='text' name='chargesListName' />
+          <input type='text' name='name' />
         </div>
 
         <div className='field'>
           <label>Pourcentage de demande de remboursement par default</label>
           <input
             type='number'
-            name='chargesListDefaultPercent'
+            name='defaultPercent'
             step='0.01'
             min='0'
             max='100'

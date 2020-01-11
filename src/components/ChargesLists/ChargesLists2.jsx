@@ -7,18 +7,18 @@ import chargeActions from '../../context/useCharge2/chargeActions';
 
 import Spinner from '../../images/spinner.gif';
 
+import AddChargesList from '../AddChargesList/AddChargesList';
+
 import './ChargesLists.scss';
 
 const ChargesLists = () => {
   const { userStore } = useUser();
   const email = userStore.currentUser;
-  console.log(email);
 
   const { chargeStore, chargeDispatch } = useChargeCtx();
-  console.log('component render ?!', chargeStore);
 
   useEffect(() => {
-    const asyncFun = async () => {
+    const asyncGetListsFromDB = async () => {
       chargeDispatch({
         type: chargeActions.SET_LOADING.type,
         payload: true
@@ -47,7 +47,7 @@ const ChargesLists = () => {
       });
     };
 
-    asyncFun();
+    asyncGetListsFromDB();
 
     // eslint-disable-next-line
   }, []);
@@ -58,19 +58,31 @@ const ChargesLists = () => {
         <img src={Spinner} alt='spinner' />
       ) : (
         <>
-          <h1>TEST</h1>
+          <h1>Listes de dépenses</h1>
+
           <p>{JSON.stringify(chargeStore)}</p>
+
+          <AddChargesList />
+
           {chargeStore.chargesLists.length && (
             <ul className='charges-lists'>
-              {chargeStore.chargesLists.map(item => (
-                <li key={item.id}>
-                  <p>id: {item.id}</p>
-                  <p>email: {item.email}</p>
-                  <p>name: {item.name}</p>
-                  <Link to={`/charge-list/${item.id}`}>
-                    /charge-list/{item.id}
+              {chargeStore.chargesLists.map(chargesList => (
+                <li key={chargesList.id}>
+                  {/* <p>id: {chargesList.id}</p> */}
+                  {/* <p>email: {chargesList.email}</p> */}
+                  <p>name: {chargesList.name}</p>
+                  <Link to={`/charge-list/${chargesList.id}`}>
+                    Voir les dépenses
                   </Link>
-                  {/* <button onClick={() => handleRemoveList(item.id)}>DEL</button> */}
+
+                  <Link
+                    to={{
+                      pathname: `/edit-charge-list/${chargesList.id}`,
+                      chargesList
+                    }}
+                  >
+                    EDIT
+                  </Link>
                 </li>
               ))}
             </ul>
