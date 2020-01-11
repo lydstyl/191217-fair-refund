@@ -20,12 +20,15 @@ const AddChargesList = () => {
       type: chargeActions.SET_LOADING.type,
       payload: true
     });
+
+    const data = { email, name, defaultPercent: 0.5 };
+
     db.collection('chargesLists')
-      .add({ email, name })
+      .add(data)
       .then(docRef => {
         chargeDispatch({
           type: chargeActions.SET_CHARGES_LISTS.type,
-          payload: [...chargeStore.chargesLists, { id: docRef.id, email, name }]
+          payload: [...chargeStore.chargesLists, { id: docRef.id, ...data }]
         });
 
         chargeDispatch({

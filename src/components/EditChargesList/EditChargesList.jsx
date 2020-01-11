@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
@@ -7,6 +7,15 @@ import { db } from '../../utils/firebase/base';
 
 const EditChargesList = ({ location: { chargesList } }) => {
   const { chargeStore } = useChargeCtx();
+
+  const [form, setForm] = useState({
+    name: chargesList.name,
+    defaultPercent: chargesList.defaultPercent
+  });
+
+  const handleChange = e => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleDelete = () => {
     db.collection('chargesLists')
@@ -56,7 +65,12 @@ const EditChargesList = ({ location: { chargesList } }) => {
       <form onSubmit={handleUpdate}>
         <div className='field'>
           <label>Nome de la liste</label>
-          <input type='text' name='name' />
+          <input
+            type='text'
+            name='name'
+            onChange={handleChange}
+            value={form.name}
+          />
         </div>
 
         <div className='field'>
@@ -67,6 +81,8 @@ const EditChargesList = ({ location: { chargesList } }) => {
             step='0.01'
             min='0'
             max='100'
+            onChange={handleChange}
+            value={form.defaultPercent}
           />
         </div>
 
