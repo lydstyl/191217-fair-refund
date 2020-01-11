@@ -1,9 +1,15 @@
 import React, { useCallback } from 'react';
 import { withRouter } from 'react-router';
+import { Route, Redirect } from 'react-router-dom';
+
+import { useUser } from '../../reducers/useUser';
 
 import app from '../../utils/firebase/base';
 
 export const Login = ({ history }) => {
+  const { userStore } = useUser();
+  const currentUser = userStore.currentUser;
+
   const handleLogin = useCallback(
     async event => {
       event.preventDefault();
@@ -22,6 +28,10 @@ export const Login = ({ history }) => {
     },
     [history]
   );
+
+  if (!!currentUser) {
+    return <Route render={() => <Redirect to={'/'} />} />;
+  }
 
   return (
     <div>
