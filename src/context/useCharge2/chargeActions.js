@@ -28,6 +28,15 @@ const chargeActions = {
       console.log('SET_CHARGES_LISTS');
       return { ...state, chargesLists: payload };
     }
+  },
+
+  SET_CHARGES_LIST: {
+    type: 'SET_CHARGES_LIST',
+
+    defaultAction: (state, payload) => {
+      console.log('SET_CHARGES_LIST');
+      return { ...state, chargesList: { ...state.chargesList, ...payload } };
+    }
   }
 };
 

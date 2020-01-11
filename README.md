@@ -11,7 +11,7 @@
 
 # To do
 
-- useContext & useReducer instead of useState begin with ChargesLists and add default %
+- ChargesListBox with context
 
 - CSS --> beta test 1 week
 

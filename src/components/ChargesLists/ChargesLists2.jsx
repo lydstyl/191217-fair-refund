@@ -53,7 +53,7 @@ const ChargesLists = () => {
   }, []);
 
   return (
-    <div>
+    <>
       {chargeStore.loading ? (
         <img src={Spinner} alt='spinner' />
       ) : (
@@ -68,8 +68,6 @@ const ChargesLists = () => {
             <ul className='charges-lists'>
               {chargeStore.chargesLists.map(chargesList => (
                 <li key={chargesList.id}>
-                  {/* <p>id: {chargesList.id}</p> */}
-                  {/* <p>email: {chargesList.email}</p> */}
                   <p>name: {chargesList.name}</p>
                   <Link to={`/charge-list/${chargesList.id}`}>
                     Voir les dépenses
@@ -89,7 +87,7 @@ const ChargesLists = () => {
           )}
         </>
       )}
-    </div>
+    </>
   );
 };
 

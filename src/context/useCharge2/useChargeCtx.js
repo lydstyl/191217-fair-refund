@@ -2,7 +2,12 @@ import React, { useContext, createContext, useReducer } from 'react';
 
 import reducer from './reducer';
 
-const initialState = { chargesLists: [] };
+const initialState = {
+  loading: false,
+  chargesLists: [],
+  chargesList: {},
+  charge: {}
+};
 
 const Context = createContext();
 

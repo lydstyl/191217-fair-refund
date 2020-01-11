@@ -13,7 +13,7 @@ import SignUp from '../SignUp/SignUp';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import ChargesLists2 from '../ChargesLists/ChargesLists2';
 import EditChargesList from '../EditChargesList/EditChargesList';
-import ChargeList from '../ChargeList/ChargeList';
+import ChargesListBox from '../ChargesListBox/ChargesListBox';
 import MediumImage from '../MediumImage/MediumImage';
 
 import Test from '../Test/Test';
@@ -38,7 +38,7 @@ export const App = () => {
                   path='/edit-charge-list'
                   component={EditChargesList}
                 />
-                <Route path='/charge-list' component={ChargeList} />
+                <Route path='/charge-list' component={ChargesListBox} />
                 <Route path='/charge' component={MediumImage} />
               </ChargeCtxProvider>
             </ChargeCtx2Provider>
