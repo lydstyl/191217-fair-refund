@@ -11,7 +11,8 @@ import Menu from '../Menu/Menu';
 import Login from '../Login/Login';
 import SignUp from '../SignUp/SignUp';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
-import ChargesLists from '../ChargesLists/ChargesLists';
+// import ChargesLists from '../ChargesLists/ChargesLists';
+import ChargesLists2 from '../ChargesLists/ChargesLists2';
 import ChargeList from '../ChargeList/ChargeList';
 import MediumImage from '../MediumImage/MediumImage';
 
@@ -26,18 +27,17 @@ export const App = () => {
         <Menu />
 
         <div className='container'>
-          <ChargeCtx2Provider>
-            <Route exact path='/test' component={Test} />
-          </ChargeCtx2Provider>
-
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={SignUp} />
           <LoadingCtxProvider>
-            <ChargeCtxProvider>
-              <PrivateRoute exact path='/' component={ChargesLists} />
-              <Route path='/charge-list' component={ChargeList} />
-              <Route path='/charge' component={MediumImage} />
-            </ChargeCtxProvider>
+            <ChargeCtx2Provider>
+              <ChargeCtxProvider>
+                <Route exact path='/test' component={Test} />
+                <PrivateRoute exact path='/' component={ChargesLists2} />
+                <Route path='/charge-list' component={ChargeList} />
+                <Route path='/charge' component={MediumImage} />
+              </ChargeCtxProvider>
+            </ChargeCtx2Provider>
           </LoadingCtxProvider>
         </div>
       </UserCtxProvider>

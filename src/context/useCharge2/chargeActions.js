@@ -10,13 +10,13 @@ const chargeActions = {
     }
   },
 
-  GET_CHARGES_LISTS_FROM_DB: {
-    type: 'GET_CHARGES_LISTS_FROM_DB',
+  get_charges_lists_from_db: {
+    type: 'get_charges_lists_from_db',
 
-    getChargesListCollectionRef: () => {
+    getChargesListCollectionRef: email => {
       return db
         .collection('chargesLists')
-        .where('email', '==', 'sam@gmail.com')
+        .where('email', '==', email)
         .get();
     }
   },
