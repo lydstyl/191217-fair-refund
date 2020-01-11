@@ -11,6 +11,8 @@
 
 # To do
 
+- useContext & useReducer instead of useState begin with ChargesLists and add default %
+
 - CSS --> beta test 1 week
 
 - font Awsome trash for del + for add, pencil for edit, < for back and other buton login sign in sign out
@@ -23,5 +25,5 @@
 - when loading image hide EDIT or ADD button
 
 - settings with 50% percent & currency (useContext & useReducer)
-- useContext & useReducer instead of useState
+
 - del image when del charge

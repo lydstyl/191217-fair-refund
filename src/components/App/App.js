@@ -1,6 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import { UserCtxProvider } from '../../reducers/useUser';
+import { ChargeCtxProvider } from '../../reducers/useCharge';
+import { LoadingCtxProvider } from '../../reducers/useLoading';
+
+import { ChargeCtx2Provider } from '../../context/useCharge2/useChargeCtx';
+
 import Menu from '../Menu/Menu';
 import Login from '../Login/Login';
 import SignUp from '../SignUp/SignUp';
@@ -9,9 +15,7 @@ import ChargesLists from '../ChargesLists/ChargesLists';
 import ChargeList from '../ChargeList/ChargeList';
 import MediumImage from '../MediumImage/MediumImage';
 
-import { UserCtxProvider } from '../../reducers/useUser';
-import { ChargeCtxProvider } from '../../reducers/useCharge';
-import { LoadingCtxProvider } from '../../reducers/useLoading';
+import Test from '../Test/Test';
 
 import './App.scss';
 
@@ -22,6 +26,10 @@ export const App = () => {
         <Menu />
 
         <div className='container'>
+          <ChargeCtx2Provider>
+            <Route exact path='/test' component={Test} />
+          </ChargeCtx2Provider>
+
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={SignUp} />
           <LoadingCtxProvider>
