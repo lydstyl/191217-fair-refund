@@ -13,8 +13,6 @@
 
 # To do
 
-- make ChargeForm slimer
-
 - manage charge image
 
 * Show totals

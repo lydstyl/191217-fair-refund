@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
+import { clearedForm, getChargeFromHtml } from './utils';
+
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
 import chargeActions from '../../context/useCharge2/chargeActions';
-
 import Fields from './Fields';
 
 import { db } from '../../utils/firebase/base';
@@ -10,55 +11,21 @@ import { db } from '../../utils/firebase/base';
 const ChargeForm = () => {
   const { chargeStore, chargeDispatch } = useChargeCtx();
 
-  Date.prototype.toDateInputValue = function() {
-    var local = new Date(this);
-    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-    return local.toJSON().slice(0, 10);
-  };
+  const {
+    charge, // the selected charge in the store
+    chargesList: { defaultPercent }
+  } = chargeStore;
 
-  const { charge } = chargeStore; // the selected charge in the store
-
-  const [formCharge, setFormCharge] = useState({
-    date: charge.date || new Date().toDateInputValue() || '',
-    image: charge.image || '',
-    name: charge.name || '',
-    percent: charge.percent || chargeStore.chargesList.defaultPercent || 0,
-    refund: charge.refund || 0,
-    total: charge.total || ''
-  });
+  const [formCharge, setFormCharge] = useState(
+    clearedForm(defaultPercent, charge.refund)
+  );
 
   const [submitButtons, setSubmitButtons] = useState(
     <input type='submit' value='Ajouter' />
   );
 
   const clearForm = () => {
-    setFormCharge({
-      date: new Date().toDateInputValue(),
-      image: '',
-      name: '',
-      percent: chargeStore.chargesList.defaultPercent || 0,
-      refund: charge.refund || 0,
-      total: ''
-    });
-  };
-
-  const getChargeFromHtml = () => {
-    const charge = {};
-    document.querySelectorAll('.field input').forEach(input => {
-      let value = input.value;
-
-      if (input.name === 'total' || input.name === 'percent') {
-        value = chargeActions.numOr0(value);
-      }
-
-      charge[input.name] = value;
-    });
-
-    charge.refund = chargeActions.twoDecimals(
-      (charge.total * charge.percent) / 100
-    );
-
-    return charge;
+    setFormCharge(clearedForm(defaultPercent, charge.refund));
   };
 
   const handleSubmit = event => {
@@ -100,6 +67,7 @@ const ChargeForm = () => {
         })
         .catch(error => {
           console.error('Error adding document: ', error);
+
           chargeDispatch({
             type: chargeActions.SET_LOADING.type,
             payload: false
