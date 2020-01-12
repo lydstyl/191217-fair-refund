@@ -53,6 +53,16 @@ const ChargesList = () => {
       });
   };
 
+  const handleSelect = event => {
+    const chargeId = event.target.parentNode.id;
+    const charge = charges.filter(charge => charge.chargeId === chargeId)[0];
+
+    chargeDispatch({
+      type: chargeActions.SET_SELECTED_CHARGE.type,
+      payload: charge
+    });
+  };
+
   return (
     <div>
       <ul>
@@ -61,7 +71,12 @@ const ChargesList = () => {
             <li key={charge.chargeId} id={charge.chargeId}>
               <pre>{JSON.stringify(charge, null, 4)}</pre>
 
-              <button onClick={handleDelete}>Supprimer</button>
+              <input
+                type='button'
+                value='Selectionner'
+                onClick={handleSelect}
+              />
+              <input type='button' value='Supprimer' onClick={handleDelete} />
             </li>
           ))}
       </ul>

@@ -87,6 +87,19 @@ const chargeActions = {
     }
   },
 
+  SET_SELECTED_CHARGE: {
+    type: 'SET_SELECTED_CHARGE',
+
+    defaultAction: (state, payload) => {
+      console.log('SET_SELECTED_CHARGE');
+
+      return {
+        ...state,
+        charge: payload
+      };
+    }
+  },
+
   // SET_CURRENT_CHARGE_PERCENT: {
   //   type: 'SET_CURRENT_CHARGE_PERCENT',
 
