@@ -100,30 +100,25 @@ const chargeActions = {
     }
   },
 
-  // SET_CURRENT_CHARGE_PERCENT: {
-  //   type: 'SET_CURRENT_CHARGE_PERCENT',
-
-  //   defaultAction: (state, payload) => {
-  //     console.log('SET_CURRENT_CHARGE_PERCENT');
-
-  //     return {
-  //       ...state,
-  //       charge: {
-  //         ...state.charge,
-  //         percent: payload
-  //       }
-  //     };
-  //   }
-  // },
-
   numOr0: shouldBeNum => {
     // return a number or zero
+
+    if (
+      shouldBeNum === '' ||
+      shouldBeNum === 0 ||
+      shouldBeNum === null ||
+      shouldBeNum === undefined ||
+      (typeof shouldBeNum === 'number' && shouldBeNum * 0 !== 0) // NaN
+    ) {
+      return 0;
+    }
+
     if (shouldBeNum * 0 === 0) {
       // is number or string number
       return parseFloat(shouldBeNum);
     }
 
-    return 0;
+    return 0; // just in case
   },
 
   twoDecimals: num => Math.round(num * 100) / 100

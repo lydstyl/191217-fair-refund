@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
 import chargeActions from '../../context/useCharge2/chargeActions';
 
+import Fields from './Fields';
+
 import { db } from '../../utils/firebase/base';
 
 const ChargeForm = () => {
@@ -25,21 +27,17 @@ const ChargeForm = () => {
     total: charge.total || ''
   });
 
-  const handleSubmit = event => {
-    event.preventDefault();
+  const [submitButtons, setSubmitButtons] = useState(
+    <input type='submit' value='Ajouter' />
+  );
 
-    // ADD
-    chargeDispatch({
-      type: chargeActions.SET_LOADING.type,
-      payload: true
-    });
-
+  const getChargeFromHtml = () => {
     const charge = {};
     document.querySelectorAll('.field input').forEach(input => {
       let value = input.value;
 
       if (input.name === 'total' || input.name === 'percent') {
-        value = chargeActions.numOr0(input.value);
+        value = chargeActions.numOr0(value);
       }
 
       charge[input.name] = value;
@@ -49,37 +47,102 @@ const ChargeForm = () => {
       (charge.total * charge.percent) / 100
     );
 
+    return charge;
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    // ADD
     chargeDispatch({
-      type: chargeActions.ADD_TO_TOTALS.type,
-      payload: { totalToAdd: charge.total, refundToAdd: charge.refund }
+      type: chargeActions.SET_LOADING.type,
+      payload: true
     });
 
-    const collectionRef = db.collection(
-      `/chargesLists/${chargeStore.chargesList.id}/charges`
-    );
+    const charge = getChargeFromHtml();
+    const mode = document.querySelector('input[type=submit]').value;
 
-    collectionRef
-      .add(charge)
-      .then(doc => {
-        charge.chargeId = doc.id;
-
-        chargeDispatch({
-          type: chargeActions.ADD_CHARGE.type,
-          payload: charge
-        });
-
-        chargeDispatch({
-          type: chargeActions.SET_LOADING.type,
-          payload: false
-        });
-      })
-      .catch(error => {
-        console.error('Error adding document: ', error);
-        chargeDispatch({
-          type: chargeActions.SET_LOADING.type,
-          payload: false
-        });
+    if (mode === 'Ajouter') {
+      chargeDispatch({
+        type: chargeActions.ADD_TO_TOTALS.type,
+        payload: { totalToAdd: charge.total, refundToAdd: charge.refund }
       });
+
+      const collectionRef = db.collection(
+        `/chargesLists/${chargeStore.chargesList.id}/charges`
+      );
+
+      collectionRef
+        .add(charge)
+        .then(doc => {
+          charge.chargeId = doc.id;
+
+          chargeDispatch({
+            type: chargeActions.ADD_CHARGE.type,
+            payload: charge
+          });
+
+          chargeDispatch({
+            type: chargeActions.SET_LOADING.type,
+            payload: false
+          });
+        })
+        .catch(error => {
+          console.error('Error adding document: ', error);
+          chargeDispatch({
+            type: chargeActions.SET_LOADING.type,
+            payload: false
+          });
+        });
+    } else {
+      // EDIT
+      chargeDispatch({
+        type: chargeActions.SET_LOADING.type,
+        payload: true
+      });
+
+      db.collection(`/chargesLists/${chargeStore.chargesList.id}/charges`)
+        .doc(chargeStore.charge.chargeId)
+        .set(getChargeFromHtml())
+        .then(() => {
+          console.log('Document successfully edited!');
+
+          // // calculate new totals
+          // // old percent and total
+          // const oldCharge = charges.filter(charge => charge.id === chargeId)[0]
+          //   .data;
+          // // new are in data
+          // const diff = {
+          //   chargeTotal: numOr0(data.chargeTotal) - numOr0(oldCharge.chargeTotal),
+          //   chargePercent:
+          //     numOr0(data.chargeTotal) * numOr0(data.chargePercent) -
+          //     numOr0(oldCharge.chargeTotal) * numOr0(oldCharge.chargePercent)
+          // };
+          // addToTotals(diff.chargeTotal, diff.chargePercent);
+
+          // setCharges(
+          //   charges.map(charge => {
+          //     if (charge.id === chargeId) {
+          //       return { ...charge, data };
+          //     }
+          //     return charge;
+          //   })
+          // );
+
+          chargeDispatch({
+            type: chargeActions.SET_LOADING.type,
+            payload: false
+          });
+        })
+        .catch(error => {
+          console.error('Error editing document: ', error);
+
+          chargeDispatch({
+            type: chargeActions.SET_LOADING.type,
+            payload: false
+          });
+        });
+    }
   };
 
   const handleFormChange = event => {
@@ -88,63 +151,18 @@ const ChargeForm = () => {
 
   useEffect(() => {
     setFormCharge({ ...formCharge, ...charge });
+
+    if (charge.chargeId) {
+      // we have selected a charge for EDIT
+      setSubmitButtons(<input type='submit' value='Éditer' />);
+    }
   }, [charge]);
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className='field'>
-        <label>Nom</label>
-        <input
-          type='text'
-          name='name'
-          onChange={handleFormChange}
-          value={formCharge.name}
-        />
-      </div>
+      <Fields handleFormChange={handleFormChange} formCharge={formCharge} />
 
-      <div className='field'>
-        <label>Montant total</label>
-        <input
-          type='number'
-          name='total'
-          step='0.01'
-          onChange={handleFormChange}
-          value={formCharge.total}
-        />
-      </div>
-
-      <div className='field'>
-        <label>Pourcentage remboursement</label>
-        <input
-          type='number'
-          name='percent'
-          step='0.01'
-          onChange={handleFormChange}
-          value={formCharge.percent}
-        />
-      </div>
-
-      <div className='field'>
-        <label>Date</label>
-        <input
-          type='date'
-          name='date'
-          onChange={handleFormChange}
-          value={formCharge.date}
-        />
-      </div>
-
-      <div className='field'>
-        <label>Preuve / image</label>
-        <input
-          type='file'
-          name='image'
-          onChange={handleFormChange}
-          value={formCharge.image}
-        />
-      </div>
-
-      <input type='submit' value='Ajouter' />
+      {submitButtons}
     </form>
   );
 };
