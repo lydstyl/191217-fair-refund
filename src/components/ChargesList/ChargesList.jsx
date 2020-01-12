@@ -11,6 +11,11 @@ const ChargesList = () => {
   const charges = chargesList.chargesList;
 
   const handleDelete = event => {
+    chargeDispatch({
+      type: chargeActions.SET_LOADING.type,
+      payload: true
+    });
+
     const chargeId = event.target.parentNode.id;
 
     db.collection(`/chargesLists/${chargesList.id}/charges`)
@@ -19,32 +24,32 @@ const ChargesList = () => {
       .then(() => {
         console.log('Document successfully deleted!');
 
+        const charge = charges.filter(
+          charge => charge.chargeId === chargeId
+        )[0];
+        const { total, refund } = charge;
+        chargeDispatch({
+          type: chargeActions.ADD_TO_TOTALS.type,
+          payload: { totalToAdd: -total, refundToAdd: -refund }
+        });
+
         chargeDispatch({
           type: chargeActions.DELETE_CHARGE.type,
           payload: chargeId
         });
 
-        // setCharges(charges.filter(charge => charge.id !== chargeId));
-
-        // const chargeToBeDeleted = charges.filter(
-        //   charge => charge.id === chargeId
-        // );
-
-        // const {
-        //   data: { chargeTotal, chargePercent }
-        // } = chargeToBeDeleted[0];
-
-        // addToTotals(
-        //   -numOr0(chargeTotal),
-        //   -numOr0(chargePercent) * numOr0(chargeTotal)
-        // );
-        // loadingDispatch({
-        //   type: SET_LOADING,
-        //   payload: false
-        // });
+        chargeDispatch({
+          type: chargeActions.SET_LOADING.type,
+          payload: false
+        });
       })
       .catch(error => {
         console.error('Error removing document: ', error);
+
+        chargeDispatch({
+          type: chargeActions.SET_LOADING.type,
+          payload: false
+        });
       });
   };
 

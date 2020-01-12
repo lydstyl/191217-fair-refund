@@ -98,18 +98,6 @@ const chargeActions = {
   },
 
   twoDecimals: num => Math.round(num * 100) / 100
-
-  // totalChargesReducer: (accumulator, currentValue) => {
-  //   // return numOr0(accumulator) + numOr0(currentValue.data.chargeTotal);
-  //   return accumulator + currentValue.data.chargeTotal;
-  // }
-
-  // // totalRefundsReducer : (accumulator, currentValue) => {
-  // //   const { chargeTotal, chargePercent } = currentValue.data;
-  // //   const refund = numOr0(chargeTotal) * numOr0(chargePercent);
-
-  // //   return accumulator + refund;
-  // // }
 };
 
 export default chargeActions;
