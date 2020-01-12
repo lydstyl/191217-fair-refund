@@ -13,7 +13,7 @@
 
 # To do
 
-- Show totals, image & content
+- Show totals
 
 - CSS --> beta test 1 week
 

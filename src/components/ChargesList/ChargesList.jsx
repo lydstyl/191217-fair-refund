@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
 import chargeActions from '../../context/useCharge2/chargeActions';
@@ -28,6 +29,7 @@ const ChargesList = () => {
           charge => charge.chargeId === chargeId
         )[0];
         const { total, refund } = charge;
+
         chargeDispatch({
           type: chargeActions.ADD_TO_TOTALS.type,
           payload: { totalToAdd: -total, refundToAdd: -refund }
@@ -70,6 +72,26 @@ const ChargesList = () => {
           charges.map(charge => (
             <li key={charge.chargeId} id={charge.chargeId}>
               <pre>{JSON.stringify(charge, null, 4)}</pre>
+
+              <p>{charge.name}</p>
+              <p>{charge.chargeId}</p>
+              <p>
+                <img src={charge.images.thumb} alt={charge.name} />
+              </p>
+              <p>{charge.date}</p>
+              <p>
+                {charge.total} x {charge.percent} / 100 = {charge.refund}
+              </p>
+              <p>
+                <Link
+                  to={{
+                    pathname: `/charge/${charge.chargeId}`,
+                    charge
+                  }}
+                >
+                  détail
+                </Link>
+              </p>
 
               <input
                 type='button'

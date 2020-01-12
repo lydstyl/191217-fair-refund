@@ -2,54 +2,32 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-const MediumImage = props => {
-  const {
-    location: { charge }
-  } = props;
-  const {
-    //id,
-    data: {
-      chargeListId,
-      chargeDate,
-      chargeImages,
-      chargeName,
-      chargePercent,
-      chargeRefund,
-      chargeTotal
-    }
-  } = charge;
+const MediumImage = ({ location: { charge } }) => {
+  const { chargeId, date, images, name, percent, refund, total } = charge;
 
   return (
     <>
-      <h1>Détail de la dépense {chargeName}</h1>
+      <h1>Détail de la dépense {name}</h1>
       <div>
-        <Link to={`/charge-list/${chargeListId}`}> {'<-- précédent'} </Link>
+        <Link to={`/charge-list/${chargeId}`}> {'<-- précédent'} </Link>
       </div>
 
-      {/* <pre>{JSON.stringify(props, null, 4)}</pre> */}
-
-      {/* <pre>{JSON.stringify(charge, null, 4)}</pre> */}
-
       <div>
-        Dépense{chargeDate && <span> du {chargeDate}</span>} {chargeTotal}
+        Dépense{date && <span> du {date}</span>} {total}
       </div>
-      <div>Pourcentage de remboursement demandé {chargePercent}</div>
+      <div>Pourcentage de remboursement demandé {percent}</div>
       <div>
-        Remboursement demandé = {chargeTotal} x {chargePercent} = {chargeRefund}
+        Remboursement demandé = {total} x {percent} / 100 = {refund}
       </div>
 
-      {chargeImages.medium && (
+      {images.medium && (
         <div>
-          <img src={chargeImages.medium} alt='Medium size proof of charge' />
+          <img src={images.medium} alt='Medium size proof of charge' />
         </div>
       )}
 
-      {chargeImages.original && (
-        <a
-          href={chargeImages.original}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
+      {images.original && (
+        <a href={images.original} target='_blank' rel='noopener noreferrer'>
           Voir le fichier original
         </a>
       )}
