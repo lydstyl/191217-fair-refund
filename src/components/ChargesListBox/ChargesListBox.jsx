@@ -76,8 +76,19 @@ const ChargesListBox = props => {
         <img src={Spinner} alt='spinner' />
       ) : (
         <>
-          <h1>Détail de la liste de dépenses</h1>
-          <pre>{JSON.stringify(chargeStore, null, 4)}</pre>
+          <h1>{chargeStore.chargesList.name}</h1>
+
+          {/* <pre>{JSON.stringify(chargeStore, null, 4)}</pre> */}
+
+          {chargeStore.chargesList.totals && (
+            <p>Total dépensé: {chargeStore.chargesList.totals.total}</p>
+          )}
+
+          {chargeStore.chargesList.totals && (
+            <p>
+              Remboursement demandé: {chargeStore.chargesList.totals.refund}
+            </p>
+          )}
 
           <ChargeForm />
 

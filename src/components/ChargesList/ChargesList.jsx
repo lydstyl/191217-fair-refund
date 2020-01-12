@@ -71,7 +71,7 @@ const ChargesList = () => {
         {charges &&
           charges.map(charge => (
             <li key={charge.chargeId} id={charge.chargeId}>
-              <pre>{JSON.stringify(charge, null, 4)}</pre>
+              {/* <pre>{JSON.stringify(charge, null, 4)}</pre> */}
 
               <p>{charge.name}</p>
               <p>{charge.chargeId}</p>
