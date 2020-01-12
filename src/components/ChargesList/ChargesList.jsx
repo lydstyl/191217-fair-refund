@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
+import chargeActions from '../../context/useCharge2/chargeActions';
 
 import { db } from '../../utils/firebase/base';
 
@@ -9,18 +10,19 @@ const ChargesList = () => {
   const { chargesList } = chargeStore;
   const charges = chargesList.chargesList;
 
-  console.log(chargesList, charges);
-
   const handleDelete = event => {
     const chargeId = event.target.parentNode.id;
-
-    // delete with db then in chargeStore
 
     db.collection(`/chargesLists/${chargesList.id}/charges`)
       .doc(chargeId)
       .delete()
       .then(() => {
         console.log('Document successfully deleted!');
+
+        chargeDispatch({
+          type: chargeActions.DELETE_CHARGE.type,
+          payload: chargeId
+        });
 
         // setCharges(charges.filter(charge => charge.id !== chargeId));
 

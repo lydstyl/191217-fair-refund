@@ -42,12 +42,28 @@ const chargeActions = {
     type: 'ADD_CHARGE',
 
     defaultAction: (state, payload) => {
-      console.log('SET_CHARGES_LIST');
+      console.log('ADD_CHARGE');
       return {
         ...state,
         chargesList: {
           ...state.chargesList,
           chargesList: [...state.chargesList.chargesList, payload]
+        }
+      };
+    }
+  },
+  DELETE_CHARGE: {
+    type: 'DELETE_CHARGE',
+
+    defaultAction: (state, payload) => {
+      console.log('DELETE_CHARGE');
+      return {
+        ...state,
+        chargesList: {
+          ...state.chargesList,
+          chargesList: state.chargesList.chargesList.filter(charge => {
+            return charge.chargeId !== payload;
+          })
         }
       };
     }
