@@ -50,8 +50,8 @@ const Fields = ({ handleFormChange, formCharge }) => {
         <input
           type='file'
           name='image'
-          onChange={handleFormChange}
-          value={formCharge.image}
+          // onChange={handleFormChange}
+          // value={formCharge.image}
         />
       </div>
     </>

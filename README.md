@@ -11,7 +11,7 @@
 
 # To do
 
-- Select and edit charge
+- Cancel selection
 
 - Show totals
 

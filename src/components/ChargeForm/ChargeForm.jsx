@@ -101,9 +101,13 @@ const ChargeForm = () => {
         payload: true
       });
 
+      const data = getChargeFromHtml(); // the charge info
+
+      data.chargeId = chargeStore.charge.chargeId;
+
       db.collection(`/chargesLists/${chargeStore.chargesList.id}/charges`)
         .doc(chargeStore.charge.chargeId)
-        .set(getChargeFromHtml())
+        .set(data)
         .then(() => {
           console.log('Document successfully edited!');
 
@@ -128,6 +132,11 @@ const ChargeForm = () => {
           //     return charge;
           //   })
           // );
+
+          chargeDispatch({
+            type: chargeActions.SET_CHARGE.type,
+            payload: data
+          });
 
           chargeDispatch({
             type: chargeActions.SET_LOADING.type,

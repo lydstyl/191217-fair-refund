@@ -100,6 +100,31 @@ const chargeActions = {
     }
   },
 
+  SET_CHARGE: {
+    type: 'SET_CHARGE',
+
+    defaultAction: (state, payload) => {
+      console.log('SET_CHARGE');
+
+      const newChargesList = state.chargesList.chargesList.map(charge => {
+        if (charge.chargeId === payload.chargeId) {
+          return payload;
+        } else {
+          return charge;
+        }
+      });
+
+      return {
+        ...state,
+        chargesList: {
+          ...state.chargesList,
+
+          chargesList: [...newChargesList]
+        }
+      };
+    }
+  },
+
   numOr0: shouldBeNum => {
     // return a number or zero
 
