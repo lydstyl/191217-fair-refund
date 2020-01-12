@@ -32,6 +32,11 @@ const ChargeForm = () => {
       (charge.total * charge.percent) / 100
     );
 
+    chargeDispatch({
+      type: chargeActions.ADD_TO_TOTALS.type,
+      payload: { totalToAdd: charge.total, refundToAdd: charge.refund }
+    });
+
     const collectionRef = db.collection(
       `/chargesLists/${chargeStore.chargesList.id}/charges`
     );
@@ -40,8 +45,6 @@ const ChargeForm = () => {
       .add(charge)
       .then(doc => {
         charge.chargeId = doc.id;
-
-        // console.log(charge.id);
 
         chargeDispatch({
           type: chargeActions.ADD_CHARGE.type,

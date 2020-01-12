@@ -68,14 +68,29 @@ const chargeActions = {
       };
     }
   },
+  ADD_TO_TOTALS: {
+    type: 'ADD_TO_TOTALS',
+
+    defaultAction: (state, payload) => {
+      console.log('ADD_TO_TOTALS');
+
+      return {
+        ...state,
+        chargesList: {
+          ...state.chargesList,
+          totals: {
+            total: state.chargesList.totals.total + payload.totalToAdd,
+            refund: state.chargesList.totals.refund + payload.refundToAdd
+          }
+        }
+      };
+    }
+  },
 
   numOr0: shouldBeNum => {
     // return a number or zero
-
     if (shouldBeNum * 0 === 0) {
       // is number or string number
-      console.log('shouldBeNum2', shouldBeNum, typeof shouldBeNum);
-
       return parseFloat(shouldBeNum);
     }
 
@@ -83,6 +98,18 @@ const chargeActions = {
   },
 
   twoDecimals: num => Math.round(num * 100) / 100
+
+  // totalChargesReducer: (accumulator, currentValue) => {
+  //   // return numOr0(accumulator) + numOr0(currentValue.data.chargeTotal);
+  //   return accumulator + currentValue.data.chargeTotal;
+  // }
+
+  // // totalRefundsReducer : (accumulator, currentValue) => {
+  // //   const { chargeTotal, chargePercent } = currentValue.data;
+  // //   const refund = numOr0(chargeTotal) * numOr0(chargePercent);
+
+  // //   return accumulator + refund;
+  // // }
 };
 
 export default chargeActions;
