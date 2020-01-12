@@ -25,6 +25,8 @@ const ChargesListBox = props => {
       .doc(chargesListId)
       .get()
       .then(res => {
+        console.log(res.data());
+
         chargeDispatch({
           type: chargeActions.SET_CHARGES_LIST.type,
           payload: res.data()
@@ -37,7 +39,13 @@ const ChargesListBox = props => {
             const chargesList = [];
 
             querySnapshot.forEach(doc => {
-              chargesList.push({ chargeId: doc.id, ...doc.data() });
+              const docData = doc.data();
+
+              docData.total = chargeActions.numOr0(docData.total);
+              docData.percent = chargeActions.numOr0(docData.percent);
+              docData.refund = chargeActions.numOr0(docData.refund);
+
+              chargesList.push({ chargeId: doc.id, ...docData });
             });
 
             const data = { chargesListId, chargesList };

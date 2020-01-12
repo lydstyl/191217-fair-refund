@@ -67,7 +67,22 @@ const chargeActions = {
         }
       };
     }
-  }
+  },
+
+  numOr0: shouldBeNum => {
+    // return a number or zero
+
+    if (shouldBeNum * 0 === 0) {
+      // is number or string number
+      console.log('shouldBeNum2', shouldBeNum, typeof shouldBeNum);
+
+      return parseFloat(shouldBeNum);
+    }
+
+    return 0;
+  },
+
+  twoDecimals: num => Math.round(num * 100) / 100
 };
 
 export default chargeActions;

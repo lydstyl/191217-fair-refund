@@ -5,18 +5,6 @@ import chargeActions from '../../context/useCharge2/chargeActions';
 
 import { db } from '../../utils/firebase/base';
 
-//// UTILS
-const numOr0 = shouldBeNum => {
-  // return a number or zero
-
-  if (shouldBeNum * 0 === 0) {
-    // is number or string number
-    return parseFloat(shouldBeNum);
-  }
-
-  return 0;
-};
-
 const ChargeForm = () => {
   const { chargeStore, chargeDispatch } = useChargeCtx();
 
@@ -34,11 +22,15 @@ const ChargeForm = () => {
       let value = input.value;
 
       if (input.name === 'total' || input.name === 'percent') {
-        value = numOr0(input.value);
+        value = chargeActions.numOr0(input.value);
       }
 
       charge[input.name] = value;
     });
+
+    charge.refund = chargeActions.twoDecimals(
+      (charge.total * charge.percent) / 100
+    );
 
     const collectionRef = db.collection(
       `/chargesLists/${chargeStore.chargesList.id}/charges`
