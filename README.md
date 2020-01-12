@@ -13,27 +13,18 @@
 
 # To do
 
-- check if totals ar ok after edit
-
 - make ChargeForm slimer
 
 - manage charge image
 
-- Show totals
+* Show totals
 
-- ChargeForm & ChargesList select then remove & add charge
+* CSS --> beta test 1 week
 
-- CSS --> beta test 1 week
+* font Awsome trash for del + for add, pencil for edit, < for back and other buton login sign in sign out
 
-- font Awsome trash for del + for add, pencil for edit, < for back and other buton login sign in sign out
+* reset user password
 
-- reset password
+* settings currency of the charges list
 
-- fix image after upload add and select other charge
-
-- edit name charges list
-- when loading image hide EDIT or ADD button
-
-- settings with 50% percent & currency (useContext & useReducer)
-
-- del image when del charge
+* del image when del charge

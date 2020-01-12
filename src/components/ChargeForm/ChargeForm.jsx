@@ -122,31 +122,22 @@ const ChargeForm = () => {
         .then(() => {
           console.log('Document successfully edited!');
 
-          // // calculate new totals
-          // // old percent and total
-          // const oldCharge = charges.filter(charge => charge.id === chargeId)[0]
-          //   .data;
-          // // new are in data
-          // const diff = {
-          //   chargeTotal: numOr0(data.chargeTotal) - numOr0(oldCharge.chargeTotal),
-          //   chargePercent:
-          //     numOr0(data.chargeTotal) * numOr0(data.chargePercent) -
-          //     numOr0(oldCharge.chargeTotal) * numOr0(oldCharge.chargePercent)
-          // };
-          // addToTotals(diff.chargeTotal, diff.chargePercent);
-
-          // setCharges(
-          //   charges.map(charge => {
-          //     if (charge.id === chargeId) {
-          //       return { ...charge, data };
-          //     }
-          //     return charge;
-          //   })
-          // );
-
           chargeDispatch({
             type: chargeActions.SET_CHARGE.type,
             payload: data
+          });
+
+          const newTotal = data.total;
+          const previousTotal = chargeStore.charge.total;
+          const totalToAdd = newTotal - previousTotal;
+
+          const newRefund = data.refund;
+          const previousRefund = chargeStore.charge.refund;
+          const refundToAdd = newRefund - previousRefund;
+
+          chargeDispatch({
+            type: chargeActions.ADD_TO_TOTALS.type,
+            payload: { totalToAdd, refundToAdd }
           });
 
           chargeDispatch({
