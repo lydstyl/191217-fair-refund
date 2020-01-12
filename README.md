@@ -1,3 +1,5 @@
+[See the live project here](https://fair-refund.netlify.com)
+
 # Features
 
 - Firebase auth
@@ -11,7 +13,11 @@
 
 # To do
 
-- Cancel selection
+- check if totals ar ok after edit
+
+- make ChargeForm slimer
+
+- manage charge image
 
 - Show totals
 

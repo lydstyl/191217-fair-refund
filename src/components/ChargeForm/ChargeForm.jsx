@@ -31,6 +31,17 @@ const ChargeForm = () => {
     <input type='submit' value='Ajouter' />
   );
 
+  const clearForm = () => {
+    setFormCharge({
+      date: new Date().toDateInputValue(),
+      image: '',
+      name: '',
+      percent: chargeStore.chargesList.defaultPercent || 0,
+      refund: charge.refund || 0,
+      total: ''
+    });
+  };
+
   const getChargeFromHtml = () => {
     const charge = {};
     document.querySelectorAll('.field input').forEach(input => {
@@ -139,6 +150,11 @@ const ChargeForm = () => {
           });
 
           chargeDispatch({
+            type: chargeActions.SET_SELECTED_CHARGE.type,
+            payload: {}
+          });
+
+          chargeDispatch({
             type: chargeActions.SET_LOADING.type,
             payload: false
           });
@@ -158,12 +174,28 @@ const ChargeForm = () => {
     setFormCharge({ ...formCharge, [event.target.name]: event.target.value });
   };
 
+  const handleCancel = () => {
+    chargeDispatch({
+      type: chargeActions.SET_SELECTED_CHARGE.type,
+      payload: {}
+    });
+
+    clearForm();
+
+    setSubmitButtons(<input type='submit' value='Ajouter' />);
+  };
+
   useEffect(() => {
     setFormCharge({ ...formCharge, ...charge });
 
     if (charge.chargeId) {
       // we have selected a charge for EDIT
-      setSubmitButtons(<input type='submit' value='Éditer' />);
+      setSubmitButtons(
+        <>
+          <input type='submit' value='Éditer' />
+          <input type='button' value='Annuler' onClick={handleCancel} />
+        </>
+      );
     }
   }, [charge]);
 
