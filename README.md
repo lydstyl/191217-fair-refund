@@ -11,6 +11,8 @@
 
 # To do
 
+- delete charge
+
 - Show totals
 
 - ChargeForm & ChargesList select then remove & add charge
