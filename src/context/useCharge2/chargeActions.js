@@ -87,6 +87,22 @@ const chargeActions = {
     }
   },
 
+  // SET_CURRENT_CHARGE_PERCENT: {
+  //   type: 'SET_CURRENT_CHARGE_PERCENT',
+
+  //   defaultAction: (state, payload) => {
+  //     console.log('SET_CURRENT_CHARGE_PERCENT');
+
+  //     return {
+  //       ...state,
+  //       charge: {
+  //         ...state.charge,
+  //         percent: payload
+  //       }
+  //     };
+  //   }
+  // },
+
   numOr0: shouldBeNum => {
     // return a number or zero
     if (shouldBeNum * 0 === 0) {
