@@ -11,7 +11,7 @@
 
 # To do
 
-- ChargeForm & ChargesList add and remove a charge
+- ChargeForm & ChargesList select then remove & add charge
 
 - CSS --> beta test 1 week
 
