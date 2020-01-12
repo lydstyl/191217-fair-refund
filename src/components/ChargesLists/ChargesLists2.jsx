@@ -64,7 +64,7 @@ const ChargesLists = () => {
 
           <AddChargesList />
 
-          {chargeStore.chargesLists.length && (
+          {chargeStore.chargesLists.length !== 0 && (
             <ul className='charges-lists'>
               {chargeStore.chargesLists.map(chargesList => (
                 <li key={chargesList.id}>

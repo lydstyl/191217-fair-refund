@@ -21,7 +21,7 @@ const AddChargesList = () => {
       payload: true
     });
 
-    const data = { email, name, defaultPercent: 0.5 };
+    const data = { email, name, defaultPercent: 50 };
 
     db.collection('chargesLists')
       .add(data)

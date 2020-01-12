@@ -37,6 +37,20 @@ const chargeActions = {
       console.log('SET_CHARGES_LIST');
       return { ...state, chargesList: { ...state.chargesList, ...payload } };
     }
+  },
+  ADD_CHARGE: {
+    type: 'ADD_CHARGE',
+
+    defaultAction: (state, payload) => {
+      console.log('SET_CHARGES_LIST');
+      return {
+        ...state,
+        chargesList: {
+          ...state.chargesList,
+          chargesList: [...state.chargesList.chargesList, payload]
+        }
+      };
+    }
   }
 };
 

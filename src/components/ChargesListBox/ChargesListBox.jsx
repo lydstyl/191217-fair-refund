@@ -8,6 +8,7 @@ import chargeActions from '../../context/useCharge2/chargeActions';
 import Spinner from '../../images/spinner.gif';
 
 import ChargeForm from '../ChargeForm/ChargeForm';
+import ChargesList from '../ChargesList/ChargesList';
 
 const ChargesListBox = props => {
   const { chargeStore, chargeDispatch } = useChargeCtx();
@@ -66,6 +67,8 @@ const ChargesListBox = props => {
           <pre>{JSON.stringify(chargeStore, null, 4)}</pre>
 
           <ChargeForm />
+
+          <ChargesList />
         </>
       )}
     </>

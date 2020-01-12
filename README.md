@@ -11,7 +11,7 @@
 
 # To do
 
-- ChargesListBox with context
+- ChargeForm & ChargesList add and remove a charge
 
 - CSS --> beta test 1 week
 
