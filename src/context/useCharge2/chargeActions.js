@@ -146,7 +146,23 @@ const chargeActions = {
     return 0; // just in case
   },
 
-  twoDecimals: num => Math.round(num * 100) / 100
+  twoDecimals: num => Math.round(num * 100) / 100,
+
+  SET_IMAGES_TO_CURRENT_CHARGE: {
+    type: 'SET_IMAGES_TO_CURRENT_CHARGE',
+
+    defaultAction: (state, payload) => {
+      console.log('SET_IMAGES_TO_CURRENT_CHARGE');
+
+      return {
+        ...state,
+        charge: {
+          ...state.charge,
+          images: { ...payload }
+        }
+      };
+    }
+  }
 };
 
 export default chargeActions;

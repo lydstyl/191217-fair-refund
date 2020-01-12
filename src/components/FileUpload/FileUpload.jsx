@@ -2,9 +2,18 @@ import React, { useState } from 'react';
 
 import Spinner from '../../images/spinner.gif';
 
-const FileUpload = ({ cloudinaryFile, setCloudinaryFile }) => {
-  const [image, setImage] = useState('');
+import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
+import chargeActions from '../../context/useCharge2/chargeActions';
+
+const FileUpload = () => {
+  const [cloudinaryFiles, setCloudinaryFiles] = useState({
+    thumb: '',
+    medium: '',
+    original: ''
+  });
   const [loading, setLoading] = useState(false);
+
+  const { chargeDispatch } = useChargeCtx();
 
   const uploadImage = async e => {
     const files = e.target.files;
@@ -23,14 +32,19 @@ const FileUpload = ({ cloudinaryFile, setCloudinaryFile }) => {
 
       const file = await res.json();
 
-      const thumb = file.eager[1].secure_url;
-      setCloudinaryFile({
-        thumb,
+      const images = {
+        thumb: file.eager[1].secure_url,
         medium: file.eager[0].secure_url,
         original: file.secure_url
+      };
+
+      chargeDispatch({
+        type: chargeActions.SET_IMAGES_TO_CURRENT_CHARGE.type,
+        payload: images
       });
 
-      setImage(thumb);
+      setCloudinaryFiles(images);
+
       setLoading(false);
     } catch (error) {
       alert(error);
@@ -39,6 +53,7 @@ const FileUpload = ({ cloudinaryFile, setCloudinaryFile }) => {
 
   return (
     <div className='field'>
+      <label>Preuve / image</label>
       <input
         type='file'
         name='file'
@@ -48,8 +63,12 @@ const FileUpload = ({ cloudinaryFile, setCloudinaryFile }) => {
 
       {loading ? (
         <img src={Spinner} alt='spinner' />
-      ) : cloudinaryFile && image !== '' ? (
-        <img src={image} alt='Charge proof' style={{ width: '300px' }} />
+      ) : cloudinaryFiles.thumb !== '' ? (
+        <img
+          src={cloudinaryFiles.thumb}
+          alt='Charge proof'
+          style={{ width: '300px' }}
+        />
       ) : (
         ''
       )}

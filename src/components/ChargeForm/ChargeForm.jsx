@@ -37,7 +37,8 @@ const ChargeForm = () => {
       payload: true
     });
 
-    const charge = getChargeFromHtml();
+    const charge = getChargeFromHtml(chargeStore.charge.images);
+
     const mode = document.querySelector('input[type=submit]').value;
 
     if (mode === 'Ajouter') {
@@ -61,6 +62,11 @@ const ChargeForm = () => {
           });
 
           chargeDispatch({
+            type: chargeActions.SET_SELECTED_CHARGE.type,
+            payload: {}
+          });
+
+          chargeDispatch({
             type: chargeActions.SET_LOADING.type,
             payload: false
           });
@@ -80,7 +86,7 @@ const ChargeForm = () => {
         payload: true
       });
 
-      const data = getChargeFromHtml(); // the charge info
+      const data = getChargeFromHtml(chargeStore.charge.images); // the charge info
 
       data.chargeId = chargeStore.charge.chargeId;
 

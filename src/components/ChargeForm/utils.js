@@ -9,7 +9,7 @@ Date.prototype.toDateInputValue = function() {
 export const clearedForm = (defaultPercent, refund) => {
   return {
     date: new Date().toDateInputValue(),
-    image: '',
+    images: { original: '', medium: '', thumb: '' },
     name: '',
     percent: defaultPercent || 0,
     refund: refund || 0,
@@ -17,7 +17,7 @@ export const clearedForm = (defaultPercent, refund) => {
   };
 };
 
-export const getChargeFromHtml = () => {
+export const getChargeFromHtml = images => {
   const charge = {};
   document.querySelectorAll('.field input').forEach(input => {
     let value = input.value;
@@ -32,6 +32,8 @@ export const getChargeFromHtml = () => {
   charge.refund = chargeActions.twoDecimals(
     (charge.total * charge.percent) / 100
   );
+
+  charge.images = { ...images };
 
   return charge;
 };

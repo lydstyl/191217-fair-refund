@@ -1,5 +1,7 @@
 import React from 'react';
 
+import FileUpload from '../FileUpload/FileUpload';
+
 const Fields = ({ handleFormChange, formCharge }) => {
   return (
     <>
@@ -45,15 +47,7 @@ const Fields = ({ handleFormChange, formCharge }) => {
         />
       </div>
 
-      <div className='field'>
-        <label>Preuve / image</label>
-        <input
-          type='file'
-          name='image'
-          // onChange={handleFormChange}
-          // value={formCharge.image}
-        />
-      </div>
+      <FileUpload />
     </>
   );
 };

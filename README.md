@@ -13,16 +13,14 @@
 
 # To do
 
-- manage charge image
+- Show totals, image & content
 
-* Show totals
+- CSS --> beta test 1 week
 
-* CSS --> beta test 1 week
+- font Awsome trash for del + for add, pencil for edit, < for back and other buton login sign in sign out
 
-* font Awsome trash for del + for add, pencil for edit, < for back and other buton login sign in sign out
+- reset user password
 
-* reset user password
+- settings currency of the charges list
 
-* settings currency of the charges list
-
-* del image when del charge
+- del image when del charge
