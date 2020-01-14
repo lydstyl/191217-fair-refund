@@ -9,7 +9,7 @@ import app from '../../utils/firebase/base';
 
 import Nav from './Nav';
 
-import { size } from '../../utils/style/styled-components-variables';
+import { size } from '../../utils/style/variables';
 
 const Menu = () => {
   const { userStore, userDispatch } = useUser();

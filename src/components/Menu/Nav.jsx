@@ -6,7 +6,7 @@ import {
   fontSizes,
   colors,
   buttons
-} from '../../utils/style/styled-components-variables';
+} from '../../utils/style/variables';
 
 const Nav = styled.nav`
   display: flex;
