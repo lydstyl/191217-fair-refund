@@ -7,7 +7,9 @@ import { useUser, SET_CURRENT_USER } from '../../reducers/useUser';
 
 import app from '../../utils/firebase/base';
 
-import Nav, { size } from './Nav';
+import Nav from './Nav';
+
+import { size } from '../../utils/style/styled-components-variables';
 
 const Menu = () => {
   const { userStore, userDispatch } = useUser();
@@ -19,9 +21,12 @@ const Menu = () => {
     document.body.clientWidth;
 
   const handleMenuClick = e => {
-    e.target.style.display = 'none';
-
     document.querySelector('.menuList').style.display = 'flex';
+    document
+      .querySelectorAll('.menuButton, .container, footer')
+      .forEach(item => {
+        item.style.display = 'none';
+      });
   };
 
   const handleCloseMenu = e => {
@@ -29,7 +34,12 @@ const Menu = () => {
       return;
     }
     document.querySelector('.menuList').style.display = 'none';
-    document.querySelector('.menuButton').style.display = 'block';
+
+    document
+      .querySelectorAll('.menuButton, .container, footer')
+      .forEach(item => {
+        item.style.display = 'block';
+      });
   };
 
   const handleSignOut = e => {

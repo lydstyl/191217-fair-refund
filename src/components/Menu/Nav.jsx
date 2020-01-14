@@ -1,36 +1,23 @@
 import styled from 'styled-components';
 
-export const size = {
-  mobileS: '320px',
-  mobileM: '375px',
-  mobileL: '425px',
-  tablet: '768px',
-  laptop: '1024px',
-  laptopL: '1440px',
-  desktop: '2560px'
-};
-
-export const device = {
-  mobileS: `(min-width: ${size.mobileS})`,
-  mobileM: `(min-width: ${size.mobileM})`,
-  mobileL: `(min-width: ${size.mobileL})`,
-  tablet: `(min-width: ${size.tablet})`,
-  laptop: `(min-width: ${size.laptop})`,
-  laptopL: `(min-width: ${size.laptopL})`,
-  desktop: `(min-width: ${size.desktop})`,
-  desktopL: `(min-width: ${size.desktop})`
-};
+import {
+  device,
+  spaces,
+  fontSizes,
+  colors,
+  buttons
+} from '../../utils/style/styled-components-variables';
 
 const Nav = styled.nav`
   display: flex;
   min-height: 50px;
-  margin-bottom: 20px;
+  margin-bottom: ${spaces.medium};
 
   justify-content: center;
   align-items: center;
   align-items: flex-start;
 
-  font-size: 2rem;
+  font-size: ${fontSizes.large};
 
   background: lightgrey;
 
@@ -47,29 +34,24 @@ const Nav = styled.nav`
     flex-direction: column;
     justify-content: space-evenly;
 
+    width: 100%;
     height: 100vh;
-    background: darkgrey;
+    background: ${colors.light2};
 
     .menuClose {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 40px;
+      top: ${spaces.medium};
+      right: ${spaces.medium};
     }
 
     a,
     .userBox {
-      margin: 0 20px;
+      margin: 0 ${spaces.medium};
       text-decoration: none;
-      color: white;
+      color: ${colors.light1};
 
       button {
-        margin-top: 20px;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 3px;
-        color: white;
-        background: purple;
+        ${buttons.button1}
       }
     }
   }
@@ -96,7 +78,7 @@ const Nav = styled.nav`
         align-items: center;
 
         button {
-          margin: 0 0 0 20px;
+          margin: 0 0 0 ${spaces.medium};
         }
       }
     }
