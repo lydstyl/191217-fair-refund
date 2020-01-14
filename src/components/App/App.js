@@ -16,8 +16,6 @@ import EditChargesList from '../EditChargesList/EditChargesList';
 import ChargesListBox from '../ChargesListBox/ChargesListBox';
 import MediumImage from '../MediumImage/MediumImage';
 
-import Test from '../Test/Test';
-
 import './App.scss';
 
 export const App = () => {
@@ -32,7 +30,6 @@ export const App = () => {
           <LoadingCtxProvider>
             <ChargeCtx2Provider>
               <ChargeCtxProvider>
-                <Route exact path='/test' component={Test} />
                 <PrivateRoute exact path='/' component={ChargesLists2} />
                 <PrivateRoute
                   path='/edit-charge-list'
@@ -45,6 +42,7 @@ export const App = () => {
           </LoadingCtxProvider>
         </div>
       </UserCtxProvider>
+
       <footer>
         <div>
           Un commentaire ? Vous pouvez l'envoyer sur la vidéo de cette

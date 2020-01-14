@@ -56,10 +56,10 @@ const EditChargesList = ({ location: { chargesList } }) => {
   return (
     <div className='edit-charges-list'>
       <h1>Editer la liste de dépenses</h1>
-      <pre>{JSON.stringify(chargeStore, null, 4)}</pre>
+      {/* <pre>{JSON.stringify(chargeStore, null, 4)}</pre> */}
 
-      <br />
-      <pre>{JSON.stringify(chargesList, null, 4)}</pre>
+      {/* <br />
+      <pre>{JSON.stringify(chargesList, null, 4)}</pre> */}
 
       <h2>Editer</h2>
       <form onSubmit={handleUpdate}>

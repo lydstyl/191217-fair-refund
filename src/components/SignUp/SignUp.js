@@ -3,6 +3,8 @@ import { withRouter } from 'react-router';
 
 import app from '../../utils/firebase/base';
 
+import './style.scss';
+
 const SignUp = ({ history }) => {
   const handleSignUp = useCallback(
     async event => {
@@ -24,22 +26,24 @@ const SignUp = ({ history }) => {
   );
 
   return (
-    <div>
+    <div className='sign-up'>
       <h1>Sign up</h1>
       <form onSubmit={handleSignUp}>
-        <label>
-          Email
+        <div className='field'>
+          <label>Email</label>
           <input name='email' type='email' placeholder='Email' />
-        </label>
-        <label>
-          Password
+        </div>
+
+        <div className='field'>
+          <label>Password</label>
           <input
             autoComplete='true'
             name='password'
             type='password'
             placeholder='Password'
           />
-        </label>
+        </div>
+
         <button type='submit'>Sign Up</button>
       </form>
     </div>

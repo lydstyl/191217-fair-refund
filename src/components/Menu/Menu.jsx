@@ -7,8 +7,6 @@ import { useUser, SET_CURRENT_USER } from '../../reducers/useUser';
 
 import app from '../../utils/firebase/base';
 
-import './Menu.scss';
-
 import Nav, { size } from './Nav';
 
 const Menu = () => {

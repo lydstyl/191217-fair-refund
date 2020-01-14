@@ -30,6 +30,8 @@ const Nav = styled.nav`
   align-items: center;
   align-items: flex-start;
 
+  font-size: 2rem;
+
   background: lightgrey;
 
   .menuButton {

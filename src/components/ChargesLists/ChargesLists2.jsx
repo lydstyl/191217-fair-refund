@@ -60,7 +60,7 @@ const ChargesLists = () => {
         <>
           <h1>Listes de dépenses</h1>
 
-          <p>{JSON.stringify(chargeStore)}</p>
+          {/* <p>{JSON.stringify(chargeStore)}</p> */}
 
           <AddChargesList />
 
