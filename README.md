@@ -15,7 +15,6 @@
 
 - CSS
 
-  - variables
   - header, container, footer mobile first
   - --> beta test 1 week
 

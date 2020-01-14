@@ -29,19 +29,30 @@ export const fontSizes = {
 };
 
 export const colors = {
-  light1: 'white',
-  light2: 'lightgrey',
-  dark1: 'darkgrey',
-  dark2: 'black'
+  white: 'white',
+  black: 'black',
+
+  lightgrey: 'lightgrey',
+  darkgrey: 'darkgrey',
+
+  blue: 'royalblue',
+
+  violet: 'blueviolet'
 };
 
 export const buttons = {
   button1: `
     margin-top: ${spaces.medium};
     padding: ${spaces.small} ${spaces.medium};
+    
+    font-size: ${fontSizes.medium}
+    text-decoration: none;
+    color: ${colors.white};
+    text-align: center;
+    
     border: none;
     border-radius: 3px;
-    color: ${colors.light1};
-    background: purple;
+
+    background: ${colors.blue};
   `
 };

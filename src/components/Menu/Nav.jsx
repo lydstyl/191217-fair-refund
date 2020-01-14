@@ -44,15 +44,17 @@ const Nav = styled.nav`
       right: ${spaces.medium};
     }
 
-    a,
-    .userBox {
-      margin: 0 ${spaces.medium};
-      text-decoration: none;
-      color: ${colors.light1};
-
-      button {
-        ${buttons.button1}
-      }
+    a
+     {
+      ${buttons.button1}
+      margin: 0 ${spaces.medium}; 
+    }
+    .userBox div{
+      font-size: ${fontSizes.medium};
+      color: ${colors.violet}
+    }
+    .userBox button{
+      ${buttons.button1}
     }
   }
   @media ${device.tablet} {
