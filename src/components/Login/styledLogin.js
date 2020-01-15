@@ -4,7 +4,8 @@ import {
   device,
   spaces,
   fontSizes,
-  buttons
+  buttons,
+  colors
 } from '../../utils/style/variables';
 
 const StyledLogin = styled.div`
@@ -55,6 +56,9 @@ const StyledLogin = styled.div`
 
       .field {
         justify-content: flex-start;
+        label:nth-child(1) {
+          color: ${colors.darkgrey};
+        }
         input {
           margin: 0 ${spaces.medium};
           text-align: center;
