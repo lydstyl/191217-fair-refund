@@ -6,6 +6,8 @@ import { useUser } from '../../reducers/useUser';
 
 import app from '../../utils/firebase/base';
 
+import StyledLogin from './styledLogin';
+
 export const Login = ({ history }) => {
   const { userStore } = useUser();
   const currentUser = userStore.currentUser;
@@ -34,25 +36,27 @@ export const Login = ({ history }) => {
   }
 
   return (
-    <div>
+    <StyledLogin>
       <h1>Log in</h1>
       <form onSubmit={handleLogin}>
-        <label>
-          Email
+        <div className='field'>
+          <label>Email</label>
           <input name='email' type='email' placeholder='Email' />
-        </label>
-        <label>
-          Password
+        </div>
+
+        <div className='field'>
+          <label>Password</label>
           <input
             autoComplete='true'
             name='password'
             type='password'
             placeholder='Password'
           />
-        </label>
+        </div>
+
         <button type='submit'>Log in</button>
       </form>
-    </div>
+    </StyledLogin>
   );
 };
 
