@@ -15,8 +15,7 @@
 
 - CSS
 
-  - charge
-  - ombres css et animations
+  - shadow css & animations
   - --> beta test 1 week
 
 - reset user password

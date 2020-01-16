@@ -1,24 +1,55 @@
 import React from 'react';
+import { FaBackward } from 'react-icons/fa';
 
 import { Link } from 'react-router-dom';
+
+import StyledMediumImage from './StyledMediumImage';
 
 const MediumImage = ({ location: { charge } }) => {
   const { chargeId, date, images, name, percent, refund, total } = charge;
 
   return (
-    <>
-      <h1>Détail de la dépense {name}</h1>
-      <div>
-        <Link to={`/charge-list/${chargeId}`}> {'<-- précédent'} </Link>
+    <StyledMediumImage>
+      <h1>
+        <span>Détail de la dépense </span>
+
+        <span className='strong'>{name}</span>
+      </h1>
+      <div className='back'>
+        <Link to={`/charge-list/${chargeId}`}>
+          <FaBackward />
+
+          <span> précédent</span>
+        </Link>
       </div>
 
-      <div>
-        Dépense{date && <span> du {date}</span>} {total}
-      </div>
-      <div>Pourcentage de remboursement demandé {percent}</div>
-      <div>
-        Remboursement demandé = {total} x {percent} / 100 = {refund}
-      </div>
+      {date && total && (
+        <div>
+          <span>Dépense du </span>
+
+          <span className='strong'>{date}</span>
+
+          <span> de </span>
+
+          <span className='strong'>{total}</span>
+        </div>
+      )}
+
+      {percent && (
+        <div>
+          Pourcentage de remboursement demandé{' '}
+          <span className='strong'>{percent}</span>
+        </div>
+      )}
+
+      {total && (
+        <div>
+          Remboursement demandé =
+          <span className='strong'>
+            {total} x {percent} / 100 = {refund}
+          </span>
+        </div>
+      )}
 
       {images.medium && (
         <div>
@@ -28,10 +59,10 @@ const MediumImage = ({ location: { charge } }) => {
 
       {images.original && (
         <a href={images.original} target='_blank' rel='noopener noreferrer'>
-          Voir le fichier original
+          <span>Voir le fichier original</span>
         </a>
       )}
-    </>
+    </StyledMediumImage>
   );
 };
 
