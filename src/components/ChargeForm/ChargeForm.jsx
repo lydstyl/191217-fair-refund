@@ -162,6 +162,7 @@ const ChargeForm = () => {
         </>
       );
     }
+    // eslint-disable-next-line
   }, [charge]);
 
   return (

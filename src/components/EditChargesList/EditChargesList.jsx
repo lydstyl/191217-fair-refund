@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
+// import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
 
 import { db } from '../../utils/firebase/base';
 
 const EditChargesList = ({ location: { chargesList } }) => {
-  const { chargeStore } = useChargeCtx();
+  // const { chargeStore } = useChargeCtx();
 
   const [form, setForm] = useState({
     name: chargesList.name,

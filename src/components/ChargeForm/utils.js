@@ -1,5 +1,6 @@
 import chargeActions from '../../context/useCharge2/chargeActions';
 
+// eslint-disable-next-line
 Date.prototype.toDateInputValue = function() {
   var local = new Date(this);
   local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
