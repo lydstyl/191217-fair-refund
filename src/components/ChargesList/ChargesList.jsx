@@ -1,10 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaRegEye, FaEdit } from 'react-icons/fa';
+import { AiOutlineDelete } from 'react-icons/ai';
 
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
 import chargeActions from '../../context/useCharge2/chargeActions';
 
 import { db } from '../../utils/firebase/base';
+
+const getIdFromButton = event => {
+  let chargeId = null;
+
+  if (event.target.tagName === 'svg') {
+    chargeId = event.target.parentNode.parentNode.id;
+  } else {
+    chargeId = event.target.parentNode.id;
+  }
+  return chargeId;
+};
 
 const ChargesList = () => {
   const { chargeStore, chargeDispatch } = useChargeCtx();
@@ -17,7 +30,7 @@ const ChargesList = () => {
       payload: true
     });
 
-    const chargeId = event.target.parentNode.id;
+    const chargeId = getIdFromButton(event);
 
     db.collection(`/chargesLists/${chargesList.id}/charges`)
       .doc(chargeId)
@@ -56,53 +69,53 @@ const ChargesList = () => {
   };
 
   const handleSelect = event => {
-    const chargeId = event.target.parentNode.id;
+    const chargeId = getIdFromButton(event);
     const charge = charges.filter(charge => charge.chargeId === chargeId)[0];
 
     chargeDispatch({
       type: chargeActions.SET_SELECTED_CHARGE.type,
       payload: charge
     });
+
+    window.scrollTo(0, 0); // scroll to top
   };
 
   return (
-    <div>
-      <ul>
-        {charges &&
-          charges.map(charge => (
-            <li key={charge.chargeId} id={charge.chargeId}>
-              {/* <pre>{JSON.stringify(charge, null, 4)}</pre> */}
-
-              <p>{charge.name}</p>
-              <p>{charge.chargeId}</p>
-              <p>
+    <ul>
+      {charges &&
+        charges.map(charge => (
+          <li key={charge.chargeId}>
+            {charge.name && <h2>{charge.name}</h2>}
+            {charge.images.thumb && (
+              <p className='img'>
                 <img src={charge.images.thumb} alt={charge.name} />
               </p>
-              <p>{charge.date}</p>
-              <p>
+            )}
+            {charge.date && <p className='date'>{charge.date}</p>}
+            {charge.total !== 0 && (
+              <p className='numbers'>
                 {charge.total} x {charge.percent} / 100 = {charge.refund}
               </p>
-              <p>
-                <Link
-                  to={{
-                    pathname: `/charge/${charge.chargeId}`,
-                    charge
-                  }}
-                >
-                  détail
-                </Link>
-              </p>
-
-              <input
-                type='button'
-                value='Selectionner'
-                onClick={handleSelect}
-              />
-              <input type='button' value='Supprimer' onClick={handleDelete} />
-            </li>
-          ))}
-      </ul>
-    </div>
+            )}
+            <p className='button-box' id={charge.chargeId}>
+              <Link
+                to={{
+                  pathname: `/charge/${charge.chargeId}`,
+                  charge
+                }}
+              >
+                <FaRegEye />
+              </Link>
+              <button onClick={handleSelect}>
+                <FaEdit />
+              </button>
+              <button onClick={handleDelete}>
+                <AiOutlineDelete />
+              </button>
+            </p>
+          </li>
+        ))}
+    </ul>
   );
 };
 

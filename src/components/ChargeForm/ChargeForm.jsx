@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FaEdit } from 'react-icons/fa';
+import { TiCancel } from 'react-icons/ti';
 
 import { clearedForm, getChargeFromHtml } from './utils';
 
@@ -28,7 +30,7 @@ const ChargeForm = () => {
     setFormCharge(clearedForm(defaultPercent, charge.refund));
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event, mode) => {
     event.preventDefault();
 
     // ADD
@@ -39,9 +41,7 @@ const ChargeForm = () => {
 
     const charge = getChargeFromHtml(chargeStore.charge.images);
 
-    const mode = document.querySelector('input[type=submit]').value;
-
-    if (mode === 'Ajouter') {
+    if (mode !== 'Éditer') {
       chargeDispatch({
         type: chargeActions.ADD_TO_TOTALS.type,
         payload: { totalToAdd: charge.total, refundToAdd: charge.refund }
@@ -157,8 +157,13 @@ const ChargeForm = () => {
       // we have selected a charge for EDIT
       setSubmitButtons(
         <>
-          <input type='submit' value='Éditer' />
-          <input type='button' value='Annuler' onClick={handleCancel} />
+          <button onClick={(event, mode) => handleSubmit(event, 'Éditer')}>
+            <FaEdit />
+          </button>
+
+          <button onClick={handleCancel}>
+            <TiCancel />
+          </button>
         </>
       );
     }
