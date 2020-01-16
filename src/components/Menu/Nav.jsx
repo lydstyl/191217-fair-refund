@@ -19,6 +19,7 @@ const Nav = styled.nav`
 
   font-size: ${fontSizes.large};
 
+  color: ${colors.darkgrey};
   background: lightgrey;
 
   .menuButton {
@@ -49,12 +50,19 @@ const Nav = styled.nav`
       ${buttons.button1}
       margin: 0 ${spaces.medium}; 
     }
-    .userBox div{
-      font-size: ${fontSizes.medium};
-      color: ${colors.violet}
-    }
-    .userBox button{
-      ${buttons.button1}
+    .userBox {
+      display: flex;
+      flex-direction: column;
+      margin: 0 ${spaces.medium};
+      text-align: center;
+
+      div{
+        font-size: ${fontSizes.medium};
+        color: ${colors.darkgrey}
+      }
+      button{
+        ${buttons.button1}
+      }
     }
   }
   @media ${device.tablet} {
@@ -64,6 +72,9 @@ const Nav = styled.nav`
     .menuList {
       .menuClose {
         display: none;
+      }
+      .userBox{
+        flex-direction: row;
       }
 
       position: relative;

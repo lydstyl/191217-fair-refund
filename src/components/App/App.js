@@ -17,7 +17,21 @@ import ChargesListBox from '../ChargesListBox/ChargesListBox';
 import MediumImage from '../MediumImage/MediumImage';
 import Footer from '../Footer/Footer';
 
-import './App.scss';
+import styled from 'styled-components';
+
+import { size, spaces, fontSizes, colors } from '../../utils/style/variables';
+
+const StyledContainer = styled.div`
+  max-width: ${size.laptop};
+  margin: auto;
+  padding: 0 ${spaces.medium};
+
+  font-size: ${fontSizes.medium};
+  color: ${colors.darkgrey};
+
+  /* sticky-footer */
+  min-height: calc(100vh - 270px);
+`;
 
 export const App = () => {
   return (
@@ -25,7 +39,7 @@ export const App = () => {
       <UserCtxProvider>
         <Menu />
 
-        <div className='container'>
+        <StyledContainer>
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={SignUp} />
           <LoadingCtxProvider>
@@ -41,7 +55,7 @@ export const App = () => {
               </ChargeCtxProvider>
             </ChargeCtx2Provider>
           </LoadingCtxProvider>
-        </div>
+        </StyledContainer>
       </UserCtxProvider>
 
       <Footer />

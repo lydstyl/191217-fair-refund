@@ -9,7 +9,6 @@ body {
     sans-serif;
 }
 
-/* sticky-footer */
-.container {
-  min-height: calc(100vh - 225px);
+a {
+  text-decoration: none;
 }
