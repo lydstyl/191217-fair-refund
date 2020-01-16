@@ -36,7 +36,7 @@ const Nav = styled.nav`
 
     width: 100%;
     height: 100vh;
-    background: ${colors.light2};
+    background: ${colors.lightgrey};
 
     .menuClose {
       position: absolute;

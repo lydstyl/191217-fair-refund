@@ -68,10 +68,10 @@ const Menu = () => {
         {!currentUser && (
           <>
             <Link onClick={handleCloseMenu} to='/login'>
-              login
+              Login
             </Link>
             <Link onClick={handleCloseMenu} to='/signup'>
-              signup
+              Signup
             </Link>
           </>
         )}

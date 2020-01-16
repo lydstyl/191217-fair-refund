@@ -15,6 +15,7 @@ import ChargesLists2 from '../ChargesLists/ChargesLists2';
 import EditChargesList from '../EditChargesList/EditChargesList';
 import ChargesListBox from '../ChargesListBox/ChargesListBox';
 import MediumImage from '../MediumImage/MediumImage';
+import Footer from '../Footer/Footer';
 
 import './App.scss';
 
@@ -43,12 +44,7 @@ export const App = () => {
         </div>
       </UserCtxProvider>
 
-      <footer>
-        <div>
-          Un commentaire ? Vous pouvez l'envoyer sur la vidéo de cette
-          application ou en privé sur lydstyl@gmail.com
-        </div>
-      </footer>
+      <Footer />
     </Router>
   );
 };

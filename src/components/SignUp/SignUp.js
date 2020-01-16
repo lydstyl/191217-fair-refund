@@ -3,7 +3,8 @@ import { withRouter } from 'react-router';
 
 import app from '../../utils/firebase/base';
 
-import './style.scss';
+import StyledLogin from '../Login/styledLogin';
+// import './style.scss';
 
 const SignUp = ({ history }) => {
   const handleSignUp = useCallback(
@@ -26,7 +27,7 @@ const SignUp = ({ history }) => {
   );
 
   return (
-    <div className='sign-up'>
+    <StyledLogin>
       <h1>Sign up</h1>
       <form onSubmit={handleSignUp}>
         <div className='field'>
@@ -44,9 +45,9 @@ const SignUp = ({ history }) => {
           />
         </div>
 
-        <button type='submit'>Sign Up</button>
+        <button type='submit'>Signup</button>
       </form>
-    </div>
+    </StyledLogin>
   );
 };
 
