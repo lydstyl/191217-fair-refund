@@ -42,7 +42,9 @@ const StyledChargeList = styled.div`
     grid-gap: ${spaces.medium};
 
     li {
+      position: relative;
       margin: 0;
+      padding-bottom: 80px;
       list-style-type: none;
       text-align: center;
       border: 1px solid;
@@ -66,9 +68,12 @@ const StyledChargeList = styled.div`
       }
 
       .button-box {
+        position: absolute;
+        bottom: 0;
+        left: calc(100% / 2 - 260px / 2);
         display: flex;
         justify-content: space-between;
-        max-width: 300px;
+        width: 260px;
         margin: auto;
         padding: ${spaces.small};
 
