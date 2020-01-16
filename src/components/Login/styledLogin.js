@@ -19,6 +19,9 @@ const StyledLogin = styled.div`
       display: flex;
       justify-content: space-between;
       margin: ${spaces.medium} 0;
+      input {
+        width: 70%;
+      }
     }
 
     button {

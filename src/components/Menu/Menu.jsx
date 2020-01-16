@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import User from '../User/User';
@@ -12,6 +12,7 @@ import Nav from './Nav';
 import { size } from '../../utils/style/variables';
 
 const Menu = () => {
+  const [showSignup, setShowSignup] = useState(true);
   const { userStore, userDispatch } = useUser();
   const currentUser = userStore.currentUser;
 
@@ -30,6 +31,13 @@ const Menu = () => {
   };
 
   const handleCloseMenu = e => {
+    const buttonText = e.target.innerText;
+    if (buttonText === 'Signup') {
+      setShowSignup(false);
+    } else if (buttonText === 'Login') {
+      setShowSignup(true);
+    }
+
     if (width >= size.tablet.replace('px', '')) {
       return;
     }
@@ -67,12 +75,16 @@ const Menu = () => {
         </div>
         {!currentUser && (
           <>
-            <Link onClick={handleCloseMenu} to='/login'>
-              Login
-            </Link>
-            <Link onClick={handleCloseMenu} to='/signup'>
-              Signup
-            </Link>
+            {!showSignup && (
+              <Link onClick={handleCloseMenu} to='/login'>
+                Login
+              </Link>
+            )}
+            {showSignup && (
+              <Link onClick={handleCloseMenu} to='/signup'>
+                Signup
+              </Link>
+            )}
           </>
         )}
 
