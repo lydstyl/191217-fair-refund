@@ -8,7 +8,7 @@ const StyledFooter = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: ${spaces.medium};
+  margin-top: ${spaces.large};
   padding: ${spaces.medium};
   font-size: ${fontSizes.small};
   color: ${colors.darkgrey};

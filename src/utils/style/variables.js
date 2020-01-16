@@ -38,17 +38,28 @@ export const colors = {
 
 export const buttons = {
   button1: `
+    // display: flex;
+    display: block;
+    align-items: center;
+    width: 100%
     margin-top: ${spaces.medium};
     padding: ${spaces.small} ${spaces.medium};
-    
+    line-height: ${fontSizes.medium}
     font-size: ${fontSizes.medium}
     text-decoration: none;
     color: ${colors.white};
+    align-self: center;
     text-align: center;
-    
     border: none;
+    background: ${colors.blue};
     border-radius: 3px;
 
-    background: ${colors.blue};
+    svg{
+      margin: auto;
+    }
+
+    @media ${device.tablet}{
+      width: auto;
+    }
   `
 };

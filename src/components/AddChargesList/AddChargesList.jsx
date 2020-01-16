@@ -1,4 +1,5 @@
 import React from 'react';
+import { IoMdAdd } from 'react-icons/io';
 
 import { useUser } from '../../reducers/useUser';
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
@@ -47,9 +48,11 @@ const AddChargesList = () => {
   };
 
   return (
-    <div>
-      <input type='text' name='chargesListName' />
-      <input onClick={handleCreateChargesList} type='button' value='ADD' />
+    <div className='field'>
+      <input type='text' name='chargesListName' placeholder='Nom de la liste' />
+      <button onClick={handleCreateChargesList}>
+        <IoMdAdd />
+      </button>
     </div>
   );
 };

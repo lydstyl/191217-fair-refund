@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FaRegEye, FaEdit } from 'react-icons/fa';
 
 import { useUser } from '../../reducers/useUser';
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
@@ -9,7 +10,7 @@ import Spinner from '../../images/spinner.gif';
 
 import AddChargesList from '../AddChargesList/AddChargesList';
 
-import './ChargesLists.scss';
+import StyledChargeLists from './styledChargesLists';
 
 const ChargesLists = () => {
   const { userStore } = useUser();
@@ -53,41 +54,42 @@ const ChargesLists = () => {
   }, []);
 
   return (
-    <>
+    <StyledChargeLists>
       {chargeStore.loading ? (
         <img src={Spinner} alt='spinner' />
       ) : (
         <>
           <h1>Listes de dépenses</h1>
 
-          {/* <p>{JSON.stringify(chargeStore)}</p> */}
-
           <AddChargesList />
 
           {chargeStore.chargesLists.length !== 0 && (
-            <ul className='charges-lists'>
+            <ul>
               {chargeStore.chargesLists.map(chargesList => (
                 <li key={chargesList.id}>
-                  <p>name: {chargesList.name}</p>
-                  <Link to={`/charge-list/${chargesList.id}`}>
-                    Voir les dépenses
-                  </Link>
+                  <p>{chargesList.name}</p>
 
-                  <Link
-                    to={{
-                      pathname: `/edit-charge-list/${chargesList.id}`,
-                      chargesList
-                    }}
-                  >
-                    EDIT
-                  </Link>
+                  <div className='links'>
+                    <Link to={`/charge-list/${chargesList.id}`}>
+                      <FaRegEye />
+                    </Link>
+
+                    <Link
+                      to={{
+                        pathname: `/edit-charge-list/${chargesList.id}`,
+                        chargesList
+                      }}
+                    >
+                      <FaEdit />
+                    </Link>
+                  </div>
                 </li>
               ))}
             </ul>
           )}
         </>
       )}
-    </>
+    </StyledChargeLists>
   );
 };
 

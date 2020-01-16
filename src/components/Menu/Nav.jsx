@@ -30,6 +30,7 @@ const Nav = styled.nav`
   .menuList {
     position: absolute;
     left: 0;
+    padding:  ${spaces.medium};
 
     display: none;
     flex-direction: column;
@@ -53,7 +54,7 @@ const Nav = styled.nav`
     .userBox {
       display: flex;
       flex-direction: column;
-      margin: 0 ${spaces.medium};
+      margin: 0;
       text-align: center;
 
       div{

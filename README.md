@@ -15,7 +15,7 @@
 
 - CSS
 
-  - charges listes
+  - edit-charge-list
   - charge liste
   - charge
   - --> beta test 1 week
