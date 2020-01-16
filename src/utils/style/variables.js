@@ -19,7 +19,7 @@ export const spaces = {
 };
 
 export const fontSizes = {
-  small: '0,5rem',
+  small: '0.7rem',
   medium: '1rem',
   large: '2rem'
 };
