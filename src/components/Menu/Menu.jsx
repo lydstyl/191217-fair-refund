@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { IoMdClose } from 'react-icons/io';
+import { FaSignOutAlt } from 'react-icons/fa';
 
 import User from '../User/User';
 
@@ -67,11 +70,11 @@ const Menu = () => {
   return (
     <Nav>
       <div onClick={handleMenuClick} className='menuButton'>
-        Menu
+        <GiHamburgerMenu />
       </div>
       <div className='menuList'>
         <div onClick={handleCloseMenu} className='menuClose'>
-          X
+          <IoMdClose />
         </div>
         {!currentUser && (
           <>
@@ -95,7 +98,9 @@ const Menu = () => {
             </Link>
             <div className='userBox'>
               <User />
-              <button onClick={handleSignOut}>Sign out</button>
+              <button onClick={handleSignOut}>
+                <FaSignOutAlt />
+              </button>
             </div>
           </>
         )}

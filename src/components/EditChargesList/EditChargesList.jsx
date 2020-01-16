@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-
-// import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
+import { FaEdit } from 'react-icons/fa';
+import { AiOutlineDelete } from 'react-icons/ai';
 
 import { db } from '../../utils/firebase/base';
 
-const EditChargesList = ({ location: { chargesList } }) => {
-  // const { chargeStore } = useChargeCtx();
+import StyledEditList from './styledEditList';
 
+const EditChargesList = ({ location: { chargesList } }) => {
   const [form, setForm] = useState({
     name: chargesList.name,
     defaultPercent: chargesList.defaultPercent
@@ -34,11 +34,9 @@ const EditChargesList = ({ location: { chargesList } }) => {
   const handleUpdate = event => {
     event.preventDefault();
 
-    document
-      .querySelectorAll('.edit-charges-list form .field input')
-      .forEach(input => {
-        chargesList[input.name] = input.value;
-      });
+    document.querySelectorAll('form .field input').forEach(input => {
+      chargesList[input.name] = input.value;
+    });
 
     db.collection('chargesLists')
       .doc(chargesList.id)
@@ -54,17 +52,12 @@ const EditChargesList = ({ location: { chargesList } }) => {
   }
 
   return (
-    <div className='edit-charges-list'>
+    <StyledEditList>
       <h1>Editer la liste de dépenses</h1>
-      {/* <pre>{JSON.stringify(chargeStore, null, 4)}</pre> */}
 
-      {/* <br />
-      <pre>{JSON.stringify(chargesList, null, 4)}</pre> */}
-
-      <h2>Editer</h2>
       <form onSubmit={handleUpdate}>
         <div className='field'>
-          <label>Nome de la liste</label>
+          <label>Nom de la liste:</label>
           <input
             type='text'
             name='name'
@@ -74,7 +67,7 @@ const EditChargesList = ({ location: { chargesList } }) => {
         </div>
 
         <div className='field'>
-          <label>Pourcentage de demande de remboursement par default</label>
+          <label>Pourcentage de remboursement par default:</label>
           <input
             type='number'
             name='defaultPercent'
@@ -85,13 +78,17 @@ const EditChargesList = ({ location: { chargesList } }) => {
             value={form.defaultPercent}
           />
         </div>
-
-        <input type='submit' value='EDIT' />
       </form>
 
-      <h2>ou supprimer</h2>
-      <input onClick={handleDelete} type='button' value='DEL' />
-    </div>
+      <div className='buttons'>
+        <button onClick={handleUpdate}>
+          <FaEdit />
+        </button>
+        <button onClick={handleDelete}>
+          <AiOutlineDelete />
+        </button>
+      </div>
+    </StyledEditList>
   );
 };
 

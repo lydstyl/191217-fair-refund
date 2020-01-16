@@ -10,22 +10,31 @@ import {
 
 const Nav = styled.nav`
   display: flex;
-  min-height: 50px;
+
+  min-height: 80px;
   margin-bottom: ${spaces.medium};
+  padding: ${spaces.medium};
 
   justify-content: center;
-  align-items: center;
+  align-items: right;
   align-items: flex-start;
 
   font-size: ${fontSizes.large};
 
   color: ${colors.darkgrey};
   background: lightgrey;
-
+  
   .menuButton {
+    ${buttons.button1};
+    position: absolute;
+    top: ${spaces.medium};
+    right: ${spaces.medium};
     display: block;
-    margin-top: 50px;
-    transform: translateY(-25px);
+    width: auto;
+    margin: 0;
+
+    /* for sticky footer */
+    /* transform: translateY(-25px); */
   }
   .menuList {
     position: absolute;

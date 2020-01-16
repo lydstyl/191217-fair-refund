@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { withRouter } from 'react-router';
 import { Route, Redirect } from 'react-router-dom';
+import { IoIosLogIn } from 'react-icons/io';
 
 import { useUser } from '../../reducers/useUser';
 
@@ -54,7 +55,9 @@ export const Login = ({ history }) => {
           />
         </div>
 
-        <button type='submit'>Log in</button>
+        <button type='submit'>
+          <IoIosLogIn />
+        </button>
       </form>
     </StyledLogin>
   );

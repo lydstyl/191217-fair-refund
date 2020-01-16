@@ -12,6 +12,7 @@ const StyledLogin = styled.div`
   h1 {
     font-size: ${fontSizes.large};
     margin: ${spaces.large} 0;
+    color: ${colors.violet};
   }
 
   form {
@@ -29,6 +30,8 @@ const StyledLogin = styled.div`
       display: block;
       width: 100%;
       margin: ${spaces.large} auto;
+      font-size: ${fontSizes.large};
+      background-color: ${colors.violet};
     }
   }
 

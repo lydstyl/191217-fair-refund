@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { withRouter } from 'react-router';
+import { FaUserPlus } from 'react-icons/fa';
 
 import app from '../../utils/firebase/base';
 
@@ -45,7 +46,9 @@ const SignUp = ({ history }) => {
           />
         </div>
 
-        <button type='submit'>Signup</button>
+        <button type='submit'>
+          <FaUserPlus />
+        </button>
       </form>
     </StyledLogin>
   );

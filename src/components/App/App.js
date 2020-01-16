@@ -29,6 +29,15 @@ const StyledContainer = styled.div`
   font-size: ${fontSizes.medium};
   color: ${colors.darkgrey};
 
+  h1 {
+    margin: ${spaces.large} 0;
+    color: ${colors.violet};
+  }
+
+  svg {
+    font-size: ${fontSizes.large};
+  }
+
   /* sticky-footer */
   min-height: calc(100vh - 270px);
 `;

@@ -16,6 +16,8 @@ a {
 
 input {
   text-align: center;
+  border: none;
+  border-bottom: 1px solid;
 }
 
 [alt='spinner'] {

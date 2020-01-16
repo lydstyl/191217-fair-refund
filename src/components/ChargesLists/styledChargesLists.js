@@ -22,6 +22,7 @@ const StyledChargeLists = styled.div`
     button {
       ${buttons.button1}
       margin: ${spaces.medium} ${spaces.medium} ${spaces.large} 0;
+      background-color: ${colors.violet};
   }
   
 }
@@ -32,8 +33,12 @@ li {
   margin: ${spaces.large} 0;
 
   .links a{
-    color: ${colors.blue};
     margin-left: ${spaces.medium};
+    color: ${colors.blue};
+    svg{
+      font-size: ${fontSizes.medium};
+
+    }
   }
 }
 
