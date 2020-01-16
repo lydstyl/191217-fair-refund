@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// import { FaImage } from 'react-icons/fa';
 
 import Spinner from '../../images/spinner.gif';
 
@@ -53,13 +54,11 @@ const FileUpload = () => {
 
   return (
     <div className='field'>
-      <label>Preuve / image</label>
-      <input
-        type='file'
-        name='file'
-        placeholder='Upload an image'
-        onChange={uploadImage}
-      />
+      <label>
+        {/* <FaImage />  */}
+        Preuve / image{' '}
+      </label>
+      <input type='file' name='file' accept='image/*' onChange={uploadImage} />
 
       {loading ? (
         <img src={Spinner} alt='spinner' />

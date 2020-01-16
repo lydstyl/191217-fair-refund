@@ -10,6 +10,8 @@ import Spinner from '../../images/spinner.gif';
 import ChargeForm from '../ChargeForm/ChargeForm';
 import ChargesList from '../ChargesList/ChargesList';
 
+import StyledChargeList from './StyledChargeList';
+
 const ChargesListBox = props => {
   const { chargeStore, chargeDispatch } = useChargeCtx();
 
@@ -71,14 +73,12 @@ const ChargesListBox = props => {
   }, []);
 
   return (
-    <>
+    <StyledChargeList>
       {chargeStore.loading ? (
         <img src={Spinner} alt='spinner' />
       ) : (
         <>
           <h1>{chargeStore.chargesList.name}</h1>
-
-          {/* <pre>{JSON.stringify(chargeStore, null, 4)}</pre> */}
 
           {chargeStore.chargesList.totals && (
             <p>Total dépensé: {chargeStore.chargesList.totals.total}</p>
@@ -95,7 +95,7 @@ const ChargesListBox = props => {
           <ChargesList />
         </>
       )}
-    </>
+    </StyledChargeList>
   );
 };
 
