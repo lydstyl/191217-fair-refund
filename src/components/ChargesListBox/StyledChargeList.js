@@ -55,6 +55,7 @@ const StyledChargeList = styled.div`
       }
       h2 {
         text-align: center;
+        margin-top: ${spaces.medium};
       }
       img {
         width: 200px;
@@ -67,6 +68,9 @@ const StyledChargeList = styled.div`
       .button-box {
         display: flex;
         justify-content: space-between;
+        max-width: 300px;
+        margin: auto;
+        padding: ${spaces.small};
 
         a,
         button {
@@ -92,6 +96,10 @@ const StyledChargeList = styled.div`
       [type='submit'] {
         width: 100px;
       }
+    }
+
+    ul {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
   @media ${device.tablet} {
@@ -147,6 +155,9 @@ const StyledChargeList = styled.div`
   @media ${device.laptop} {
     form {
       grid-gap: ${spaces.large};
+    }
+    ul {
+      grid-template-columns: repeat(5, 1fr);
     }
   }
 `;
