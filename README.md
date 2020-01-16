@@ -15,7 +15,9 @@
 
 - CSS
 
-  - header, container, footer mobile first
+  - charges listes
+  - charge liste
+  - charge
   - --> beta test 1 week
 
 - font Awsome trash for del + for add, pencil for edit, < for back and other buton login sign in sign out
