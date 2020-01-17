@@ -19,7 +19,7 @@ const ChargeForm = () => {
   } = chargeStore;
 
   const [formCharge, setFormCharge] = useState(
-    clearedForm(defaultPercent, charge.refund)
+    clearedForm(defaultPercent, charge && charge.refund)
   );
 
   const [submitButtons, setSubmitButtons] = useState(
@@ -153,7 +153,7 @@ const ChargeForm = () => {
   useEffect(() => {
     setFormCharge({ ...formCharge, ...charge });
 
-    if (charge.chargeId) {
+    if (charge && charge.chargeId) {
       // we have selected a charge for EDIT
       setSubmitButtons(
         <>
@@ -172,6 +172,8 @@ const ChargeForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      {/* <pre>{JSON.stringify(chargeStore.charge, null, 4)}</pre> */}
+
       <Fields handleFormChange={handleFormChange} formCharge={formCharge} />
 
       {submitButtons}

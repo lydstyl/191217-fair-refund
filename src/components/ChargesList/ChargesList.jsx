@@ -13,6 +13,8 @@ const getIdFromButton = event => {
 
   if (event.target.tagName === 'svg') {
     chargeId = event.target.parentNode.parentNode.id;
+  } else if (event.target.tagName === 'path') {
+    chargeId = event.target.parentNode.parentNode.parentNode.id;
   } else {
     chargeId = event.target.parentNode.id;
   }

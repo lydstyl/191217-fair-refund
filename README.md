@@ -13,8 +13,6 @@
 
 # To do
 
-- fix connot modify empty charge just added
-
 - CSS
 
   - shadow css & animations
