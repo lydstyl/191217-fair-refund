@@ -13,6 +13,8 @@
 
 # To do
 
+- fix refresh charge detail
+
 - CSS
 
   - shadow css & animations

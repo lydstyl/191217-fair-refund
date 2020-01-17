@@ -1,12 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FaBackward } from 'react-icons/fa';
 
-import { Link } from 'react-router-dom';
+import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
 
 import StyledMediumImage from './StyledMediumImage';
 
 const MediumImage = ({ location: { charge } }) => {
   const { chargeId, date, images, name, percent, refund, total } = charge;
+  const { chargeStore, chargeDispatch } = useChargeCtx();
 
   return (
     <StyledMediumImage>
@@ -16,10 +18,10 @@ const MediumImage = ({ location: { charge } }) => {
         <span className='strong'>{name}</span>
       </h1>
       <div className='back'>
-        <Link to={`/charge-list/${chargeId}`}>
+        <Link to={`/charge-list/${chargeStore.chargesList.id}`}>
           <FaBackward />
 
-          <span> précédent</span>
+          <span> précédent ${chargeId}</span>
         </Link>
       </div>
 
