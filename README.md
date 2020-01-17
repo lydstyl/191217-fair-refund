@@ -13,7 +13,7 @@
 
 # To do
 
-- fix refresh charge detail
+- fix connot modify empty charge just added
 
 - CSS
 

@@ -1,68 +1,112 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { FaBackward } from 'react-icons/fa';
 
-import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
+import { db } from '../../utils/firebase/base';
+
+import Spinner from '../../images/spinner.gif';
 
 import StyledMediumImage from './StyledMediumImage';
 
 const MediumImage = ({ location: { charge } }) => {
-  const { chargeId, date, images, name, percent, refund, total } = charge;
-  const { chargeStore, chargeDispatch } = useChargeCtx();
+  const tmp = window.location.href.split('/');
+  const [detailCharge, setDetailCharge] = useState({
+    chargesListId: tmp[4],
+    chargeId: tmp[5],
+    date: null,
+    images: null,
+    name: null,
+    percent: null,
+    refund: null,
+    total: null
+  });
 
-  return (
+  const [loading, setLoading] = useState(true);
+
+  const {
+    chargesListId,
+    chargeId,
+    date,
+    images,
+    name,
+    percent,
+    refund,
+    total
+  } = detailCharge;
+
+  useEffect(() => {
+    if (charge) {
+      setDetailCharge({ ...detailCharge, ...charge });
+      setLoading(false);
+    } else {
+      db.collection(`/chargesLists/${chargesListId}/charges`)
+        .doc(chargeId)
+        .get()
+        .then(res => {
+          setDetailCharge({ ...detailCharge, ...res.data() });
+          setLoading(false);
+        });
+    }
+  }, []);
+
+  return loading ? (
+    <img src={Spinner} alt='spinner' />
+  ) : (
     <StyledMediumImage>
-      <h1>
-        <span>Détail de la dépense </span>
+      {chargeId && (
+        <>
+          <h1>
+            <span>Détail de la dépense </span>
 
-        <span className='strong'>{name}</span>
-      </h1>
-      <div className='back'>
-        <Link to={`/charge-list/${chargeStore.chargesList.id}`}>
-          <FaBackward />
+            <span className='strong'>{name}</span>
+          </h1>
+          <div className='back'>
+            <a href={`/charge-list/${chargesListId}`}>
+              <FaBackward />
 
-          <span> précédent ${chargeId}</span>
-        </Link>
-      </div>
+              <span> précédent</span>
+            </a>
+          </div>
 
-      {date && total && (
-        <div>
-          <span>Dépense du </span>
+          {date && total && (
+            <div>
+              <span>Dépense du </span>
 
-          <span className='strong'>{date}</span>
+              <span className='strong'>{date}</span>
 
-          <span> de </span>
+              <span> de </span>
 
-          <span className='strong'>{total}</span>
-        </div>
-      )}
+              <span className='strong'>{total}</span>
+            </div>
+          )}
 
-      {percent && (
-        <div>
-          Pourcentage de remboursement demandé{' '}
-          <span className='strong'>{percent}</span>
-        </div>
-      )}
+          {percent && (
+            <div>
+              Pourcentage de remboursement demandé{' '}
+              <span className='strong'>{percent}</span>
+            </div>
+          )}
 
-      {total && (
-        <div>
-          Remboursement demandé =
-          <span className='strong'>
-            {total} x {percent} / 100 = {refund}
-          </span>
-        </div>
-      )}
+          {total && (
+            <div>
+              Remboursement demandé =
+              <span className='strong'>
+                {total} x {percent} / 100 = {refund}
+              </span>
+            </div>
+          )}
 
-      {images.medium && (
-        <div>
-          <img src={images.medium} alt='Medium size proof of charge' />
-        </div>
-      )}
+          {images && images.medium && (
+            <div>
+              <img src={images.medium} alt='Medium size proof of charge' />
+            </div>
+          )}
 
-      {images.original && (
-        <a href={images.original} target='_blank' rel='noopener noreferrer'>
-          <span>Voir le fichier original</span>
-        </a>
+          {images && images.original && (
+            <a href={images.original} target='_blank' rel='noopener noreferrer'>
+              <span>Voir le fichier original</span>
+            </a>
+          )}
+        </>
       )}
     </StyledMediumImage>
   );

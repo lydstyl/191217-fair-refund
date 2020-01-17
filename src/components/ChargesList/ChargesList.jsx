@@ -100,7 +100,7 @@ const ChargesList = () => {
             <p className='button-box' id={charge.chargeId}>
               <Link
                 to={{
-                  pathname: `/charge/${charge.chargeId}`,
+                  pathname: `/charge/${chargesList.id}/${charge.chargeId}`,
                   charge
                 }}
               >
