@@ -15,7 +15,6 @@
 
 - CSS
 
-  - shadow css & animations
   - --> beta test 1 week
 
 - reset user password

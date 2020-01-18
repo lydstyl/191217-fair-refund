@@ -37,10 +37,10 @@ export const colors = {
 };
 
 export const shadows = {
-  shadow1: 'box-shadow: 4px -10px 20px 20px rgba(0,0,0,.3);',
-  shadow2: 'box-shadow: 5px 5px 10px 3px rgba(0,0,0,.3);',
-  shadow3: 'box-shadow: 10px 10px 10px 3px rgba(0,0,0,.3);',
-  shadowActive: 'box-shadow: 2px 2px 10px 3px rgba(0,0,0,.3);'
+  header: 'box-shadow: 4px 9px 20px 10px rgba(0,0,0,.2);',
+  button: 'box-shadow: 5px 5px 10px 5px rgba(0,0,0,.3);',
+  buttonHover: 'box-shadow: 10px 20px 20px 10px rgba(0,0,0,.3);',
+  buttonActive: 'box-shadow: 2px 2px 4px 2px rgba(0,0,0,.3);'
 };
 
 export const buttons = {
@@ -60,15 +60,15 @@ export const buttons = {
     border: none;
     background: ${colors.blue};
     border-radius: 3px;
-    ${shadows.shadow2}
+    ${shadows.button}
     transition: 0.3s;
 
     :hover{
-      ${shadows.shadow3}
+      ${shadows.buttonHover}
     }
     
     :active{
-      ${shadows.shadowActive}
+      ${shadows.buttonActive}
     }
 
     svg{

@@ -25,7 +25,7 @@ const Nav = styled.nav`
   color: ${colors.darkgrey};
   background: lightgrey;
 
-  ${shadows.shadow1}
+  ${shadows.header}
   
   .menuButton {
     ${buttons.button1};

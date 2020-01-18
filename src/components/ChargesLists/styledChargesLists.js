@@ -31,6 +31,7 @@ li {
   display: flex;
   justify-content: space-between;
   margin: ${spaces.large} 0;
+  border-bottom: 1px solid lightgrey;
 
   .links a{
     margin-left: ${spaces.medium};

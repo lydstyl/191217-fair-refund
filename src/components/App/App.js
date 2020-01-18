@@ -19,7 +19,13 @@ import Footer from '../Footer/Footer';
 
 import styled from 'styled-components';
 
-import { size, spaces, fontSizes, colors } from '../../utils/style/variables';
+import {
+  size,
+  spaces,
+  fontSizes,
+  colors,
+  device
+} from '../../utils/style/variables';
 
 const StyledContainer = styled.div`
   max-width: ${size.laptop};
@@ -39,7 +45,11 @@ const StyledContainer = styled.div`
   }
 
   /* sticky-footer */
-  min-height: calc(100vh - 270px);
+  min-height: calc(100vh - 300px);
+
+  @media ${device.tablet} {
+    min-height: calc(100vh - 350px);
+  }
 `;
 
 export const App = () => {

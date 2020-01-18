@@ -2,7 +2,13 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { device, spaces, fontSizes, colors } from '../../utils/style/variables';
+import {
+  device,
+  spaces,
+  fontSizes,
+  colors,
+  shadows
+} from '../../utils/style/variables';
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -15,6 +21,8 @@ const StyledFooter = styled.footer`
   background-color: ${colors.lightgrey};
   text-align: center;
 
+  ${shadows.header};
+
   @media ${device.tablet} {
     padding: ${spaces.large};
   }
@@ -23,10 +31,8 @@ const StyledFooter = styled.footer`
 const Footer = () => {
   return (
     <StyledFooter>
-      <div>
-        Un commentaire ? envoyer le sous la vidéo Youtube de cette application
-        ou en privé sur lydstyl@gmail.com
-      </div>
+      Un commentaire ? envoyer le sous la vidéo Youtube de cette application ou
+      en privé sur lydstyl@gmail.com
     </StyledFooter>
   );
 };
