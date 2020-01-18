@@ -1,4 +1,5 @@
 import React, { useContext, createContext, useReducer, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import app from '../utils/firebase/base';
 
@@ -26,6 +27,11 @@ export const UserCtxProvider = ({ children }) => {
     let email = null;
     if (currentUser) {
       email = currentUser.email;
+    }
+
+    if (!email && !window.location.href.includes('/login')) {
+      // redirect to login
+      window.location.replace('/login');
     }
 
     userDispatch({

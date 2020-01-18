@@ -56,14 +56,10 @@ const Menu = () => {
   const handleSignOut = e => {
     app.auth().signOut();
 
-    userDispatch({
-      type: SET_CURRENT_USER,
-      payload: null
-    });
-
-    setTimeout(() => {
-      window.location.replace('/login');
-    }, 300);
+    // userDispatch({
+    //   type: SET_CURRENT_USER,
+    //   payload: null
+    // });
   };
 
   return (
