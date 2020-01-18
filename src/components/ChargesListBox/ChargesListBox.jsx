@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import { db } from '../../utils/firebase/base';
 
+import { useUser } from '../../reducers/useUser';
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
 import chargeActions from '../../context/useCharge2/chargeActions';
 
@@ -13,7 +14,11 @@ import ChargesList from '../ChargesList/ChargesList';
 import StyledChargeList from './StyledChargeList';
 
 const ChargesListBox = props => {
+  const {
+    userStore: { currentUser }
+  } = useUser();
   const { chargeStore, chargeDispatch } = useChargeCtx();
+  const { name, totals, email } = chargeStore.chargesList;
 
   useEffect(() => {
     const chargesListId = props.location.pathname.split('/')[2];
@@ -74,26 +79,20 @@ const ChargesListBox = props => {
 
   return (
     <StyledChargeList>
-      {/* <div>
+      <div>
         chargeStore: <pre>${JSON.stringify(chargeStore, null, 4)}</pre>
-      </div> */}
+      </div>
       {chargeStore.loading ? (
         <img src={Spinner} alt='spinner' />
       ) : (
         <>
-          <h1>{chargeStore.chargesList.name}</h1>
+          <h1>{name}</h1>
 
-          {chargeStore.chargesList.totals && (
-            <p>Total dépensé: {chargeStore.chargesList.totals.total}</p>
-          )}
+          {totals && <p>Total dépensé: {totals.total}</p>}
 
-          {chargeStore.chargesList.totals && (
-            <p>
-              Remboursement demandé: {chargeStore.chargesList.totals.refund}
-            </p>
-          )}
+          {totals && <p>Remboursement demandé: {totals.refund}</p>}
 
-          <ChargeForm />
+          {currentUser === email && <ChargeForm />}
 
           <ChargesList />
         </>
