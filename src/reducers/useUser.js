@@ -1,5 +1,4 @@
 import React, { useContext, createContext, useReducer, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
 
 import app from '../utils/firebase/base';
 

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoMdClose } from 'react-icons/io';
 import { FaSignOutAlt } from 'react-icons/fa';
 
 import User from '../User/User';
 
-import { useUser, SET_CURRENT_USER } from '../../reducers/useUser';
+import { useUser } from '../../reducers/useUser';
 
 import app from '../../utils/firebase/base';
 
@@ -16,7 +16,7 @@ import { size } from '../../utils/style/variables';
 
 const Menu = () => {
   const [showSignup, setShowSignup] = useState(true);
-  const { userStore, userDispatch } = useUser();
+  const { userStore } = useUser();
   const currentUser = userStore.currentUser;
 
   const width =

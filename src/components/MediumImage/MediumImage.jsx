@@ -46,7 +46,8 @@ const MediumImage = ({ location: { charge } }) => {
           setLoading(false);
         });
     }
-  }, []);
+    // eslint-disable-next-line
+  }, [charge, chargesListId]);
 
   return loading ? (
     <img src={Spinner} alt='spinner' />
