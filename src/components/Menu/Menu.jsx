@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoMdClose } from 'react-icons/io';
 import { FaSignOutAlt } from 'react-icons/fa';
@@ -61,10 +61,9 @@ const Menu = () => {
       payload: null
     });
 
-    if (width >= size.tablet.replace('px', '')) {
-      return;
-    }
-    handleCloseMenu(e);
+    setTimeout(() => {
+      window.location.replace('/login');
+    }, 300);
   };
 
   return (

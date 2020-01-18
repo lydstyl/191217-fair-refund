@@ -13,8 +13,6 @@
 
 # To do
 
-- fix une liste partagée n'est effacable et modifiable que par son créateur
-- fix quand on log out aller sur la page login
 - --> beta test 1 week
 
 - reset user password
