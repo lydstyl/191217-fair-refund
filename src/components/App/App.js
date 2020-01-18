@@ -58,7 +58,7 @@ export const App = () => {
       <UserCtxProvider>
         <Menu />
 
-        <StyledContainer>
+        <StyledContainer className='container'>
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={SignUp} />
           <LoadingCtxProvider>

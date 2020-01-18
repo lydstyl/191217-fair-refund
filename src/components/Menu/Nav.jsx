@@ -41,6 +41,7 @@ const Nav = styled.nav`
   }
   .menuList {
     position: absolute;
+    z-index: 10;
     left: 0;
     padding:  ${spaces.medium};
 

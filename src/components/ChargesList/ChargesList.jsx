@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaRegEye, FaEdit } from 'react-icons/fa';
 import { AiOutlineDelete } from 'react-icons/ai';
 
+import { useUser } from '../../reducers/useUser';
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
 import chargeActions from '../../context/useCharge2/chargeActions';
 
@@ -22,8 +23,14 @@ const getIdFromButton = event => {
 };
 
 const ChargesList = () => {
+  const {
+    userStore: { currentUser }
+  } = useUser();
   const { chargeStore, chargeDispatch } = useChargeCtx();
+
   const { chargesList } = chargeStore;
+  const { email } = chargesList;
+
   const charges = chargesList.chargesList;
 
   const handleDelete = event => {
@@ -101,6 +108,7 @@ const ChargesList = () => {
             )}
             <p className='button-box' id={charge.chargeId}>
               <Link
+                style={{ margin: `20px ${currentUser !== email && 'auto'}` }}
                 to={{
                   pathname: `/charge/${chargesList.id}/${charge.chargeId}`,
                   charge
@@ -108,12 +116,17 @@ const ChargesList = () => {
               >
                 <FaRegEye />
               </Link>
-              <button onClick={handleSelect}>
-                <FaEdit />
-              </button>
-              <button onClick={handleDelete}>
-                <AiOutlineDelete />
-              </button>
+
+              {currentUser === email && (
+                <>
+                  <button onClick={handleSelect}>
+                    <FaEdit />
+                  </button>
+                  <button onClick={handleDelete}>
+                    <AiOutlineDelete />
+                  </button>
+                </>
+              )}
             </p>
           </li>
         ))}
