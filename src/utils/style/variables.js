@@ -36,6 +36,12 @@ export const colors = {
   violet: 'blueviolet'
 };
 
+export const shadows = {
+  shadow1: 'box-shadow: 4px -10px 20px 20px rgba(0,0,0,.3);',
+  shadow2: 'box-shadow: 5px 5px 10px 3px rgba(0,0,0,.3);',
+  shadow3: 'box-shadow: 10px 10px 10px 3px rgba(0,0,0,.3);'
+};
+
 export const buttons = {
   button1: `
     // display: flex;
@@ -53,6 +59,12 @@ export const buttons = {
     border: none;
     background: ${colors.blue};
     border-radius: 3px;
+    ${shadows.shadow2}
+    transition: 0.3s;
+
+    :hover{
+      ${shadows.shadow3}
+    }
 
     svg{
       margin: auto;

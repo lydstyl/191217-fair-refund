@@ -5,6 +5,7 @@ import {
   spaces,
   fontSizes,
   colors,
+  shadows,
   buttons
 } from '../../utils/style/variables';
 
@@ -23,6 +24,8 @@ const Nav = styled.nav`
 
   color: ${colors.darkgrey};
   background: lightgrey;
+
+  ${shadows.shadow1}
   
   .menuButton {
     ${buttons.button1};
