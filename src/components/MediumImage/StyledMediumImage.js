@@ -1,16 +1,22 @@
 import styled from 'styled-components';
 
 import {
-  // device,
   spaces,
-  // fontSizes,
-  // buttons,
   colors,
-  fontSizes
+  fontSizes,
+  shadows
 } from '../../utils/style/variables';
 
 const StyledMediumImage = styled.div`
+  max-width: 760px;
+  margin: ${spaces.large} auto;
+  padding: ${spaces.medium};
   text-align: center;
+  background-color: ${colors.lightgrey};
+  color: ${colors.darkgrey};
+  border-radius: 3px;
+  ${shadows.buttonActive};
+
   * {
     margin: ${spaces.medium} auto;
   }

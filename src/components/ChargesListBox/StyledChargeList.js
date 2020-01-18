@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import {
   device,
   spaces,
-  // fontSizes,
   buttons,
-  colors
+  colors,
+  shadows
 } from '../../utils/style/variables';
 
 const StyledChargeList = styled.div`
@@ -16,21 +16,40 @@ const StyledChargeList = styled.div`
     color: ${colors.blue};
   }
   form {
+    padding: ${spaces.medium};
+    background-color: ${colors.darkgrey};
+    color: ${colors.black};
+    border-radius: 3px;
+    ${shadows.buttonActive}
     * {
       margin-top: ${spaces.medium};
+      label {
+        display: block;
+        margin: ${spaces.small} 0;
+      }
       input {
         width: 100%;
+        padding: ${spaces.medium};
+        line-height: 1.7rem;
+        font-size: 1.1rem;
         margin-top: 0;
+        background-color: ${colors.lightgrey};
+        color: ${colors.blue};
+        border: none;
+        border-radius: 3px;
       }
     }
     .field {
       img {
         display: block;
-        max-width: 200px;
         margin: ${spaces.medium} auto;
       }
     }
     [type='submit'] {
+      ${buttons.button1};
+      background-color: ${colors.violet};
+    }
+    button {
       ${buttons.button1};
       background-color: ${colors.violet};
     }
@@ -47,9 +66,9 @@ const StyledChargeList = styled.div`
       padding-bottom: 80px;
       list-style-type: none;
       text-align: center;
-      border: 1px solid;
       background-color: ${colors.lightgrey};
       border-radius: 3px;
+      ${shadows.buttonActive}
 
       * {
         margin-top: 0;
