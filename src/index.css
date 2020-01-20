@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Alata');
+@import url('https://fonts.googleapis.com/css?family=Open%20Sans');
+@import url('https://fonts.googleapis.com/css?family=Bangers');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,9 +9,15 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
+  font-family: 'Open Sans';
+}
+
+h1 {
+  font-family: 'Alata';
+  text-transform: uppercase;
 }
 
 a {

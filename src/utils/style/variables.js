@@ -61,6 +61,7 @@ export const buttons = {
     background: ${colors.blue};
     border-radius: 3px;
     ${shadows.button}
+    font-family: 'Bangers';
     transition: 0.3s;
 
     :hover{
