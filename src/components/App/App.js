@@ -57,13 +57,13 @@ export const App = () => {
   return (
     <Router>
       <UserCtxProvider>
-        <Menu />
+        <ChargeCtx2Provider>
+          <Menu />
 
-        <StyledContainer className='container'>
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/signup' component={SignUp} />
-          <LoadingCtxProvider>
-            <ChargeCtx2Provider>
+          <StyledContainer className='container'>
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/signup' component={SignUp} />
+            <LoadingCtxProvider>
               <ChargeCtxProvider>
                 <PrivateRoute exact path='/' component={ChargesLists2} />
                 <PrivateRoute
@@ -73,10 +73,10 @@ export const App = () => {
                 <Route path='/charge-list' component={ChargesListBox} />
                 <Route path='/charge' component={MediumImage} />
               </ChargeCtxProvider>
-            </ChargeCtx2Provider>
-          </LoadingCtxProvider>
-          <Route path='/reset-password' component={ResetPassword} />
-        </StyledContainer>
+            </LoadingCtxProvider>
+            <Route path='/reset-password' component={ResetPassword} />
+          </StyledContainer>
+        </ChargeCtx2Provider>
       </UserCtxProvider>
 
       <Footer />

@@ -38,6 +38,16 @@ const chargeActions = {
       return { ...state, chargesList: { ...state.chargesList, ...payload } };
     }
   },
+
+  RESET_CHARGES_LIST: {
+    type: 'RESET_CHARGES_LIST',
+
+    defaultAction: state => {
+      console.log('RESET_CHARGES_LIST');
+      return { ...state, chargesList: {} };
+    }
+  },
+
   ADD_CHARGE: {
     type: 'ADD_CHARGE',
 

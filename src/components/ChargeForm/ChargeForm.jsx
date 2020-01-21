@@ -48,7 +48,7 @@ const ChargeForm = () => {
       });
 
       const collectionRef = db.collection(
-        `/chargesLists/${chargeStore.chargesList.id}/charges`
+        `/chargesLists/${chargeStore.chargesList.chargesListId}/charges`
       );
 
       collectionRef

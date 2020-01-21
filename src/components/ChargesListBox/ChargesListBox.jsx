@@ -79,9 +79,6 @@ const ChargesListBox = props => {
 
   return (
     <StyledChargeList>
-      {/* <div>
-        chargeStore: <pre>${JSON.stringify(chargeStore, null, 4)}</pre>
-      </div> */}
       {chargeStore.loading ? (
         <img src={Spinner} alt='spinner' />
       ) : (

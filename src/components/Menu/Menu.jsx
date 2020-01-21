@@ -7,6 +7,8 @@ import { FaSignOutAlt } from 'react-icons/fa';
 import User from '../User/User';
 
 import { useUser } from '../../reducers/useUser';
+import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
+import chargeActions from '../../context/useCharge2/chargeActions';
 
 import app from '../../utils/firebase/base';
 
@@ -18,6 +20,7 @@ const Menu = () => {
   const [showSignup, setShowSignup] = useState(true);
   const { userStore } = useUser();
   const currentUser = userStore.currentUser;
+  const { chargeDispatch } = useChargeCtx();
 
   const width =
     window.innerWidth ||
@@ -55,11 +58,14 @@ const Menu = () => {
 
   const handleSignOut = e => {
     app.auth().signOut();
+  };
 
-    // userDispatch({
-    //   type: SET_CURRENT_USER,
-    //   payload: null
-    // });
+  const showChargesLists = e => {
+    chargeDispatch({
+      type: chargeActions.RESET_CHARGES_LIST.type
+    });
+
+    handleCloseMenu(e);
   };
 
   return (
@@ -88,7 +94,7 @@ const Menu = () => {
 
         {currentUser && (
           <>
-            <Link onClick={handleCloseMenu} to='/'>
+            <Link onClick={showChargesLists} to='/'>
               Listes de dépenses
             </Link>
             <div className='userBox'>
