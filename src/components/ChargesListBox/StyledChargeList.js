@@ -176,10 +176,23 @@ const StyledChargeList = styled.div`
       }
     }
   }
-  @media ${device.laptop} {
+
+  @media (min-width: 1024px) {
     form {
       grid-gap: ${spaces.large};
     }
+    ul {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 1200px) {
+    ul {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media ${device.laptop} {
     ul {
       grid-template-columns: repeat(5, 1fr);
     }
