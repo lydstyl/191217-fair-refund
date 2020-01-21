@@ -16,6 +16,7 @@ import EditChargesList from '../EditChargesList/EditChargesList';
 import ChargesListBox from '../ChargesListBox/ChargesListBox';
 import MediumImage from '../MediumImage/MediumImage';
 import Footer from '../Footer/Footer';
+import ResetPassword from '../ResetPassword/ResetPassword';
 
 import styled from 'styled-components';
 
@@ -74,6 +75,7 @@ export const App = () => {
               </ChargeCtxProvider>
             </ChargeCtx2Provider>
           </LoadingCtxProvider>
+          <Route path='/reset-password' component={ResetPassword} />
         </StyledContainer>
       </UserCtxProvider>
 

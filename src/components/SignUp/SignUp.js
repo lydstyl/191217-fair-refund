@@ -5,7 +5,6 @@ import { FaUserPlus } from 'react-icons/fa';
 import app from '../../utils/firebase/base';
 
 import StyledLogin from '../Login/styledLogin';
-// import './style.scss';
 
 const SignUp = ({ history }) => {
   const handleSignUp = useCallback(
@@ -32,12 +31,12 @@ const SignUp = ({ history }) => {
       <h1>Sign up</h1>
       <form onSubmit={handleSignUp}>
         <div className='field'>
-          <label>Email</label>
+          <label>E-mail</label>
           <input name='email' type='email' placeholder='Email' />
         </div>
 
         <div className='field'>
-          <label>Password</label>
+          <label>Mot de passe</label>
           <input
             autoComplete='true'
             name='password'

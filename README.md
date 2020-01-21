@@ -2,7 +2,7 @@
 
 # Features
 
-- Firebase auth
+- Firebase auth + reset password
 - protected route and redirect
 - Firebase firestore data fetching
 - Cloudinary image upload and fetch (see https://www.youtube.com/watch?v=hlYczGvLlDY)
@@ -15,8 +15,6 @@
 
 - --> beta test 1 week
 
-- reset user password
-- double password check
-- email check
+- video youtube
 - settings currency of the charges list
 - del image when del charge

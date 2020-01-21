@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { withRouter } from 'react-router';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Link } from 'react-router-dom';
 import { IoIosLogIn } from 'react-icons/io';
 
 import { useUser } from '../../reducers/useUser';
@@ -41,12 +41,12 @@ export const Login = ({ history }) => {
       <h1>Log in</h1>
       <form onSubmit={handleLogin}>
         <div className='field'>
-          <label>Email</label>
+          <label>E-mail</label>
           <input name='email' type='email' placeholder='Email' />
         </div>
 
         <div className='field'>
-          <label>Password</label>
+          <label>Mot de passe</label>
           <input
             autoComplete='true'
             name='password'
@@ -59,6 +59,8 @@ export const Login = ({ history }) => {
           <IoIosLogIn />
         </button>
       </form>
+
+      <Link to='/reset-password'>Mot de passe oublié ?</Link>
     </StyledLogin>
   );
 };
