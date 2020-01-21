@@ -41,7 +41,7 @@ const ChargesList = () => {
 
     const chargeId = getIdFromButton(event);
 
-    db.collection(`/chargesLists/${chargesList.id}/charges`)
+    db.collection(`/chargesLists/${chargesList.chargesListId}/charges`)
       .doc(chargeId)
       .delete()
       .then(() => {
@@ -110,7 +110,7 @@ const ChargesList = () => {
               <Link
                 style={{ margin: `20px ${currentUser !== email && 'auto'}` }}
                 to={{
-                  pathname: `/charge/${chargesList.id}/${charge.chargeId}`,
+                  pathname: `/charge/${chargesList.chargesListId}/${charge.chargeId}`,
                   charge
                 }}
               >

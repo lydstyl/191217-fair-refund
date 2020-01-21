@@ -90,7 +90,9 @@ const ChargeForm = () => {
 
       data.chargeId = chargeStore.charge.chargeId;
 
-      db.collection(`/chargesLists/${chargeStore.chargesList.id}/charges`)
+      db.collection(
+        `/chargesLists/${chargeStore.chargesList.chargesListId}/charges`
+      )
         .doc(chargeStore.charge.chargeId)
         .set(data)
         .then(() => {
