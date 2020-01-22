@@ -91,7 +91,9 @@ const MediumImage = ({ location: { charge } }) => {
             <div>
               Remboursement demandé =
               <span className='strong'>
-                {total} x {percent} / 100 = {refund}
+                {total} x {percent}
+                <span className='normal'> /100 = </span>
+                {refund}
               </span>
             </div>
           )}

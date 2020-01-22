@@ -159,11 +159,14 @@ const ChargeForm = () => {
       // we have selected a charge for EDIT
       setSubmitButtons(
         <>
-          <button onClick={(event, mode) => handleSubmit(event, 'Éditer')}>
+          <button
+            className='edit'
+            onClick={(event, mode) => handleSubmit(event, 'Éditer')}
+          >
             <FaEdit />
           </button>
 
-          <button onClick={handleCancel}>
+          <button className='cancel' onClick={handleCancel}>
             <TiCancel />
           </button>
         </>

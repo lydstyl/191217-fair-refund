@@ -5,7 +5,8 @@ import {
   spaces,
   buttons,
   colors,
-  shadows
+  shadows,
+  fontSizes
 } from '../../utils/style/variables';
 
 const StyledChargeList = styled.div`
@@ -47,6 +48,7 @@ const StyledChargeList = styled.div`
     }
     [type='submit'] {
       ${buttons.button1};
+
       background-color: ${colors.violet};
     }
     button {
@@ -107,45 +109,26 @@ const StyledChargeList = styled.div`
 
   @media ${device.tablet} {
     form {
-      .field {
-        display: flex;
-        label {
-          width: 230px;
-          margin: 0;
-        }
-        input {
-          width: calc(100% - 230px);
-        }
-      }
-      [type='submit'] {
-        width: 100px;
-      }
-    }
-
-    ul {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media ${device.tablet} {
-    form {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       grid-gap: ${spaces.small};
-
       .field {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         max-width: 100%;
-        min-height: 40px;
-        line-height: 40px;
+        line-height: ${fontSizes.large};
+
         label {
           width: auto;
+          margin: 0;
         }
         input {
           width: 100%;
           margin-left: 0 !important;
-          margin-left: ${spaces.small};
         }
       }
+
       .field:nth-child(1) {
         grid-column: 1 / 4;
         grid-row: 1;
@@ -170,10 +153,22 @@ const StyledChargeList = styled.div`
       [type='submit'] {
         grid-column: 6;
         grid-row: 2;
+
         display: block;
-        margin: auto;
-        margin-top: 60px;
+        width: 100px;
+        margin-top: auto;
+        margin-bottom: 0;
       }
+
+      button.edit,
+      button.cancel {
+        max-width: 72px;
+        margin: auto auto 0;
+      }
+    }
+
+    ul {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 

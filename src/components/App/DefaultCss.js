@@ -26,11 +26,14 @@ const DefaultCss = styled.div`
     text-align: center;
     border: none;
     border-bottom: 1px solid ${colors.black};
+    text-align: center;
+    color: ${colors.black};
     background-color: ${colors.white};
   }
 
   img {
     border-radius: 3px;
+    background-color: ${colors.white};
   }
 
   [alt='spinner'] {

@@ -72,7 +72,7 @@ const Nav = styled.nav`
 
       div{
         font-size: ${fontSizes.medium};
-        color: ${colors.darkgrey}
+        color: ${colors.blue}
       }
       button{
         ${buttons.button1}

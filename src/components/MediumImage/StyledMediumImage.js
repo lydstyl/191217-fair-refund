@@ -13,7 +13,7 @@ const StyledMediumImage = styled.div`
   padding: ${spaces.medium};
   text-align: center;
   background-color: ${colors.lightgrey};
-  color: ${colors.darkgrey};
+  color: ${colors.blue};
   border-radius: 3px;
   ${shadows.buttonActive};
 
@@ -34,8 +34,11 @@ const StyledMediumImage = styled.div`
   span {
     font-size: ${fontSizes.large};
   }
+  .normal {
+    color: ${colors.blue};
+  }
   .strong {
-    color: ${colors.violet};
+    color: ${colors.darkgrey};
   }
 `;
 
