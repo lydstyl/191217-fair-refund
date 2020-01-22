@@ -23,7 +23,7 @@ const Nav = styled.nav`
   font-size: ${fontSizes.large};
 
   color: ${colors.darkgrey};
-  background: lightgrey;
+  background: ${colors.lightgrey};
 
   ${shadows.header}
   

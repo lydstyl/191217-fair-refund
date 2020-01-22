@@ -17,7 +17,7 @@ const StyledChargeList = styled.div`
   }
   form {
     padding: ${spaces.medium};
-    background-color: ${colors.darkgrey};
+    background-color: ${colors.secondaryLight};
     color: ${colors.black};
     border-radius: 3px;
     ${shadows.buttonActive}
@@ -80,7 +80,7 @@ const StyledChargeList = styled.div`
       }
       img {
         width: 200px;
-        border: 3px solid white;
+        border: 3px solid ${colors.white};
       }
       .date {
         color: ${colors.darkgrey};

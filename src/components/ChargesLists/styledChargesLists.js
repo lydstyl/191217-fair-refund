@@ -11,7 +11,6 @@ import {
 const StyledChargeLists = styled.div`
   h1 {
     margin: ${spaces.large} 0;
-    /* text-align: center; */
   }
 
   .field {
@@ -31,7 +30,7 @@ li {
   display: flex;
   justify-content: space-between;
   margin: ${spaces.large} 0;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid ${colors.blue};
 
   .links a{
     margin-left: ${spaces.medium};

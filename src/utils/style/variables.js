@@ -25,15 +25,15 @@ export const fontSizes = {
 };
 
 export const colors = {
-  white: 'white',
-  black: 'black',
+  white: '#FAFAFA', // very light grey replace white
+  black: '#212121', // very dark grey replace black
 
-  lightgrey: 'lightgrey',
-  darkgrey: 'darkgrey',
+  blue: '#2196F3', // primary
+  lightgrey: '#BBDEFB', // primary light
+  darkgrey: '#0D47A1', // primary dark
 
-  blue: 'royalblue',
-
-  violet: 'blueviolet'
+  violet: '#E040FB', // secondary
+  secondaryLight: '#EA80FC' // secondary light
 };
 
 export const shadows = {
@@ -70,6 +70,10 @@ export const buttons = {
     
     :active{
       ${shadows.buttonActive}
+    }
+
+    :visited{
+      color: ${colors.white};
     }
 
     svg{

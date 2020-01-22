@@ -17,7 +17,6 @@ const StyledFooter = styled.footer`
   margin-top: ${spaces.large};
   padding: ${spaces.medium};
   font-size: ${fontSizes.small};
-  color: ${colors.darkgrey};
   background-color: ${colors.lightgrey};
   text-align: center;
 

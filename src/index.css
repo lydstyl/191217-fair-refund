@@ -9,32 +9,6 @@
 }
 
 body {
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif; */
   font-family: 'Open Sans';
-}
-
-h1 {
-  font-family: 'Alata';
-  text-transform: uppercase;
-}
-
-a {
-  text-decoration: none;
-}
-
-input {
-  text-align: center;
-  border: none;
-  border-bottom: 1px solid;
-}
-
-[alt='spinner'] {
-  display: block;
-  margin: 100px auto auto;
-}
-
-img {
-  border-radius: 3px;
+  background-color: #fafafa;
 }

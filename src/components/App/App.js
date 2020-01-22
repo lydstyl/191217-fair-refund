@@ -18,69 +18,41 @@ import MediumImage from '../MediumImage/MediumImage';
 import Footer from '../Footer/Footer';
 import ResetPassword from '../ResetPassword/ResetPassword';
 
-import styled from 'styled-components';
-
-import {
-  size,
-  spaces,
-  fontSizes,
-  colors,
-  device
-} from '../../utils/style/variables';
-
-const StyledContainer = styled.div`
-  max-width: ${size.laptop};
-  margin: auto;
-  padding: 0 ${spaces.medium};
-
-  font-size: ${fontSizes.medium};
-  color: ${colors.darkgrey};
-
-  h1 {
-    margin: ${spaces.large} 0;
-    color: ${colors.violet};
-  }
-
-  svg {
-    font-size: ${fontSizes.large};
-  }
-
-  /* sticky-footer */
-  min-height: calc(100vh - 300px);
-
-  @media ${device.tablet} {
-    min-height: calc(100vh - 350px);
-  }
-`;
+import DefaultCss from './DefaultCss';
+import StyledContainer from './StyledContainer';
 
 export const App = () => {
   return (
-    <Router>
-      <UserCtxProvider>
-        <ChargeCtx2Provider>
-          <Menu />
+    <DefaultCss>
+      <Router>
+        <UserCtxProvider>
+          <ChargeCtx2Provider>
+            <Menu />
 
-          <StyledContainer className='container'>
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/signup' component={SignUp} />
-            <LoadingCtxProvider>
-              <ChargeCtxProvider>
-                <PrivateRoute exact path='/' component={ChargesLists2} />
-                <PrivateRoute
-                  path='/edit-charge-list'
-                  component={EditChargesList}
-                />
-                <Route path='/charge-list' component={ChargesListBox} />
-                <Route path='/charge' component={MediumImage} />
-              </ChargeCtxProvider>
-            </LoadingCtxProvider>
-            <Route path='/reset-password' component={ResetPassword} />
-          </StyledContainer>
-        </ChargeCtx2Provider>
-      </UserCtxProvider>
+            <StyledContainer className='container'>
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/signup' component={SignUp} />
+
+              <LoadingCtxProvider>
+                <ChargeCtxProvider>
+                  <PrivateRoute exact path='/' component={ChargesLists2} />
+                  <PrivateRoute
+                    path='/edit-charge-list'
+                    component={EditChargesList}
+                  />
+                  <Route path='/charge-list' component={ChargesListBox} />
+                  <Route path='/charge' component={MediumImage} />
+                </ChargeCtxProvider>
+              </LoadingCtxProvider>
+
+              <Route path='/reset-password' component={ResetPassword} />
+            </StyledContainer>
+          </ChargeCtx2Provider>
+        </UserCtxProvider>
+      </Router>
 
       <Footer />
-    </Router>
+    </DefaultCss>
   );
 };
 
