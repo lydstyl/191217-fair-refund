@@ -6,7 +6,7 @@ import { useUser } from '../../reducers/useUser';
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
 import chargeActions from '../../context/useCharge2/chargeActions';
 
-import Spinner from '../../images/spinner.gif';
+import Spinner from '../Spinner/Spinner';
 
 import AddChargesList from '../AddChargesList/AddChargesList';
 
@@ -56,7 +56,7 @@ const ChargesLists = () => {
   return (
     <StyledChargeLists>
       {chargeStore.loading ? (
-        <img src={Spinner} alt='spinner' />
+        <Spinner />
       ) : (
         <>
           <h1>Listes de dépenses</h1>

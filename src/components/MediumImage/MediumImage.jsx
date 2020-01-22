@@ -3,7 +3,7 @@ import { FaBackward } from 'react-icons/fa';
 
 import { db } from '../../utils/firebase/base';
 
-import Spinner from '../../images/spinner.gif';
+import Spinner from '../Spinner/Spinner';
 
 import StyledMediumImage from './StyledMediumImage';
 
@@ -50,7 +50,7 @@ const MediumImage = ({ location: { charge } }) => {
   }, [charge, chargesListId]);
 
   return loading ? (
-    <img src={Spinner} alt='spinner' />
+    <Spinner />
   ) : (
     <StyledMediumImage>
       {chargeId && (

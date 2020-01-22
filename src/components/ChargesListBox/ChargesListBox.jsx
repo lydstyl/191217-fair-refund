@@ -6,7 +6,7 @@ import { useUser } from '../../reducers/useUser';
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
 import chargeActions from '../../context/useCharge2/chargeActions';
 
-import Spinner from '../../images/spinner.gif';
+import Spinner from '../Spinner/Spinner';
 
 import ChargeForm from '../ChargeForm/ChargeForm';
 import ChargesList from '../ChargesList/ChargesList';
@@ -80,7 +80,7 @@ const ChargesListBox = props => {
   return (
     <StyledChargeList>
       {chargeStore.loading ? (
-        <img src={Spinner} alt='spinner' />
+        <Spinner />
       ) : (
         <>
           <h1>{name}</h1>

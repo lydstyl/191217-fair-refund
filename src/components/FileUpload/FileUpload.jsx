@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-// import { FaImage } from 'react-icons/fa';
 
-import Spinner from '../../images/spinner.gif';
+import Spinner from '../Spinner/Spinner';
 
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
 import chargeActions from '../../context/useCharge2/chargeActions';
@@ -54,14 +53,11 @@ const FileUpload = () => {
 
   return (
     <div className='field'>
-      <label>
-        {/* <FaImage />  */}
-        Preuve / image{' '}
-      </label>
+      <label>Preuve / image </label>
       <input type='file' name='file' accept='image/*' onChange={uploadImage} />
 
       {loading ? (
-        <img src={Spinner} alt='spinner' />
+        <Spinner />
       ) : cloudinaryFiles.thumb !== '' ? (
         <img
           src={cloudinaryFiles.thumb}
