@@ -104,7 +104,7 @@ const Menu = () => {
               {txt.chargesLists[lang]}
             </Link>
             <Link onClick={handleCloseMenu} to='/settings'>
-              Paramètres
+              {txt.settings[lang]}
             </Link>
             <div className='userBox'>
               <User />

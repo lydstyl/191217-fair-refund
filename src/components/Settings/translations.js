@@ -20,17 +20,21 @@ const txt = {
     en: 'Change color',
     fr: 'Changer la couleur'
   },
+  choose: {
+    en: 'Please choose a color',
+    fr: 'Merci de choisir une couleur'
+  },
   blue: {
     en: 'blue',
     fr: 'bleu'
   },
-  yellow: {
-    en: 'yellow',
-    fr: 'jaune'
+  green: {
+    en: 'green',
+    fr: 'vert'
   },
-  red: {
-    en: 'red',
-    fr: 'rouge'
+  brown: {
+    en: 'brown',
+    fr: 'marron'
   }
 };
 

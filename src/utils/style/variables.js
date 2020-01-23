@@ -1,3 +1,49 @@
+const siteColor = localStorage.getItem('color');
+
+const siteColors = {
+  blue: {
+    white: '#FAFAFA',
+    black: '#212121',
+    primary: '#2196F3',
+    primaryLight: '#BBDEFB',
+    primaryDark: '#0D47A1',
+    secondary: '#E040FB',
+    secondaryLight: '#EA80FC'
+  },
+  green: {
+    white: '#FAFAFA',
+    black: '#212121',
+    primary: '#8BC34A',
+    primaryLight: '#DCEDC8',
+    primaryDark: '#33691E',
+    secondary: '#E040FB',
+    secondaryLight: '#EA80FC'
+  },
+  brown: {
+    white: '#FAFAFA',
+    black: '#212121',
+    primary: '#795548',
+    primaryLight: '#D7CCC8',
+    primaryDark: '#3E2723',
+    secondary: '#E040FB',
+    secondaryLight: '#EA80FC'
+  }
+};
+
+export const colors = {
+  white: siteColors[siteColor].white || siteColors['blue'].white,
+  black: siteColors[siteColor].black || siteColors['blue'].black,
+
+  blue: siteColors[siteColor].primary || siteColors['blue'].primary,
+  lightgrey:
+    siteColors[siteColor].primaryLight || siteColors['blue'].primaryLight,
+  darkgrey: siteColors[siteColor].primaryDark || siteColors['blue'].primaryDark,
+
+  violet: siteColors[siteColor].secondary || siteColors['blue'].secondary,
+  secondaryLight:
+    siteColors[siteColor].secondaryLight || siteColors['blue'].secondaryLight
+};
+
 export const size = {
   mobileS: '320px',
   tablet: '768px',
@@ -22,18 +68,6 @@ export const fontSizes = {
   small: '0.7rem',
   medium: '1rem',
   large: '2rem'
-};
-
-export const colors = {
-  white: '#FAFAFA', // very light grey replace white
-  black: '#212121', // very dark grey replace black
-
-  blue: '#2196F3', // primary
-  lightgrey: '#BBDEFB', // primary light
-  darkgrey: '#0D47A1', // primary dark
-
-  violet: '#E040FB', // secondary
-  secondaryLight: '#EA80FC' // secondary light
 };
 
 export const shadows = {

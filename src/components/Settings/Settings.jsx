@@ -3,26 +3,36 @@ import React, { useState } from 'react';
 import txt from './translations';
 
 import { useSettingsCtx } from '../../context/useSettings/useSettingsCtx';
-
 import settingsActions from '../../context/useSettings/settingsActions';
+
+import StyledSettings from './StyledSettings';
 
 const Settings = () => {
   const { settingsStore, settingsDispatch } = useSettingsCtx();
   const { lang, selectedColor } = settingsStore;
 
   const handleLangChange = e => {
+    // loading true
+
+    // set the language db users --> id, email, settings {lang: 'en', color:'blue'}
+    // when login check if we have a user settings, if yes SET_LANGUAGE & SET_COLOR just after SET_CURRENT_USER
+
     settingsDispatch({
       type: settingsActions.SET_LANGUAGE.type,
       payload: e.target.value
     });
+
+    // loading false
   };
 
   const handleColorChange = e => {
-    console.log(e.target.value);
+    localStorage.setItem('color', e.target.value);
+    // document.location.reload(true);
+    document.location.reload();
   };
 
   return (
-    <>
+    <StyledSettings>
       <h1>{txt.settings[lang]}</h1>
 
       <form>
@@ -37,13 +47,14 @@ const Settings = () => {
         <div className='field'>
           <label>{txt.changeColor[lang]}</label>
           <select onChange={handleColorChange} name='langage'>
-            <option value='blue'>{txt.blue[lang]}</option>
-            <option value='yellow'>{txt.yellow[lang]}</option>
-            <option value='red'>{txt.red[lang]}</option>
+            <option value=''>--{txt.choose[lang]}--</option>
+            <option value={txt.blue['en']}>{txt.blue[lang]}</option>
+            <option value={txt.green['en']}>{txt.green[lang]}</option>
+            <option value={txt.brown['en']}>{txt.brown[lang]}</option>
           </select>
         </div>
       </form>
-    </>
+    </StyledSettings>
   );
 };
 
