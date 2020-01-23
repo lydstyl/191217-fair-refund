@@ -23,8 +23,8 @@ import Nav from './Nav';
 import { size } from '../../utils/style/variables';
 
 const Menu = () => {
-  const { settingsStore, settingsDispatch } = useSettingsCtx();
-  const { lang, selectedColor } = settingsStore;
+  const { settingsStore } = useSettingsCtx();
+  const { lang } = settingsStore;
   const [showSignup, setShowSignup] = useState(true);
   const { userStore } = useUser();
   const currentUser = userStore.currentUser;

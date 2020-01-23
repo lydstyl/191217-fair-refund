@@ -9,4 +9,6 @@
 - flux architecture with useReducer and useContext combined
 - responsive app
 - sass and styled components
+- language selector
+- site color selector
 - sticky footer
