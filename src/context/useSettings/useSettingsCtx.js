@@ -5,7 +5,7 @@ import reducer from './reducer';
 const initialState = {
   // loading: false,
 
-  lang: 'en',
+  lang: localStorage.getItem('lang') || 'en',
   // color: 'blue',
 
   languages: { en: 'en', fr: 'fr' }

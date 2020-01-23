@@ -21,8 +21,8 @@ const txt = {
     fr: 'Changer la couleur'
   },
   choose: {
-    en: 'Please choose a color',
-    fr: 'Merci de choisir une couleur'
+    en: 'Choose a color',
+    fr: 'Choisissez une couleur'
   },
   blue: {
     en: 'blue',

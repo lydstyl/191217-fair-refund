@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import txt from './translations';
 
@@ -9,7 +9,7 @@ import StyledSettings from './StyledSettings';
 
 const Settings = () => {
   const { settingsStore, settingsDispatch } = useSettingsCtx();
-  const { lang, selectedColor } = settingsStore;
+  const { lang } = settingsStore;
 
   const handleLangChange = e => {
     // loading true
@@ -21,6 +21,8 @@ const Settings = () => {
       type: settingsActions.SET_LANGUAGE.type,
       payload: e.target.value
     });
+
+    localStorage.setItem('lang', e.target.value);
 
     // loading false
   };
