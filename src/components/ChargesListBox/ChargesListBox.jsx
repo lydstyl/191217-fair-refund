@@ -85,9 +85,16 @@ const ChargesListBox = props => {
         <>
           <h1>{name}</h1>
 
-          {totals && <p>Total dépensé: {totals.total}</p>}
+          {totals && (
+            <p>Total dépensé: {chargeActions.setDecimal(totals.total, 2)}</p>
+          )}
 
-          {totals && <p>Remboursement demandé: {totals.refund}</p>}
+          {totals && (
+            <p>
+              Remboursement demandé:{' '}
+              {chargeActions.setDecimal(totals.refund, 2)}
+            </p>
+          )}
 
           {currentUser === email && <ChargeForm />}
 

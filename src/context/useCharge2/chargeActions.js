@@ -91,6 +91,14 @@ const chargeActions = {
           totals: {
             total: state.chargesList.totals.total + payload.totalToAdd,
             refund: state.chargesList.totals.refund + payload.refundToAdd
+            // total: chargeActions.setDecimal(
+            //   state.chargesList.totals.total + payload.totalToAdd,
+            //   2
+            // ),
+            // refund: chargeActions.setDecimal(
+            //   state.chargesList.totals.refund + payload.refundToAdd,
+            //   2
+            // )
           }
         }
       };
@@ -154,6 +162,14 @@ const chargeActions = {
     }
 
     return 0; // just in case
+  },
+
+  setDecimal: (num, decimalNb) => {
+    let coef = 1;
+    for (let i = 0; i < decimalNb; i++) {
+      coef *= 10;
+    }
+    return Math.round(num * coef) / coef;
   },
 
   twoDecimals: num => Math.round(num * 100) / 100,

@@ -30,8 +30,11 @@ export const getChargeFromHtml = images => {
     charge[input.name] = value;
   });
 
-  charge.refund = chargeActions.twoDecimals(
-    (charge.total * charge.percent) / 100
+  charge.total = chargeActions.setDecimal(charge.total, 2);
+  charge.percent = chargeActions.setDecimal(charge.percent, 3);
+  charge.refund = chargeActions.setDecimal(
+    (charge.total * charge.percent) / 100,
+    2
   );
 
   charge.images = { ...images };
