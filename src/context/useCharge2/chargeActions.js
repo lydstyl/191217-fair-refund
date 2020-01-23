@@ -17,6 +17,8 @@ const chargeActions = {
       return db
         .collection('chargesLists')
         .where('email', '==', email)
+        .orderBy('name', 'desc')
+
         .get();
     }
   },
