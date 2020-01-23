@@ -12,7 +12,7 @@ import {
 const Nav = styled.nav`
   display: flex;
 
-  min-height: 80px;
+  min-height: 100px;
   margin-bottom: ${spaces.medium};
   padding: ${spaces.medium};
 
@@ -109,6 +109,15 @@ const Nav = styled.nav`
         }
       }
     }
+
+    .menuList{
+      a, select, .userBox{
+
+      margin-right: ${spaces.small};
+      margin-left: ${spaces.small};
+      }
+    }
+
   }
 `;
 

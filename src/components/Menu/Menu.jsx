@@ -16,6 +16,8 @@ import chargeActions from '../../context/useCharge2/chargeActions';
 
 import app from '../../utils/firebase/base';
 
+import LanguageSelector from '../Settings/LanguageSelector';
+
 import Nav from './Nav';
 
 import { size } from '../../utils/style/variables';
@@ -106,6 +108,9 @@ const Menu = () => {
             <Link onClick={handleCloseMenu} to='/settings'>
               {txt.settings[lang]}
             </Link>
+
+            <LanguageSelector />
+
             <div className='userBox'>
               <User />
               <button onClick={handleSignOut}>
