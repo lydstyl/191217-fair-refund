@@ -4,10 +4,14 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoMdClose } from 'react-icons/io';
 import { FaSignOutAlt } from 'react-icons/fa';
 
+import txt from './translations';
+
 import User from '../User/User';
 
+import { useSettingsCtx } from '../../context/useSettings/useSettingsCtx';
 import { useUser } from '../../reducers/useUser';
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
+
 import chargeActions from '../../context/useCharge2/chargeActions';
 
 import app from '../../utils/firebase/base';
@@ -17,6 +21,8 @@ import Nav from './Nav';
 import { size } from '../../utils/style/variables';
 
 const Menu = () => {
+  const { settingsStore, settingsDispatch } = useSettingsCtx();
+  const { lang, selectedColor } = settingsStore;
   const [showSignup, setShowSignup] = useState(true);
   const { userStore } = useUser();
   const currentUser = userStore.currentUser;
@@ -95,7 +101,10 @@ const Menu = () => {
         {currentUser && (
           <>
             <Link onClick={showChargesLists} to='/'>
-              Listes de dépenses
+              {txt.chargesLists[lang]}
+            </Link>
+            <Link onClick={handleCloseMenu} to='/settings'>
+              Paramètres
             </Link>
             <div className='userBox'>
               <User />
