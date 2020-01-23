@@ -31,17 +31,29 @@ const siteColors = {
 };
 
 export const colors = {
-  white: siteColors[siteColor].white || siteColors['blue'].white,
-  black: siteColors[siteColor].black || siteColors['blue'].black,
+  white: siteColors[siteColor]
+    ? siteColors[siteColor].white
+    : siteColors['blue'].white,
+  black: siteColors[siteColor]
+    ? siteColors[siteColor].black
+    : siteColors['blue'].black,
 
-  blue: siteColors[siteColor].primary || siteColors['blue'].primary,
-  lightgrey:
-    siteColors[siteColor].primaryLight || siteColors['blue'].primaryLight,
-  darkgrey: siteColors[siteColor].primaryDark || siteColors['blue'].primaryDark,
+  blue: siteColors[siteColor]
+    ? siteColors[siteColor].primary
+    : siteColors['blue'].primary,
+  lightgrey: siteColors[siteColor]
+    ? siteColors[siteColor].primaryLight
+    : siteColors['blue'].primaryLight,
+  darkgrey: siteColors[siteColor]
+    ? siteColors[siteColor].primaryDark
+    : siteColors['blue'].primaryDark,
 
-  violet: siteColors[siteColor].secondary || siteColors['blue'].secondary,
-  secondaryLight:
-    siteColors[siteColor].secondaryLight || siteColors['blue'].secondaryLight
+  violet: siteColors[siteColor]
+    ? siteColors[siteColor].secondary
+    : siteColors['blue'].secondary,
+  secondaryLight: siteColors[siteColor]
+    ? siteColors[siteColor].secondaryLight
+    : siteColors['blue'].secondaryLight
 };
 
 export const size = {
