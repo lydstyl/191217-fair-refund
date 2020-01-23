@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 
+import { useSettingsCtx } from '../../context/useSettings/useSettingsCtx';
+import txt from './translations';
+
 import { db } from '../../utils/firebase/base';
 
 import { useUser } from '../../reducers/useUser';
@@ -14,6 +17,8 @@ import ChargesList from '../ChargesList/ChargesList';
 import StyledChargeList from './StyledChargeList';
 
 const ChargesListBox = props => {
+  const { settingsStore } = useSettingsCtx();
+  const { lang } = settingsStore;
   const {
     userStore: { currentUser }
   } = useUser();
@@ -86,12 +91,15 @@ const ChargesListBox = props => {
           <h1>{name}</h1>
 
           {totals && (
-            <p>Total dépensé: {chargeActions.setDecimal(totals.total, 2)}</p>
+            <p>
+              {txt.totalSpent[lang]}:{' '}
+              {chargeActions.setDecimal(totals.total, 2)}
+            </p>
           )}
 
           {totals && (
             <p>
-              Remboursement demandé:{' '}
+              {txt.askedRefund[lang]}:{' '}
               {chargeActions.setDecimal(totals.refund, 2)}
             </p>
           )}

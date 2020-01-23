@@ -41,6 +41,7 @@ const Settings = () => {
         <div className='field'>
           <label>{txt.language[lang]}</label>
           <select onChange={handleLangChange} name='langage'>
+            <option value=''>--{txt.selectLanguage[lang]}--</option>
             <option value='en'>{txt.english[lang]}</option>
             <option value='fr'>{txt.french[lang]}</option>
           </select>

@@ -2,6 +2,10 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { useSettingsCtx } from '../../context/useSettings/useSettingsCtx';
+
+import txt from './translations';
+
 import {
   device,
   spaces,
@@ -28,12 +32,10 @@ const StyledFooter = styled.footer`
 `;
 
 const Footer = () => {
-  return (
-    <StyledFooter>
-      Un commentaire ? envoyer le sous la vidéo Youtube de cette application ou
-      en privé sur lydstyl@gmail.com
-    </StyledFooter>
-  );
+  const { settingsStore } = useSettingsCtx();
+  const { lang } = settingsStore;
+
+  return <StyledFooter>{txt.aComment[lang]}</StyledFooter>;
 };
 
 export default Footer;

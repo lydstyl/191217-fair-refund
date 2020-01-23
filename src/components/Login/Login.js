@@ -42,11 +42,11 @@ export const Login = ({ history }) => {
       <form onSubmit={handleLogin}>
         <div className='field'>
           <label>E-mail</label>
-          <input name='email' type='email' placeholder='Email' />
+          <input name='email' type='email' placeholder='E-mail' />
         </div>
 
         <div className='field'>
-          <label>Mot de passe</label>
+          <label>Password</label>
           <input
             autoComplete='true'
             name='password'
@@ -60,7 +60,7 @@ export const Login = ({ history }) => {
         </button>
       </form>
 
-      <Link to='/reset-password'>Mot de passe oublié ?</Link>
+      <Link to='/reset-password'>Forgot password ?</Link>
     </StyledLogin>
   );
 };

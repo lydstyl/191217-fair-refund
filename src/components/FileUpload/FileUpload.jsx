@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 
 import Spinner from '../Spinner/Spinner';
 
+import { useSettingsCtx } from '../../context/useSettings/useSettingsCtx';
+import txt from './translations';
+
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
 import chargeActions from '../../context/useCharge2/chargeActions';
 
 const FileUpload = () => {
+  const { settingsStore } = useSettingsCtx();
+  const { lang } = settingsStore;
   const [cloudinaryFiles, setCloudinaryFiles] = useState({
     thumb: '',
     medium: '',
@@ -53,7 +58,7 @@ const FileUpload = () => {
 
   return (
     <div className='field'>
-      <label>Preuve / image </label>
+      <label>{txt.evidence[lang]}</label>
       <input type='file' name='file' accept='image/*' onChange={uploadImage} />
 
       {loading ? (

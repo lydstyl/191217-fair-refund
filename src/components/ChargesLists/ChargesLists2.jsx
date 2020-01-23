@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaRegEye, FaEdit } from 'react-icons/fa';
 
+import { useSettingsCtx } from '../../context/useSettings/useSettingsCtx';
+import txt from './translations';
+
 import { useUser } from '../../reducers/useUser';
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
 import chargeActions from '../../context/useCharge2/chargeActions';
@@ -13,6 +16,8 @@ import AddChargesList from '../AddChargesList/AddChargesList';
 import StyledChargeLists from './styledChargesLists';
 
 const ChargesLists = () => {
+  const { settingsStore } = useSettingsCtx();
+  const { lang } = settingsStore;
   const { userStore } = useUser();
   const email = userStore.currentUser;
 
@@ -59,7 +64,7 @@ const ChargesLists = () => {
         <Spinner />
       ) : (
         <>
-          <h1>Listes de dépenses</h1>
+          <h1>{txt.chargesLists[lang]}</h1>
 
           <AddChargesList />
 

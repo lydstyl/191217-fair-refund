@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { FaEdit } from 'react-icons/fa';
 import { TiCancel } from 'react-icons/ti';
 
+import { useSettingsCtx } from '../../context/useSettings/useSettingsCtx';
+import txt from './translations';
+
 import { clearedForm, getChargeFromHtml } from './utils';
 
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
@@ -11,6 +14,8 @@ import Fields from './Fields';
 import { db } from '../../utils/firebase/base';
 
 const ChargeForm = () => {
+  const { settingsStore } = useSettingsCtx();
+  const { lang } = settingsStore;
   const { chargeStore, chargeDispatch } = useChargeCtx();
 
   const {
@@ -23,7 +28,7 @@ const ChargeForm = () => {
   );
 
   const [submitButtons, setSubmitButtons] = useState(
-    <input type='submit' value='Ajouter' />
+    <input type='submit' value={txt.add[lang]} />
   );
 
   const clearForm = () => {

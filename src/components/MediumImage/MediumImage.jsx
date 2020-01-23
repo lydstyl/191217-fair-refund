@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FaBackward } from 'react-icons/fa';
 
+import { useSettingsCtx } from '../../context/useSettings/useSettingsCtx';
+import txt from './translations';
+
 import { db } from '../../utils/firebase/base';
 
 import Spinner from '../Spinner/Spinner';
@@ -8,6 +11,9 @@ import Spinner from '../Spinner/Spinner';
 import StyledMediumImage from './StyledMediumImage';
 
 const MediumImage = ({ location: { charge } }) => {
+  const {
+    settingsStore: { lang }
+  } = useSettingsCtx();
   const tmp = window.location.href.split('/');
   const [detailCharge, setDetailCharge] = useState({
     chargesListId: tmp[4],
@@ -56,7 +62,7 @@ const MediumImage = ({ location: { charge } }) => {
       {chargeId && (
         <>
           <h1>
-            <span>Détail de la dépense </span>
+            <span>{txt.chargeDetail[lang]} </span>
 
             <span className='strong'>{name}</span>
           </h1>
@@ -64,17 +70,17 @@ const MediumImage = ({ location: { charge } }) => {
             <a href={`/charge-list/${chargesListId}`}>
               <FaBackward />
 
-              <span> précédent</span>
+              <span> {txt.back[lang]} </span>
             </a>
           </div>
 
           {date && total && (
             <div>
-              <span>Dépense du </span>
+              <span>{txt.chargeFrom[lang]} </span>
 
               <span className='strong'>{date}</span>
 
-              <span> de </span>
+              <span> {txt.of[lang]} </span>
 
               <span className='strong'>{total}</span>
             </div>
@@ -82,14 +88,14 @@ const MediumImage = ({ location: { charge } }) => {
 
           {percent && (
             <div>
-              Pourcentage de remboursement demandé{' '}
+              {txt.refundPercentAsked[lang]}{' '}
               <span className='strong'>{percent}</span>
             </div>
           )}
 
           {total && (
             <div>
-              Remboursement demandé =
+              {txt.askedRefund[lang]} =
               <span className='strong'>
                 {total} x {percent}
                 <span className='normal'> /100 = </span>
@@ -106,7 +112,7 @@ const MediumImage = ({ location: { charge } }) => {
 
           {images && images.original && (
             <a href={images.original} target='_blank' rel='noopener noreferrer'>
-              <span>Voir le fichier original</span>
+              <span>{txt.seeOriginal[lang]}</span>
             </a>
           )}
         </>

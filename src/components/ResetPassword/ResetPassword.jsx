@@ -15,26 +15,25 @@ const ResetPassword = () => {
         email
         // {        url: 'https://fair-refund.netlify.com/login' }
       )
-      .then(res => {
-        console.log(res);
-        alert('E-mail de réinitialisation de mot de passe envoyé');
+      .then(() => {
+        alert('E-mail sent');
       })
       .catch(error => {
-        alert('Erreur visible dans la console de votre navigateur');
+        alert('Error visible in your browser console');
         console.log(error);
       });
   };
 
   return (
     <StyledResetPassword>
-      <h1>Mot de passe oublié</h1>
+      <h1>Forgot password</h1>
       <form onSubmit={handleSubmit}>
         <div className='field'>
-          <label>Votre e-mail</label>
+          <label>Your e-mail</label>
           <input type='email' />
         </div>
         <div className='field'>
-          <input type='submit' value='Réinitialiser mon mot de passe' />
+          <input type='submit' value='Reset my password' />
         </div>
       </form>
     </StyledResetPassword>

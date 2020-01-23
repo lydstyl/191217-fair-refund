@@ -1,12 +1,17 @@
 import React from 'react';
+import { useSettingsCtx } from '../../context/useSettings/useSettingsCtx';
+import txt from './translations';
 
 import FileUpload from '../FileUpload/FileUpload';
 
 const Fields = ({ handleFormChange, formCharge }) => {
+  const { settingsStore } = useSettingsCtx();
+  const { lang } = settingsStore;
+
   return (
     <>
       <div className='field'>
-        <label>Nom</label>
+        <label>{txt.name[lang]}</label>
         <input
           type='text'
           name='name'
@@ -16,7 +21,7 @@ const Fields = ({ handleFormChange, formCharge }) => {
       </div>
 
       <div className='field'>
-        <label>Montant total</label>
+        <label>{txt.totalAmount[lang]}</label>
         <input
           type='number'
           name='total'
@@ -27,7 +32,7 @@ const Fields = ({ handleFormChange, formCharge }) => {
       </div>
 
       <div className='field'>
-        <label>Pourcentage remboursement</label>
+        <label>{txt.percentage[lang]}</label>
         <input
           type='number'
           name='percent'
@@ -38,7 +43,7 @@ const Fields = ({ handleFormChange, formCharge }) => {
       </div>
 
       <div className='field'>
-        <label>Date</label>
+        <label>{txt.date[lang]}</label>
         <input
           type='date'
           name='date'

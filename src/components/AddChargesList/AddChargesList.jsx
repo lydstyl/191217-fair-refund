@@ -1,6 +1,8 @@
 import React from 'react';
 import { IoMdAdd } from 'react-icons/io';
 
+import { useSettingsCtx } from '../../context/useSettings/useSettingsCtx';
+import txt from './translations';
 import { useUser } from '../../reducers/useUser';
 import { useChargeCtx } from '../../context/useCharge2/useChargeCtx';
 import chargeActions from '../../context/useCharge2/chargeActions';
@@ -8,6 +10,8 @@ import chargeActions from '../../context/useCharge2/chargeActions';
 import { db } from '../../utils/firebase/base';
 
 const AddChargesList = () => {
+  const { settingsStore } = useSettingsCtx();
+  const { lang } = settingsStore;
   const { userStore } = useUser();
   const email = userStore.currentUser;
   const { chargeStore, chargeDispatch } = useChargeCtx();
@@ -49,7 +53,11 @@ const AddChargesList = () => {
 
   return (
     <div className='field'>
-      <input type='text' name='chargesListName' placeholder='Nom de la liste' />
+      <input
+        type='text'
+        name='chargesListName'
+        placeholder={txt.listName[lang]}
+      />
       <button onClick={handleCreateChargesList}>
         <IoMdAdd />
       </button>

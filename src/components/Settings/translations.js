@@ -7,6 +7,10 @@ const txt = {
     en: 'Language',
     fr: 'Langue'
   },
+  selectLanguage: {
+    en: 'select a language',
+    fr: 'choisissez un language'
+  },
   english: {
     en: 'english',
     fr: 'anglais'
