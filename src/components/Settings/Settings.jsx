@@ -14,7 +14,6 @@ const Settings = () => {
 
   const handleColorChange = e => {
     localStorage.setItem('color', e.target.value);
-    // document.location.reload(true);
     document.location.reload();
   };
 
@@ -30,8 +29,11 @@ const Settings = () => {
 
         <div className='field'>
           <label>{txt.changeColor[lang]}</label>
-          <select onChange={handleColorChange} name='langage'>
-            <option value=''>--{txt.choose[lang]}--</option>
+          <select
+            defaultValue={localStorage.getItem('color')}
+            onChange={handleColorChange}
+            name='langage'
+          >
             <option value={txt.blue['en']}>{txt.blue[lang]}</option>
             <option value={txt.green['en']}>{txt.green[lang]}</option>
             <option value={txt.brown['en']}>{txt.brown[lang]}</option>
