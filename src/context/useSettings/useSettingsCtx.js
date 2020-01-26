@@ -2,43 +2,17 @@ import React, { useContext, createContext, useReducer } from 'react';
 
 import reducer from './reducer';
 
-const initialState = {
-  // loading: false,
+if (!localStorage.getItem('lang')) {
+  localStorage.setItem('lang', 'en');
+}
+if (!localStorage.getItem('color')) {
+  localStorage.setItem('color', 'blue');
+}
 
-  lang: localStorage.getItem('lang') || 'en',
-  // color: 'blue',
+const initialState = {
+  lang: localStorage.getItem('lang'),
 
   languages: { en: 'en', fr: 'fr' }
-
-  // colors: {
-  //   blue: {
-  //     white: '#FAFAFA',
-  //     black: '#212121',
-  //     primary: '#2196F3',
-  //     primaryLight: '#BBDEFB',
-  //     primaryDark: '#0D47A1',
-  //     secondary: '#E040FB',
-  //     secondaryLight: '#EA80FC'
-  //   },
-  //   yellow: {
-  //     white: '#FAFAFA',
-  //     black: '#212121',
-  //     primary: '#2196F3',
-  //     primaryLight: '#BBDEFB',
-  //     primaryDark: '#0D47A1',
-  //     secondary: '#E040FB',
-  //     secondaryLight: '#EA80FC'
-  //   },
-  //   red: {
-  //     white: '#FAFAFA',
-  //     black: '#212121',
-  //     primary: '#2196F3',
-  //     primaryLight: '#BBDEFB',
-  //     primaryDark: '#0D47A1',
-  //     secondary: '#E040FB',
-  //     secondaryLight: '#EA80FC'
-  //   }
-  // }
 };
 
 const Context = createContext();

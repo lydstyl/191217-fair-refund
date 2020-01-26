@@ -21,24 +21,20 @@ export const LanguageSelector = () => {
   } = useSettingsCtx();
 
   const handleLangChange = e => {
-    // loading true
-
-    // set the language db users --> id, email, settings {lang: 'en', color:'blue'}
-    // when login check if we have a user settings, if yes SET_LANGUAGE & SET_COLOR just after SET_CURRENT_USER
-
     settingsDispatch({
       type: settingsActions.SET_LANGUAGE.type,
       payload: e.target.value
     });
 
     localStorage.setItem('lang', e.target.value);
-
-    // loading false
   };
 
   return (
-    <StyledLangageSelector onChange={handleLangChange} name='langage'>
-      <option value=''>--{txt.selectLanguage[lang]}--</option>
+    <StyledLangageSelector
+      defaultValue={lang}
+      onChange={handleLangChange}
+      name='langage'
+    >
       <option value='en'>{txt.english[lang]}</option>
       <option value='fr'>{txt.french[lang]}</option>
     </StyledLangageSelector>
