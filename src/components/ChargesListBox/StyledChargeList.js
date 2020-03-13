@@ -189,7 +189,7 @@ const StyledChargeList = styled.div`
 
   @media ${device.laptop} {
     ul {
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 `;
