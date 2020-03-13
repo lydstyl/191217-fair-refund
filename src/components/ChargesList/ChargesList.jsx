@@ -9,6 +9,8 @@ import chargeActions from '../../context/useCharge2/chargeActions';
 
 import { db } from '../../utils/firebase/base';
 
+import { StyledCharges } from './StyledCharges';
+
 const getIdFromButton = event => {
   let chargeId = null;
 
@@ -90,7 +92,7 @@ const ChargesList = () => {
   };
 
   return (
-    <ul>
+    <StyledCharges>
       {charges &&
         charges.map(charge => (
           <li key={charge.chargeId}>
@@ -130,7 +132,7 @@ const ChargesList = () => {
             </p>
           </li>
         ))}
-    </ul>
+    </StyledCharges>
   );
 };
 
